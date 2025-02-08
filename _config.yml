@@ -2,6 +2,8 @@ theme: jekyll-theme-slate
 
 title: Unveiling the Mysteries of Coral Bleaching
 description: A Bayesian Approach to Understanding Causality
+author: "Tyler Pollard"
+date: "2024-08-25"
 
 markdown: kramdown
 

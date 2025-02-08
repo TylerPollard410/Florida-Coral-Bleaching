@@ -1,7 +1,3 @@
-Florida Coral Bleaching
-================
-Tyler Pollard
-2024-08-25
 
 <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
