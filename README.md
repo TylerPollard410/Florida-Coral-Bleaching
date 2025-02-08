@@ -65,8 +65,8 @@ The response variable for this study is the percentage of coral
 bleaching occurring in transect segments.
 
 The dataset contains 2,394 observations from 2006 to 2016 and is sourced
-from the Florida Reef Resilience Program. Data source:
-<https://www.bco-dmo.org/dataset/773466>
+from the Florida Reef Resilience Program. [Data
+source:](https://www.bco-dmo.org/dataset/773466)
 
 The objective of this study is to determine what covariates most heavily
 impact coral bleaching, and if coral bleaching has progressed over time.
@@ -94,7 +94,7 @@ Thermal Stress Anomaly (TSA), Degree Heating Week (DHW): Sum of previous
 Weekly sea surface temperature minus weekly climatological sea surface
 temperature.
 
-The SSTA***/SSTA_DHW and TSA*/TSA_DHW** set of predictors were highly
+The SSTA SSTA_DHW and TSA TSA_DHW set of predictors were highly
 correlated with each other. The Gaussian model was initially fit twice
 with each of these temperature sets and from DIC/WAIC calculations the
 TSA/TSA_DHW\* set was slightly better and the full set of predictors

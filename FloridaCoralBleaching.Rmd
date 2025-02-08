@@ -6,7 +6,7 @@ header-includes:
   - \usepackage{mathtools}
 output:  
   github_document:
-    html_preview: false
+    html_preview: true
     includes: 
       in_header: _includes/head.html
     toc: true
@@ -25,7 +25,7 @@ There are several factors that contribute to coral bleaching, including but not 
 
 This study will utilize data containing covariates such as date (month and year), temperature, turbidity, cyclone frequency, depth, and more. The response variable for this study is the percentage of coral bleaching occurring in transect segments.
 
-The dataset contains 2,394 observations from 2006 to 2016 and is sourced from the Florida Reef Resilience Program. Data source: https://www.bco-dmo.org/dataset/773466
+The dataset contains 2,394 observations from 2006 to 2016 and is sourced from the Florida Reef Resilience Program. [Data source:](https://www.bco-dmo.org/dataset/773466)
 
 The objective of this study is to determine what covariates most heavily impact coral bleaching, and if coral bleaching has progressed over time.
 
@@ -44,7 +44,7 @@ TSA_DHW: Thermal Stress Anomaly (TSA), Degree Heating Week (DHW): Sum of previou
 SSTA: Sea Surface Temperature Anomaly: Weekly sea surface temperature minus weekly climatological sea surface temperature.
 
 
-The SSTA***/SSTA_DHW and TSA*/TSA_DHW** set of predictors were highly correlated with each other. The Gaussian model was initially fit twice with each of these temperature sets and from DIC/WAIC calculations the TSA/TSA_DHW* set was slightly better and the full set of predictors above without SSTA and SSTA_DHW were included in both initial models.
+The SSTA SSTA_DHW and TSA TSA_DHW set of predictors were highly correlated with each other. The Gaussian model was initially fit twice with each of these temperature sets and from DIC/WAIC calculations the TSA/TSA_DHW* set was slightly better and the full set of predictors above without SSTA and SSTA_DHW were included in both initial models.
 
 Before the models were fit 25% of the data was randomly selected to be excluded as a test data set and the models were fit on the remaining 75% training data set. Each model was iteratively fit to identify parameters that were deemed insignificant based on their posterior 95% credible interval. The corresponding predictors were removed from the model and the model was fit again until all parameters were significant.
 
