@@ -1,0 +1,11 @@
+theme: jekyll-theme-slate
+
+title: Unveiling the Mysteries of Coral Bleaching
+description: A Bayesian Approach to Understanding Causality
+
+markdown: kramdown
+
+exclude:
+  - _layouts
+- _includes
+- app
