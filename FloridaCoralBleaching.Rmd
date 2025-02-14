@@ -1,11 +1,11 @@
 ---
-author: "Tyler Pollard"
-date: "2024-08-25"
+author: "Tyler Pollard, Rachel Hardy, and Hannan Ali"
+date: "2024-05-06"
 header-includes:
   - \usepackage{mathtools}
 output:  
   github_document:
-    html_preview: false
+    html_preview: true
     includes: 
       in_header: _includes/head.html
     toc: true
@@ -18,15 +18,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 # Motivation
 
-Coral bleaching is when corals are stressed by changes in conditions such as temperature, light, or nutrients, leading them to then expel the symbiotic algae living in their tissues, causing them to turn completely white.
-
-There are several factors that contribute to coral bleaching, including but not limited to: rising sea temperatures, rising sea levels, and ocean acidification, all of which are consequences of climate change.
-
-This study will utilize data containing covariates such as date (month and year), temperature, turbidity, cyclone frequency, depth, and more. The response variable for this study is the percentage of coral bleaching occurring in transect segments.
-
-The dataset contains 2,394 observations from 2006 to 2016 and is sourced from the Florida Reef Resilience Program. [Data source:](https://www.bco-dmo.org/dataset/773466)
-
-The objective of this study is to determine what covariates most heavily impact coral bleaching, and if coral bleaching has progressed over time.
+Coral bleaching is when corals are stressed by changes in conditions such as temperature, light, or nutrients, leading them to then expel the symbiotic algae living in their tissues, causing them to turn completely white. There are several factors that contribute to coral bleaching, including but not limited to: rising sea temperatures, rising sea levels, and ocean acidification, all of which are consequences of climate change. This study will utilize data containing covariates such as date (month and year), temperature, turbidity, cyclone frequency, depth, and more. The response variable for this study is the percentage of coral bleaching occurring in transect segments. The dataset contains 2,394 observations from 2006 to 2016 and is sourced from the [Florida Reef Resilience Program](https://www.bco-dmo.org/dataset/773466). The objective of this study is to determine what covariates most heavily impact coral bleaching, and if coral bleaching has progressed over time.
 
 # Methods & Variable Selection
 
