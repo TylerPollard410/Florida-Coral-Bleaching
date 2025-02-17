@@ -5,7 +5,7 @@ header-includes:
   - \usepackage{mathtools}
 output:  
   github_document:
-    html_preview: true
+    html_preview: false
     includes: 
       in_header: _includes/head.html
     toc: true
