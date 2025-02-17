@@ -1,5 +1,5 @@
 ---
-author: "Tyler Pollard, Rachel Hardy, and Hannan Ali"
+author: "Tyler Pollard, Rachel Hardy, and Hanan Ali"
 date: "2024-05-06"
 header-includes:
   - \usepackage{mathtools}

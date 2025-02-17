@@ -1,4 +1,4 @@
-Tyler Pollard, Rachel Hardy, and Hannan Ali
+Tyler Pollard, Rachel Hardy, and Hanan Ali
 2024-05-06
 
 <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
