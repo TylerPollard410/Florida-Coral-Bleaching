@@ -72,6 +72,8 @@ information about the data, we also chose to evoke the Bayesian Central
 Limit Theorem and model the data with a multiple linear regression
 model.
 
+<img src="README_files/figure-gfm/PercentBleaching Density-1.png" style="display: block; margin: auto;" />
+
 The data set included information on 3 types of possible predictors of
 Percent_Bleaching that we could include in our model:
 

@@ -15,6 +15,7 @@ library(cowplot)
 library(GGally)
 library(patchwork)
 library(fitdistrplus)
+library(plotly)
 library(caret)
 library(splines)
 library(mgcv)
@@ -83,28 +84,28 @@ bleachingData <- filteredData |>
   mutate(
     PercentBleaching = PercentBleaching/100,
     PercentBleachingBounded = case_when(
-      PercentBleaching == 0 ~ 0.0001,
-      PercentBleaching == 1 ~ 0.9999,
+      PercentBleaching == 0 ~ 0.001,
+      PercentBleaching == 1 ~ 0.999,
       .default = PercentBleaching
     ),
     PercentBleachingLow = case_when(
-      PercentBleaching == 1 ~ 0.9999,
+      PercentBleaching == 1 ~ 0.999,
       .default = PercentBleaching
-    )
+    ),
+    PercentBleaching100 = PercentBleachingBounded*100
   )
 
 write_csv(bleachingData, "_data/FloridaCoralBleachingData.csv")
 
 # Plot Data ------
 ## Percent Bleaching Distribution ----
-ggplot(data = bleachingData) +
+percentBleachingDensPlot <- ggplot(data = bleachingData) +
   geom_histogram(
     aes(x = PercentBleaching, after_stat(density)),
-    color = "#99c7c7", fill = "#bcdcdc",
-    bins = 100) +
+    color = "#99c7c7", fill = "#bcdcdc") + #bins = 40
   geom_density(
-    aes(x = PercentBleaching),
-    color = "#007C7C", 
+    aes(x = PercentBleaching),# y = after_stat(count/(4*n)*100)),
+    color = "#007C7C",
     linewidth = 1) +
   scale_y_continuous(expand = expansion(mult = c(0,0.05))) +
   scale_x_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
@@ -117,8 +118,195 @@ ggplot(data = bleachingData) +
     plot.title = element_text(size = 16, face = "bold"),
     plot.subtitle = element_text(size = 12)
   )
+percentBleachingDensPlot
+ggplotly(percentBleachingDensPlot)
 
-## Map ----
+percentBleachingDensPlot <- ggplot(data = bleachingData) +
+  geom_histogram(
+    aes(x = PercentBleaching), # after_stat(density)),
+    color = "#99c7c7", fill = "#bcdcdc",
+    bins = 100) +
+  geom_density(
+    #aes(x = PercentBleaching, y = after_stat(count)),
+    aes(x = PercentBleaching, y = after_stat(density)*nrow(bleachingData)/100),
+    color = "#007C7C",
+    linewidth = 1) +
+  scale_y_continuous(expand = expansion(mult = c(0,0.05))) +
+  scale_x_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
+  labs(title = "Density Plot of Percent Bleaching from 2,394 Coral Reef Samples",
+       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       x = "Percent Bleaching",
+       y = "Count") +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12)
+  )
+percentBleachingDensPlot
+ggplotly(percentBleachingDensPlot)
+
+percentBleachingLogDensPlot <- ggplot(data = bleachingData) +
+  geom_histogram(
+    aes(x = log(PercentBleachingBounded)), # after_stat(density)),
+    color = "#99c7c7", fill = "#bcdcdc",
+    bins = 100) +
+  geom_density(
+    #aes(x = PercentBleaching, y = after_stat(count)),
+    aes(x = log(PercentBleachingBounded), y = after_stat(density)*nrow(bleachingData)/100),
+    color = "#007C7C",
+    linewidth = 1) +
+  scale_y_continuous(expand = expansion(mult = c(0,0.05))) +
+  #scale_x_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
+  labs(title = "Density Plot of Log Percent Bleaching from 2,394 Coral Reef Samples",
+       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       x = "Percent Bleaching",
+       y = "Count") +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12)
+  )
+percentBleachingLogDensPlot
+
+### By Covariates ----
+#### Categorical ----
+##### Year ----
+ggplot(data = bleachingData) +
+  geom_boxplot(
+    aes(x = factor(Date_Year), y = PercentBleaching, fill = City_Town_Name))+
+    #color = "#99c7c7", fill = "#bcdcdc") +
+  scale_y_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
+  labs(title = "Density Plot of Percent Bleaching from 2,394 Coral Reef Samples",
+       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       x = "Percent Bleaching",
+       y = "Density") +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12)
+  )
+
+ggplot(data = bleachingData) +
+  geom_boxplot(
+    aes(x = factor(Date_Month), y = PercentBleaching),
+    color = "#99c7c7", fill = "#bcdcdc") +
+  scale_y_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
+  labs(title = "Density Plot of Percent Bleaching from 2,394 Coral Reef Samples",
+       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       x = "Percent Bleaching",
+       y = "Density") +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12)
+  )
+
+##### City_Town_Name ----
+ggplot(data = bleachingData, aes(group = City_Town_Name)) +
+  geom_histogram(
+    aes(x = PercentBleaching, fill = City_Town_Name), # after_stat(density)),
+    #color = "#99c7c7", fill = "#bcdcdc",
+    bins = 100) +
+  # geom_density(
+  #   aes(x = PercentBleaching, color = factor(City_Town_Name)),
+  #   linewidth = 1) +
+  scale_y_continuous(expand = expansion(mult = c(0,0.05))) +
+  scale_x_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
+  facet_wrap(vars(City_Town_Name)) +
+  labs(title = "Density Plot of Percent Bleaching from 2,394 Coral Reef Samples",
+       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       x = "Percent Bleaching",
+       y = "Density") +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12),
+    legend.position = "bottom"
+  )
+
+ggplot(data = bleachingData) +
+  geom_boxplot(
+    aes(x = City_Town_Name, y = PercentBleaching),
+    color = "#99c7c7", fill = "#bcdcdc") +
+  scale_y_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
+  labs(title = "Density Plot of Percent Bleaching from 2,394 Coral Reef Samples",
+       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       x = "Percent Bleaching",
+       y = "Density") +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12)
+  )
+
+##### Exposure ----
+ggplot(data = bleachingData) +
+  geom_boxplot(
+    aes(x = Exposure, y = PercentBleaching),
+    color = "#99c7c7", fill = "#bcdcdc") +
+  scale_y_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
+  labs(title = "Density Plot of Percent Bleaching from 2,394 Coral Reef Samples",
+       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       x = "Percent Bleaching",
+       y = "Density") +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12)
+  )
+
+
+#### Continuous ----
+contVars <- c(
+  "Date_Year",
+  "Lat",
+  "Lon",
+  "Distance_to_Shore",
+  "Turbidity",
+  "Cyclone_Frequency",
+  "Depth_m",
+  "Windspeed",
+  "ClimSST",
+  "SSTA",
+  "SSTA_DHW",
+  "TSA",
+  "TSA_DHW"
+)
+contVar <- contVars[7]
+ggplot(data = bleachingData) +
+  geom_point(
+    aes(x = get(contVar), y = PercentBleaching),
+    color = "#99c7c7") +
+  geom_smooth(aes(x = get(contVar), y = PercentBleaching)) +
+  scale_y_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
+  labs(title = paste0("Density Plot of Percent Bleaching vs ", contVar),
+       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       y = "Percent Bleaching",
+       x = contVar) +
+  theme_bw() +
+  theme(
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12)
+  )
+
+## Map Spatial Covariates ----
+county_coordinates <- map_data("county") 
+ggplot() +
+  geom_map(
+    data = county_coordinates, map = county_coordinates,
+    aes(x = long, y = lat, map_id = region)
+  ) +
+  geom_point(
+    data = bleachingData,
+    aes(x = Lon, y = Lat,
+        color = PercentBleaching)
+  ) +
+  xlim(c(-84,-79)) +
+  ylim(c(24, 28)) +
+  #facet_wrap(vars(Date_Year)) +
+  scale_color_continuous(low = "green", high = "red") +
+  theme_bw()
+
 county_coordinates <- map_data("county") 
 ggplot() +
   geom_map(
@@ -136,45 +324,55 @@ ggplot() +
   scale_color_continuous(low = "green", high = "red") +
   theme_bw()
 
-maxData <- bleachingData |> 
-  group_by(Date_Year) |>
-  summarise(
-    across(where(is.numeric),
-           ~max(.x))
-  )
+county_coordinates <- map_data("county") 
+ggplot() +
+  geom_map(
+    data = county_coordinates, map = county_coordinates,
+    aes(x = long, y = lat, map_id = region)
+  ) +
+  geom_point(
+    data = bleachingData,
+    aes(x = Lon, y = Lat,
+        color = PercentBleaching)
+  ) +
+  xlim(c(-84,-79)) +
+  ylim(c(24, 28)) +
+  facet_wrap(vars(City_Town_Name)) +
+  scale_color_continuous(low = "green", high = "red") +
+  theme_bw()
 
 ### Spatial Correlation ----
-library(spdep)
-library(gstat)
-library(sp)
+# library(spdep)
+# library(gstat)
+# library(sp)
 
 #### Morans ----
 # Convert to Spatial Data
-coral_sf <- st_as_sf(bleachingData, coords = c("Lon", "Lat"), crs = 4326)  # WGS84 CRS
+#coral_sf <- st_as_sf(bleachingData, coords = c("Lon", "Lat"), crs = 4326)  # WGS84 CRS
 
 # Create a spatial neighbors list using K-Nearest Neighbors
-coords <- as.matrix(bleachingData[, c("Lon", "Lat")])
-nb <- knn2nb(knearneigh(coords, k = 6))  # Using 6 nearest neighbors
-lw <- nb2listw(nb, style = "W")  # Convert neighbors to list weights
+#coords <- as.matrix(bleachingData[, c("Lon", "Lat")])
+#nb <- knn2nb(knearneigh(coords, k = 6))  # Using 6 nearest neighbors
+#lw <- nb2listw(nb, style = "W")  # Convert neighbors to list weights
 
 # Compute Moran's I
-moran_test <- moran.test(bleachingData$PercentBleaching, lw)
+#moran_test <- moran.test(bleachingData$PercentBleaching, lw)
 
 # Print Moran's I results
-print(moran_test)
+#print(moran_test)
 
 #### Variogram ----
 # Convert to spatial object
-coordinates(bleachingData) <- ~Lon+Lat
+#coordinates(bleachingData) <- ~Lon+Lat
 
 # Compute the empirical variogram
-vario <- variogram(PercentBleaching ~ 1, data = bleachingData)
+#vario <- variogram(PercentBleaching ~ 1, data = bleachingData)
 
 # Fit a variogram model
-vario_model <- fit.variogram(vario, vgm("Sph"))
+#vario_model <- fit.variogram(vario, vgm("Sph"))
 
 # Plot the variogram
-plot(vario, model = vario_model, main = "Spatial Variogram of Coral Bleaching")
+#plot(vario, model = vario_model, main = "Spatial Variogram of Coral Bleaching")
 
 ## ggpairs ----
 ### Temperature ----
@@ -201,6 +399,14 @@ otherData <- bleachingData |> select(
 ggpairs(otherData)
 
 ## Temporal Autocorrelation ----
+maxData <- bleachingData |> 
+  group_by(Date_Year) |>
+  summarise(
+    across(where(is.numeric),
+           ~max(.x))
+  )
+
+
 PlotACF(bleachingData$PercentBleaching)
 
 ## Dickey fuller
@@ -208,6 +414,8 @@ adf.test(bleachingData$PercentBleaching)
 autocorr.plot(bleachingData$PercentBleaching, ask = FALSE)
 auto.arima(bleachingData$PercentBleaching, 
            seasonal = TRUE, stationary = TRUE)
+
+
 
 # Pre-Process Data ----
 bleachingData <- bleachingData |>
@@ -217,6 +425,8 @@ bleachingData <- bleachingData |>
     Lon2 = Lon,
     .after = Lon
   )
+
+## Corr ----
 preProc1 <- preProcess(
   bleachingData |>
     select(
@@ -237,13 +447,77 @@ preProc1 <- preProcess(
   method = c("center", "scale", "corr")
 )
 preProc1
+procData1 <- predict(preProc1, bleachingData)
 
-procData <- predict(preProc1, bleachingData)
+## YeoJohnson ----
+preProc2 <- preProcess(
+  bleachingData |>
+    select(
+      Date_Year2,
+      Lat2,
+      Lon2,
+      Distance_to_Shore,
+      Turbidity,
+      Cyclone_Frequency,
+      Depth_m,
+      Windspeed,
+      ClimSST,
+      SSTA,
+      SSTA_DHW,
+      TSA,
+      TSA_DHW
+    ),
+  method = c("center", "scale", "YeoJohnson")
+)
+preProc2
+procData2 <- predict(preProc2, bleachingData)
+
+## Arcsinh ----
+procData3 <- bleachingData |>
+  mutate(
+    across(c(
+      Date_Year2,
+      Lat2,
+      Lon2,
+      Distance_to_Shore,
+      Turbidity,
+      Cyclone_Frequency,
+      Depth_m,
+      Windspeed,
+      ClimSST,
+      SSTA,
+      SSTA_DHW,
+      TSA,
+      TSA_DHW
+    ),
+    ~predict(arcsinh_x(.x, standardize = FALSE), newdata = .x)
+    ))
+preProc3 <- preProcess(
+  procData3 |>
+    select(
+      Date_Year2,
+      Lat2,
+      Lon2,
+      Distance_to_Shore,
+      Turbidity,
+      Cyclone_Frequency,
+      Depth_m,
+      Windspeed,
+      ClimSST,
+      SSTA,
+      SSTA_DHW,
+      TSA,
+      TSA_DHW
+    ),
+  method = c("center", "scale")
+)
+preProc3
+procData3 <- predict(preProc3, procData3)
 
 # MODELS =============================================
 # Normal -------
 formulaBleaching_normal <- 
-  bf(PercentBleaching ~ 
+  bf(PercentBleachingBounded ~ 
        Date_Year2 +
        Lat2 +
        Lon2 +
@@ -259,7 +533,7 @@ formulaBleaching_normal <-
        TSA +
        TSA_DHW +
        (1 | City_Town_Name)
-  ) + brmsfamily(family = "gaussian", link = "identity")
+  ) + brmsfamily(family = "student", link = "log")
 
 default_prior(formulaBleaching_normal, data = procData)
 
@@ -272,8 +546,8 @@ default_prior(formulaBleaching_normal, data = procData)
 # )
 
 ## Fit brms ----
-iters <- 4000
-burn <- 2000
+iters <- 2000
+burn <- 1000
 chains <- 2
 sims <- (iters-burn)*chains
 
@@ -296,7 +570,7 @@ normalFit <- brm(
   seed = 52,
   warmup = burn,
   #init = 0,
-  normalize = FALSE,
+  normalize = TRUE,
   control = list(adapt_delta = 0.95),
   backend = "cmdstanr"
 )
@@ -305,8 +579,8 @@ normalFit <- brm(
 #save(normalFit, file = "_data/normalFit.RData")
 
 ## Diagnostics ----
-fit <- 1
-assign(paste0("normalFit", fit), normalFit)
+fitNormal <- 1
+assign(paste0("studentFit", fitNormal), normalFit)
 #save(normalFitFINAL, file = "_data/normalFitFINAL.RData")
 
 plot(normalFit, ask = FALSE)
@@ -362,7 +636,8 @@ print(normalFitfixedEff, digits = 4)
 normalFitfixedSigEff <- normalFitfixedEff |> filter(p_val < 0.2)
 print(normalFitfixedSigEff)
 
-pp_check(normalFit, ndraws = 100)
+pp_check(normalFit, ndraws = 100) +
+  scale_x_continuous(limits = c(-1,1))
 
 ### Hypothesis Tests 
 # posterior_summary(normalFit)
@@ -383,6 +658,18 @@ pp_check(normalFit, ndraws = 100)
 VarCorr(normalFit)
 
 ### Residuals ----
+#### MAE
+normalFitResiduals <- 
+  residuals(
+    normalFit,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = FALSE,
+    probs = c(0.025, 0.975)) |>
+  data.frame()
+mean(abs(normalFitResiduals$Estimate))
+
+#### MAD
 normalFitResiduals <- 
   residuals(
     normalFit,
@@ -436,7 +723,7 @@ formulaBleaching_logNormal <-
        TSA +
        TSA_DHW +
        (1 | City_Town_Name)
-  ) + brmsfamily(family = "lognormal", link = "log")
+  ) + brmsfamily(family = "lognormal", link = "identity")
 
 default_prior(formulaBleaching_logNormal, data = procData)
 
@@ -449,8 +736,8 @@ default_prior(formulaBleaching_logNormal, data = procData)
 # )
 
 ## Fit brms ----
-iters <- 4000
-burn <- 2000
+iters <- 2000
+burn <- 1000
 chains <- 2
 sims <- (iters-burn)*chains
 
@@ -473,7 +760,7 @@ logNormalFit <- brm(
   seed = 52,
   warmup = burn,
   #init = 0,
-  normalize = FALSE,
+  normalize = TRUE,
   control = list(adapt_delta = 0.95),
   backend = "cmdstanr"
 )
@@ -482,7 +769,7 @@ logNormalFit <- brm(
 #save(logNormalFit, file = "_data/logNormalFit.RData")
 
 ## Diagnostics ----
-fit <- 1
+fit <- 5
 assign(paste0("logNormalFit", fit), logNormalFit)
 #save(logNormalFitFINAL, file = "_data/logNormalFitFINAL.RData")
 
@@ -539,7 +826,8 @@ print(logNormalFitfixedEff, digits = 4)
 logNormalFitfixedSigEff <- logNormalFitfixedEff |> filter(p_val < 0.2)
 print(logNormalFitfixedSigEff)
 
-pp_check(logNormalFit, ndraws = 100)
+pp_check(logNormalFit, ndraws = 100) + 
+  scale_x_continuous(limits = c(0,1))
 
 ### Hypothesis Tests 
 # posterior_summary(logNormalFit)
@@ -560,9 +848,21 @@ pp_check(logNormalFit, ndraws = 100)
 VarCorr(logNormalFit)
 
 ### Residuals ----
+#### MAE
 logNormalFitResiduals <- 
   residuals(
-    logNormalFit,
+    normalFit,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = FALSE,
+    probs = c(0.025, 0.975)) |>
+  data.frame()
+mean(abs(logNormalFitResiduals$Estimate))
+
+#### MAD
+logNormalFitResiduals <- 
+  residuals(
+    normalFit,
     method = "posterior_predict",
     re_formula = NULL,
     robust = FALSE,
@@ -595,10 +895,9 @@ logNormalFitfinalFitMed <- apply(logNormalFitfinalFit, 2, function(x){quantile(x
 logNormalFitfinalFitLCB <- apply(logNormalFitfinalFit, 2, function(x){quantile(x, 0.025)})
 logNormalFitfinalFitUCB <- apply(logNormalFitfinalFit, 2, function(x){quantile(x, 0.975)})
 
-
-# Beta -------
-formulaBleaching_beta <- 
-  bf(PercentBleachingBounded ~ 
+# hurdleLogNormal -------
+formulaBleaching_hurdleLogNormal <- 
+  bf(PercentBleaching|trunc(ub = 1) ~ 
        Date_Year2 +
        Lat2 +
        Lon2 +
@@ -614,11 +913,205 @@ formulaBleaching_beta <-
        TSA +
        TSA_DHW +
        (1 | City_Town_Name)
-  ) + brmsfamily(family = "Beta", link = "logit")
+  ) + brmsfamily(family = "hurdle_logNormal", link = "identity")
 
-default_prior(formulaBleaching_beta, data = procData)
+default_prior(formulaBleaching_hurdleLogNormal, data = procData)
 
 # priorsVMAX <- c(
+#   #prior(horseshoe(1), class = "b")
+#   prior(hurdleLogNormal(0, 5), class = "b"),
+#   prior(inv_gamma(0.1, 0.1), class = "sigma")
+#   #prior(inv_gamma(0.1, 0.1), class = "shape"),
+#   #prior(inv_gamma(0.1, 0.1), class = "sd")
+# )
+
+## Fit brms ----
+iters <- 2000
+burn <- 1000
+chains <- 2
+sims <- (iters-burn)*chains
+
+#system.time(
+hurdleLogNormalFit <- brm(
+  formulaBleaching_hurdleLogNormal,
+  data = procData,
+  # prior = c(
+  #   #prior(horseshoe(1), class = "b")
+  #   prior(hurdleLogNormal(0, 5), class = "b"),
+  #   prior(inv_gamma(0.1, 0.1), class = "sigma"),
+  #   #prior(inv_gamma(0.1, 0.1), class = "b", dpar = "sigma", lb = 0),
+  #   #prior(inv_gamma(0.1, 0.1), class = "shape"),
+  #   prior(inv_gamma(0.1, 0.1), class = "sd")
+  # ),
+  save_pars = save_pars(all = TRUE), 
+  chains = chains,
+  iter = iters,
+  cores = parallel::detectCores(),
+  seed = 52,
+  warmup = burn,
+  #init = 0,
+  normalize = TRUE,
+  control = list(adapt_delta = 0.95),
+  backend = "cmdstanr"
+)
+#)
+
+#save(hurdleLogNormalFit, file = "_data/hurdleLogNormalFit.RData")
+
+## Diagnostics ----
+fithurdleLogNormal <- 2
+assign(paste0("hurdleLogNormalFit", fithurdleLogNormal), hurdleLogNormalFit)
+#save(hurdleLogNormalFitFINAL, file = "_data/hurdleLogNormalFitFINAL.RData")
+
+plot(hurdleLogNormalFit, ask = FALSE)
+#prior_summary(hurdleLogNormalFit)
+
+print(hurdleLogNormalFit, digits = 4)
+
+# waicList <- list(
+#   waic(hurdleLogNormalFit),
+#   waic(hurdleLogNormalRandFit),
+#   waic(gammaFit),
+#   waic(gammaRandFit)
+# )
+#waic <- waic(hurdleLogNormalFit)
+#attributes(waic)$model_name <- paste0("hurdleLogNormalFit", fit)
+#waicList[[paste0("fit", 4)]] <- waic4
+
+### Compare Candidate Models ----
+# waicList
+# 
+# waicListComp <- loo_compare(
+#   waicList
+# )
+# waicListComp <- waicListComp |>
+#   data.frame() |>
+#   rownames_to_column(var = "Model")
+# 
+# save(waicList, waicListComp, file = "_data/waicComps.RData")
+
+
+
+### Multicollinearity ----
+check_collinearity(hurdleLogNormalFit)
+
+### Check heteroskedasity ----
+check_heteroscedasticity(hurdleLogNormalFit)
+
+### Fixed Effects ----
+hurdleLogNormalFitfixedEff <- fixef(hurdleLogNormalFit)
+hurdleLogNormalFitfixedEff <- data.frame(hurdleLogNormalFitfixedEff) |>
+  mutate(
+    p_val = dnorm(Estimate/Est.Error)
+  ) |>
+  mutate(
+    across(everything(), function(x){round(x, 4)})
+  ) |>
+  mutate(
+    Sig = ifelse(p_val < 0.01, "***",
+                 ifelse(p_val < 0.05, "**",
+                        ifelse(p_val < 0.1, "*", "")))
+  )
+print(hurdleLogNormalFitfixedEff, digits = 4)
+hurdleLogNormalFitfixedSigEff <- hurdleLogNormalFitfixedEff |> filter(p_val < 0.2)
+print(hurdleLogNormalFitfixedSigEff)
+
+hurdleLogNormalFitPPC <- pp_check(hurdleLogNormalFit, ndraws = 100) +
+  scale_x_continuous(limits = c(0,1))
+
+### Hypothesis Tests 
+# posterior_summary(hurdleLogNormalFit)
+# 
+# xVars <- str_subset(variables(hurdleLogNormalFit), pattern = "b_")
+# hypothesis(hurdleLogNormalFit, paste(xVars, "= 0"), 
+#            class = NULL, 
+#            alpha = 0.1)
+# 
+# hypothesis(hurdleLogNormalFit, "sHWRF_1 = 0", class = "bs")
+# hypID <- hypothesis(hurdleLogNormalFit, 
+#                     "Intercept = 0", 
+#                     group = "StormID", 
+#                     scope = "coef")
+# plot(hypID)
+
+#variance_decomposition(hurdleLogNormalFit)
+VarCorr(hurdleLogNormalFit)
+
+### Residuals ----
+#### MAE
+hurdleLogNormalFitResiduals <- 
+  residuals(
+    hurdleLogNormalFit,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = FALSE,
+    probs = c(0.025, 0.975)) |>
+  data.frame()
+mean(abs(hurdleLogNormalFitResiduals$Estimate))
+
+#### MAD
+hurdleLogNormalFitResiduals <- 
+  residuals(
+    hurdleLogNormalFit,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = TRUE,
+    probs = c(0.025, 0.975)) |>
+  data.frame()
+mean(abs(hurdleLogNormalFitResiduals$Estimate))
+
+# predResiduals <- 
+#   residuals(
+#     hurdleLogNormalFit, 
+#     #newdata = StormdataTestArcsinh,
+#     newdata = StormdataTestYeo,
+#     #newdata = StormdataTest2,
+#     method = "posterior_predict",
+#     allow_new_levels = TRUE,
+#     re_formula = NULL,
+#     robust = FALSE,
+#     probs = c(0.025, 0.975)) |>
+#   data.frame()
+# mean(abs(predResiduals$Estimate))
+
+## Posteriors ----
+#hurdleLogNormalFit <- Fit8
+### Training ----
+hurdleLogNormalFitfinalFit <- posterior_predict(hurdleLogNormalFit)
+# hurdleLogNormalFitfinalResiduals <- t(StormdataTrain3$VMAX - t(hurdleLogNormalFitfinalFit))
+# hurdleLogNormalFitfinalResidualsMean <- colMeans(hurdleLogNormalFitfinalResiduals)
+hurdleLogNormalFitfinalFitMean <- colMeans(hurdleLogNormalFitfinalFit)
+hurdleLogNormalFitfinalFitMed <- apply(hurdleLogNormalFitfinalFit, 2, function(x){quantile(x, 0.5)})
+hurdleLogNormalFitfinalFitLCB <- apply(hurdleLogNormalFitfinalFit, 2, function(x){quantile(x, 0.025)})
+hurdleLogNormalFitfinalFitUCB <- apply(hurdleLogNormalFitfinalFit, 2, function(x){quantile(x, 0.975)})
+
+
+# Beta -------
+formulaBleaching_beta <- 
+  bf(PercentBleachingBounded ~ 
+       #s(Date_Year, by = City_Town_Name) +
+       gp(Date_Year, by = City_Town_Name) +
+       Lat2 +
+       Lon2 +
+       #t2(Lat, Lon) +
+       Distance_to_Shore +
+       Exposure +
+       Turbidity +
+       Cyclone_Frequency +
+       Depth_m +
+       Windspeed +
+       ClimSST +
+       SSTA +
+       #SSTA_DHW +
+       TSA +
+       TSA_DHW 
+       #City_Town_Name
+       #(1 | City_Town_Name)
+  ) + brmsfamily(family = "Beta", link = "logit")
+
+default_prior(formulaBleaching_beta, data = procData2)
+
+# priorsVMAX <- c(# priorsVMAX <- c(bleachingData
 #   #prior(horseshoe(1), class = "b")
 #   prior(beta(0, 5), class = "b"),
 #   prior(inv_gamma(0.1, 0.1), class = "sigma")
@@ -627,15 +1120,16 @@ default_prior(formulaBleaching_beta, data = procData)
 # )
 
 ## Fit brms ----
-iters <- 4000
-burn <- 2000
+iters <- 2000
+burn <- 1000
 chains <- 2
 sims <- (iters-burn)*chains
 
 #system.time(
 betaFit <- brm(
   formulaBleaching_beta,
-  data = procData,
+  data = procData2,
+  #data = bleachingData,
   # prior = c(
   #   #prior(horseshoe(1), class = "b")
   #   prior(beta(0, 5), class = "b"),
@@ -651,22 +1145,23 @@ betaFit <- brm(
   seed = 52,
   warmup = burn,
   #init = 0,
-  normalize = FALSE,
-  control = list(adapt_delta = 0.95),
-  backend = "cmdstanr"
+  normalize = TRUE,
+  control = list(adapt_delta = 0.95)
+  #backend = "cmdstanr"
 )
 #)
 
 #save(betaFit, file = "_data/betaFit.RData")
 
 ## Diagnostics ----
-fit <- 1
-assign(paste0("betaFit", fit), betaFit)
+fitbeta <- 29
+assign(paste0("betaFit", fitbeta), betaFit)
 #save(betaFitFINAL, file = "_data/betaFitFINAL.RData")
 
 plot(betaFit, ask = FALSE)
 #prior_summary(betaFit)
 
+betaFit <- betaFit24
 print(betaFit, digits = 4)
 
 # waicList <- list(
@@ -714,10 +1209,13 @@ betaFitfixedEff <- data.frame(betaFitfixedEff) |>
                         ifelse(p_val < 0.1, "*", "")))
   )
 print(betaFitfixedEff, digits = 4)
+assign(paste0("betaFitFE", 29), betaFitfixedEff)
+
 betaFitfixedSigEff <- betaFitfixedEff |> filter(p_val < 0.2)
 print(betaFitfixedSigEff)
 
-pp_check(betaFit, ndraws = 100)
+pp_check(betaFit, ndraws = 100) +
+  labs(title = paste0("betaFit", fitbeta))
 
 ### Hypothesis Tests 
 # posterior_summary(betaFit)
@@ -738,7 +1236,8 @@ pp_check(betaFit, ndraws = 100)
 VarCorr(betaFit)
 
 ### Residuals ----
-betaFitResiduals <- 
+#### MAE
+betaFitResidualsMean <- 
   residuals(
     betaFit,
     method = "posterior_predict",
@@ -746,7 +1245,81 @@ betaFitResiduals <-
     robust = FALSE,
     probs = c(0.025, 0.975)) |>
   data.frame()
-mean(abs(betaFitResiduals$Estimate))
+mean(abs(betaFitResidualsMean$Estimate))
+# 0.1103762, 0.1019409, 0.1049707
+# 0.1105017, 0.1017932, 0.1050378
+# 0.1108662, 0.1028177, 0.1062437
+# 0.1105874, 0.1027295, 0.1056165
+#          , 0.1025664
+
+#### MAD
+betaFitResidualsMed <- 
+  residuals(
+    betaFit,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = TRUE,
+    probs = c(0.025, 0.975)) |>
+  data.frame()
+mean(abs(betaFitResidualsMed$Estimate))
+# 0.1029426, 0.09506708, 0.09777495
+# 0.1027574, 0.09512276, 0.09778614
+# 0.1034679, 0.09629915, 0.09894765
+# 0.1028752, 0.0962147, 0.09867248
+#.         , 0.09603474
+
+loo_compare(
+  loo(betaFit11), # Lat, RE City
+  loo(betaFit14), # Lat, FE City
+  loo(betaFit17), # Lat
+  loo(betaFit20), # FE City
+  loo(betaFit23), # Lon, FE City
+  loo(betaFit24), # t2(Lat, Lon), FE City
+  loo(betaFit25), # t2(Lat, Lon)
+  loo(betaFit26)
+)
+# elpd_diff se_diff
+# betaFit24   0.0       0.0  
+# betaFit25  -3.7       3.0  
+# betaFit14 -17.1       5.6  
+# betaFit11 -17.6       5.7  
+# betaFit23 -33.4       8.1  
+# betaFit20 -33.8       8.0  
+# betaFit17 -35.4       8.8 
+
+bayes_factor(betaFit11, betaFit14)
+# Estimated Bayes factor in favor of betaFit11 over betaFit14: 0.00161
+bayes_factor(betaFit14, betaFit17)
+# Estimated Bayes factor in favor of betaFit14 over betaFit17: 40361404.13121
+bayes_factor(betaFit14, betaFit20)
+# Estimated Bayes factor in favor of betaFit14 over betaFit20: 1352631.32243
+bayes_factor(betaFit17, betaFit20)
+# Estimated Bayes factor in favor of betaFit17 over betaFit20: 0.03316
+bayes_factor(betaFit14, betaFit23)
+
+bayes_factor(betaFit24, betaFit14)
+bayes_factor(betaFit24, betaFit26)
+bayes_factor(betaFit29, betaFit28)
+
+betaFitsmooths <- conditional_smooths(betaFit,
+method = "posterior_predict")
+
+plot(betaFitsmooths,
+     stype = "raster",
+     ask = FALSE,
+     theme = theme(legend.position = "bottom"))
+plot(betaFitsmooths,
+     stype = "contour",
+     ask = FALSE,
+     theme = theme(legend.position = "bottom"))
+
+betaFitsmooths <- conditional_effects(betaFit,
+                                      method = "posterior_predict")
+plot(betaFitsmooths,
+     #stype = "contour",
+     ask = FALSE,
+     points = TRUE, 
+     theme = theme(legend.position = "bottom"))
 
 # predResiduals <- 
 #   residuals(
@@ -778,8 +1351,9 @@ betaFitfinalFitUCB <- apply(betaFitfinalFit, 2, function(x){quantile(x, 0.975)})
 formulaBleaching_ziBeta <- 
   bf(PercentBleachingLow ~ 
        Date_Year2 +
-       Lat2 +
-       Lon2 +
+       #Lat2 +
+       #Lon2 +
+       t2(Lat, Lon) +
        Distance_to_Shore +
        Exposure +
        Turbidity +
@@ -792,7 +1366,7 @@ formulaBleaching_ziBeta <-
        TSA +
        TSA_DHW +
        (1 | City_Town_Name)
-  ) + brmsfamily(family = "zero_inflated_beta", link = "logit")
+  ) + brmsfamily(family = "zero_inflated_beta")#, link = "logit")
 
 default_prior(formulaBleaching_ziBeta, data = procData)
 
@@ -829,7 +1403,7 @@ ziBetaFit <- brm(
   seed = 52,
   warmup = burn,
   #init = 0,
-  normalize = FALSE,
+  normalize = TRUE,
   control = list(adapt_delta = 0.95),
   backend = "cmdstanr"
 )
@@ -838,14 +1412,14 @@ ziBetaFit <- brm(
 #save(ziBetaFit, file = "_data/ziBetaFit.RData")
 
 ## Diagnostics ----
-fit <- 1
-assign(paste0("ziBetaFit", fit), ziBetaFit)
+fitziBeta <- 2
+assign(paste0("ziBetaFit", fitziBeta), ziBetaFit)
 #save(ziBetaFitFINAL, file = "_data/ziBetaFitFINAL.RData")
 
 plot(ziBetaFit, ask = FALSE)
 #prior_summary(ziBetaFit)
 
-print(ziBetaFit, digits = 4)
+print(ziBetaFit2, digits = 4)
 
 # waicList <- list(
 #   waic(ziBetaFit),
@@ -916,7 +1490,8 @@ pp_check(ziBetaFit, ndraws = 100)
 VarCorr(ziBetaFit)
 
 ### Residuals ----
-ziBetaFitResiduals <- 
+#### MAE
+ziBetaFitResidualsMean <- 
   residuals(
     ziBetaFit,
     method = "posterior_predict",
@@ -924,7 +1499,18 @@ ziBetaFitResiduals <-
     robust = FALSE,
     probs = c(0.025, 0.975)) |>
   data.frame()
-mean(abs(ziBetaFitResiduals$Estimate))
+mean(abs(ziBetaFitResidualsMean$Estimate))
+
+#### MAD
+ziBetaFitResidualsMed <- 
+  residuals(
+    ziBetaFit,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = TRUE,
+    probs = c(0.025, 0.975)) |>
+  data.frame()
+mean(abs(ziBetaFitResidualsMed$Estimate))
 
 # predResiduals <- 
 #   residuals(
@@ -951,184 +1537,6 @@ ziBetaFitfinalFitMed <- apply(ziBetaFitfinalFit, 2, function(x){quantile(x, 0.5)
 ziBetaFitfinalFitLCB <- apply(ziBetaFitfinalFit, 2, function(x){quantile(x, 0.025)})
 ziBetaFitfinalFitUCB <- apply(ziBetaFitfinalFit, 2, function(x){quantile(x, 0.975)})
 
-
-# zoiBeta -------
-formulaBleaching_zoiBeta <- 
-  bf(PercentBleaching ~ 
-       Date_Year2 +
-       Lat2 +
-       Lon2 +
-       Distance_to_Shore +
-       Exposure +
-       Turbidity +
-       Cyclone_Frequency +
-       Depth_m +
-       Windspeed +
-       ClimSST +
-       SSTA +
-       #SSTA_DHW +
-       TSA +
-       TSA_DHW +
-       (1 | City_Town_Name)
-  ) + brmsfamily(family = "zero_one_inflated_beta", link = "logit")
-
-default_prior(formulaBleaching_zoiBeta, data = procData)
-
-# priorsVMAX <- c(
-#   #prior(horseshoe(1), class = "b")
-#   prior(zoiBeta(0, 5), class = "b"),
-#   prior(inv_gamma(0.1, 0.1), class = "sigma")
-#   #prior(inv_gamma(0.1, 0.1), class = "shape"),
-#   #prior(inv_gamma(0.1, 0.1), class = "sd")
-# )
-
-## Fit brms ----
-iters <- 4000
-burn <- 2000
-chains <- 2
-sims <- (iters-burn)*chains
-
-#system.time(
-zoiBetaFit <- brm(
-  formulaBleaching_zoiBeta,
-  data = procData,
-  # prior = c(
-  #   #prior(horseshoe(1), class = "b")
-  #   prior(zoiBeta(0, 5), class = "b"),
-  #   prior(inv_gamma(0.1, 0.1), class = "sigma"),
-  #   #prior(inv_gamma(0.1, 0.1), class = "b", dpar = "sigma", lb = 0),
-  #   #prior(inv_gamma(0.1, 0.1), class = "shape"),
-  #   prior(inv_gamma(0.1, 0.1), class = "sd")
-  # ),
-  save_pars = save_pars(all = TRUE), 
-  chains = chains,
-  iter = iters,
-  cores = parallel::detectCores(),
-  seed = 52,
-  warmup = burn,
-  #init = 0,
-  normalize = FALSE,
-  control = list(adapt_delta = 0.95),
-  backend = "cmdstanr"
-)
-#)
-
-#save(zoiBetaFit, file = "_data/zoiBetaFit.RData")
-
-## Diagnostics ----
-fit <- 1
-assign(paste0("zoiBetaFit", fit), zoiBetaFit)
-#save(zoiBetaFitFINAL, file = "_data/zoiBetaFitFINAL.RData")
-
-plot(zoiBetaFit, ask = FALSE)
-#prior_summary(zoiBetaFit)
-
-print(zoiBetaFit, digits = 4)
-summary(zoiBetaFit)
-
-# waicList <- list(
-#   waic(zoiBetaFit),
-#   waic(zoiBetaRandFit),
-#   waic(gammaFit),
-#   waic(gammaRandFit)
-# )
-#waic <- waic(zoiBetaFit)
-#attributes(waic)$model_name <- paste0("zoiBetaFit", fit)
-#waicList[[paste0("fit", 4)]] <- waic4
-
-### Compare Candidate Models ----
-# waicList
-# 
-# waicListComp <- loo_compare(
-#   waicList
-# )
-# waicListComp <- waicListComp |>
-#   data.frame() |>
-#   rownames_to_column(var = "Model")
-# 
-# save(waicList, waicListComp, file = "_data/waicComps.RData")
-
-
-
-### Multicollinearity ----
-check_collinearity(zoiBetaFit)
-
-### Check heteroskedasity ----
-check_heteroscedasticity(zoiBetaFit)
-
-### Fixed Effects ----
-zoiBetaFitfixedEff <- fixef(zoiBetaFit)
-zoiBetaFitfixedEff <- data.frame(zoiBetaFitfixedEff) |>
-  mutate(
-    p_val = dnorm(Estimate/Est.Error)
-  ) |>
-  mutate(
-    across(everything(), function(x){round(x, 4)})
-  ) |>
-  mutate(
-    Sig = ifelse(p_val < 0.01, "***",
-                 ifelse(p_val < 0.05, "**",
-                        ifelse(p_val < 0.1, "*", "")))
-  )
-print(zoiBetaFitfixedEff, digits = 4)
-zoiBetaFitfixedSigEff <- zoiBetaFitfixedEff |> filter(p_val < 0.2)
-print(zoiBetaFitfixedSigEff)
-
-pp_check(zoiBetaFit, ndraws = 100)
-
-### Hypothesis Tests 
-# posterior_summary(zoiBetaFit)
-# 
-# xVars <- str_subset(variables(zoiBetaFit), pattern = "b_")
-# hypothesis(zoiBetaFit, paste(xVars, "= 0"), 
-#            class = NULL, 
-#            alpha = 0.1)
-# 
-# hypothesis(zoiBetaFit, "sHWRF_1 = 0", class = "bs")
-# hypID <- hypothesis(zoiBetaFit, 
-#                     "Intercept = 0", 
-#                     group = "StormID", 
-#                     scope = "coef")
-# plot(hypID)
-
-#variance_decomposition(zoiBetaFit)
-VarCorr(zoiBetaFit)
-
-### Residuals ----
-zoiBetaFitResiduals <- 
-  residuals(
-    zoiBetaFit,
-    method = "posterior_predict",
-    re_formula = NULL,
-    robust = FALSE,
-    probs = c(0.025, 0.975)) |>
-  data.frame()
-mean(abs(zoiBetaFitResiduals$Estimate))
-
-# predResiduals <- 
-#   residuals(
-#     zoiBetaFit, 
-#     #newdata = StormdataTestArcsinh,
-#     newdata = StormdataTestYeo,
-#     #newdata = StormdataTest2,
-#     method = "posterior_predict",
-#     allow_new_levels = TRUE,
-#     re_formula = NULL,
-#     robust = FALSE,
-#     probs = c(0.025, 0.975)) |>
-#   data.frame()
-# mean(abs(predResiduals$Estimate))
-
-## Posteriors ----
-#zoiBetaFit <- Fit8
-### Training ----
-zoiBetaFitfinalFit <- posterior_predict(zoiBetaFit)
-# zoiBetaFitfinalResiduals <- t(StormdataTrain3$VMAX - t(zoiBetaFitfinalFit))
-# zoiBetaFitfinalResidualsMean <- colMeans(zoiBetaFitfinalResiduals)
-zoiBetaFitfinalFitMean <- colMeans(zoiBetaFitfinalFit)
-zoiBetaFitfinalFitMed <- apply(zoiBetaFitfinalFit, 2, function(x){quantile(x, 0.5)})
-zoiBetaFitfinalFitLCB <- apply(zoiBetaFitfinalFit, 2, function(x){quantile(x, 0.025)})
-zoiBetaFitfinalFitUCB <- apply(zoiBetaFitfinalFit, 2, function(x){quantile(x, 0.975)})
 
 
 
