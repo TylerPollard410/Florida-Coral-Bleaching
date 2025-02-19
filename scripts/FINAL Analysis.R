@@ -174,12 +174,18 @@ percentBleachingLogDensPlot
 ggplot(data = bleachingData) +
   geom_boxplot(
     aes(x = factor(Date_Year), y = PercentBleaching, fill = City_Town_Name))+
-    #color = "#99c7c7", fill = "#bcdcdc") +
+  #color = "#99c7c7", fill = "#bcdcdc") +
   scale_y_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
-  labs(title = "Density Plot of Percent Bleaching from 2,394 Coral Reef Samples",
-       subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
-       x = "Percent Bleaching",
-       y = "Density") +
+  scale_fill_discrete(name = "City Town Name", 
+                      labels = c("Broward\nCounty",
+                                 "Martin\nCounty",
+                                 "Miami-Dade\nCounty",
+                                 "Monroe\nCounty",
+                                 "Palm Beach\nCounty")) +
+  labs(title = "Boxplots of Percent Bleaching vs Year by City Town Name",
+       #subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+       x = "Date Year",
+       y = "Percent Bleaching") +
   theme_bw() +
   theme(
     plot.title = element_text(size = 16, face = "bold"),
@@ -299,10 +305,11 @@ ggplot() +
   geom_point(
     data = bleachingData,
     aes(x = Lon, y = Lat,
-        color = PercentBleaching)
+        color = PercentBleaching),
+    size = 0.25
   ) +
-  xlim(c(-84,-79)) +
-  ylim(c(24, 28)) +
+  xlim(c(-83.5,-79.5)) +
+  ylim(c(24, 27.5)) +
   #facet_wrap(vars(Date_Year)) +
   scale_color_continuous(low = "green", high = "red") +
   theme_bw()
@@ -318,8 +325,8 @@ ggplot() +
     aes(x = Lon, y = Lat,
         color = PercentBleaching)
   ) +
-  xlim(c(-84,-79)) +
-  ylim(c(24, 28)) +
+  xlim(c(-83.5,-79.5)) +
+  ylim(c(24, 27.5)) +
   facet_wrap(vars(Date_Year)) +
   scale_color_continuous(low = "green", high = "red") +
   theme_bw()
@@ -1089,8 +1096,9 @@ hurdleLogNormalFitfinalFitUCB <- apply(hurdleLogNormalFitfinalFit, 2, function(x
 # Beta -------
 formulaBleaching_beta <- 
   bf(PercentBleachingBounded ~ 
-       #s(Date_Year, by = City_Town_Name) +
-       gp(Date_Year, by = City_Town_Name) +
+       #Date_Year2 +
+       #gp(Date_Year, by = City_Town_Name) +
+       gp(Date_Year) +
        Lat2 +
        Lon2 +
        #t2(Lat, Lon) +
@@ -1105,8 +1113,8 @@ formulaBleaching_beta <-
        #SSTA_DHW +
        TSA +
        TSA_DHW 
-       #City_Town_Name
-       #(1 | City_Town_Name)
+     #City_Town_Name
+     #(1 | City_Town_Name)
   ) + brmsfamily(family = "Beta", link = "logit")
 
 default_prior(formulaBleaching_beta, data = procData2)
@@ -1154,14 +1162,14 @@ betaFit <- brm(
 #save(betaFit, file = "_data/betaFit.RData")
 
 ## Diagnostics ----
-fitbeta <- 29
+fitbeta <- 39
 assign(paste0("betaFit", fitbeta), betaFit)
 #save(betaFitFINAL, file = "_data/betaFitFINAL.RData")
 
 plot(betaFit, ask = FALSE)
 #prior_summary(betaFit)
 
-betaFit <- betaFit24
+#betaFit <- betaFit24
 print(betaFit, digits = 4)
 
 # waicList <- list(
@@ -1209,7 +1217,7 @@ betaFitfixedEff <- data.frame(betaFitfixedEff) |>
                         ifelse(p_val < 0.1, "*", "")))
   )
 print(betaFitfixedEff, digits = 4)
-assign(paste0("betaFitFE", 29), betaFitfixedEff)
+assign(paste0("betaFitFE", fitbeta), betaFitfixedEff)
 
 betaFitfixedSigEff <- betaFitfixedEff |> filter(p_val < 0.2)
 print(betaFitfixedSigEff)
@@ -1268,6 +1276,7 @@ mean(abs(betaFitResidualsMed$Estimate))
 # 0.1028752, 0.0962147, 0.09867248
 #.         , 0.09603474
 
+
 loo_compare(
   loo(betaFit11), # Lat, RE City
   loo(betaFit14), # Lat, FE City
@@ -1287,6 +1296,18 @@ loo_compare(
 # betaFit20 -33.8       8.0  
 # betaFit17 -35.4       8.8 
 
+loo_compare(
+  loo(betaFit30), # Lat, RE City
+  loo(betaFit31), # Lat, FE City
+  loo(betaFit32), # Lat
+  loo(betaFit33), # FE City
+  loo(betaFit34), # Lon, FE City
+  loo(betaFit35), # t2(Lat, Lon), FE City
+  loo(betaFit36), # t2(Lat, Lon)
+  loo(betaFit38),
+  loo(betaFit39)
+)
+
 bayes_factor(betaFit11, betaFit14)
 # Estimated Bayes factor in favor of betaFit11 over betaFit14: 0.00161
 bayes_factor(betaFit14, betaFit17)
@@ -1300,9 +1321,11 @@ bayes_factor(betaFit14, betaFit23)
 bayes_factor(betaFit24, betaFit14)
 bayes_factor(betaFit24, betaFit26)
 bayes_factor(betaFit29, betaFit28)
+bayes_factor(betaFit31, betaFit30)
+bayes_factor(betaFit30, betaFit39)
 
 betaFitsmooths <- conditional_smooths(betaFit,
-method = "posterior_predict")
+                                      method = "posterior_predict")
 
 plot(betaFitsmooths,
      stype = "raster",
