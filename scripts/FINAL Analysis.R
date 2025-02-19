@@ -1373,7 +1373,7 @@ betaFitfinalFitUCB <- apply(betaFitfinalFit, 2, function(x){quantile(x, 0.975)})
 # ziBeta -------
 formulaBleaching_ziBeta <- 
   bf(PercentBleachingLow ~ 
-       Date_Year2 +
+       gp(Date_Year, by = City_Town_Name) +
        #Lat2 +
        #Lon2 +
        t2(Lat, Lon) +
@@ -1387,8 +1387,8 @@ formulaBleaching_ziBeta <-
        SSTA +
        #SSTA_DHW +
        TSA +
-       TSA_DHW +
-       (1 | City_Town_Name)
+       TSA_DHW 
+       #(1 | City_Town_Name)
   ) + brmsfamily(family = "zero_inflated_beta")#, link = "logit")
 
 default_prior(formulaBleaching_ziBeta, data = procData)
@@ -1410,7 +1410,7 @@ sims <- (iters-burn)*chains
 #system.time(
 ziBetaFit <- brm(
   formulaBleaching_ziBeta,
-  data = procData,
+  data = procData2,
   # prior = c(
   #   #prior(horseshoe(1), class = "b")
   #   prior(ziBeta(0, 5), class = "b"),
@@ -1427,22 +1427,22 @@ ziBetaFit <- brm(
   warmup = burn,
   #init = 0,
   normalize = TRUE,
-  control = list(adapt_delta = 0.95),
-  backend = "cmdstanr"
+  control = list(adapt_delta = 0.95)
+  #backend = "cmdstanr"
 )
 #)
 
 #save(ziBetaFit, file = "_data/ziBetaFit.RData")
 
 ## Diagnostics ----
-fitziBeta <- 2
+fitziBeta <- 3
 assign(paste0("ziBetaFit", fitziBeta), ziBetaFit)
 #save(ziBetaFitFINAL, file = "_data/ziBetaFitFINAL.RData")
 
 plot(ziBetaFit, ask = FALSE)
 #prior_summary(ziBetaFit)
 
-print(ziBetaFit2, digits = 4)
+print(ziBetaFit, digits = 4)
 
 # waicList <- list(
 #   waic(ziBetaFit),
@@ -1493,6 +1493,11 @@ ziBetaFitfixedSigEff <- ziBetaFitfixedEff |> filter(p_val < 0.2)
 print(ziBetaFitfixedSigEff)
 
 pp_check(ziBetaFit, ndraws = 100)
+
+loo_compare(
+  loo(betaFit30),
+  loo(ziBetaFit3)
+)
 
 ### Hypothesis Tests 
 # posterior_summary(ziBetaFit)

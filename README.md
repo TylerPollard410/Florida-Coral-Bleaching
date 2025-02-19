@@ -83,6 +83,12 @@ Samples
 
 ## Spatial Structure
 
+Coral bleaching observations were **geographically distributed across
+Florida’s reef systems**. Mapping Percent Bleaching reveals **spatial
+clustering**, with certain areas experiencing more severe bleaching than
+others. These spatial effects were captured using a **tensor product
+spline (`t2(Lat, Lon)`)** to model continuous variation.
+
 <div class="figure" style="text-align: center">
 
 <img src="README_files/figure-gfm/Spatial Structure-1.png" alt="Figure 2: Map of Percent Bleaching from 2,394 Coral Reef Samples around Florida"  />
@@ -95,6 +101,13 @@ Florida
 
 ## Temporal Structure
 
+The dataset spans **2006 to 2016**, allowing an analysis of **temporal
+bleaching trends**. Boxplots of Percent Bleaching across years show
+**variation over time**, with city-specific differences. To account for
+**nonlinear temporal trends**, we incorporated a **Gaussian Process
+(`gp(Date_Year, by = City_Town_Name)`)**, allowing each city to have its
+own temporal trend.
+
 <div class="figure" style="text-align: center">
 
 <img src="README_files/figure-gfm/Temporal Structure-1.png" alt="Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name"  />
@@ -105,3 +118,19 @@ Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name
 </div>
 
 # Model Description
+
+To model the percentage of coral bleaching $Y_i$, a Bayesian Beta
+regression with a logit link function for the mean percentage $\mu_i$ is
+used:
+
+$$
+\begin{aligned}
+Y_i \sim Beta(\mu_i\phi, \mu_i(1-\phi))
+\end{aligned}
+$$
+
+1.  Model 1
+
+2.  Model 2
+
+3.  Model 3
