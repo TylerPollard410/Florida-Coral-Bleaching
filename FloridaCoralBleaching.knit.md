@@ -1,96 +1,54 @@
-Tyler Pollard, Rachel Hardy, and Hanan Ali
-2024-05-06
+---
+author: "Tyler Pollard, Rachel Hardy, and Hanan Ali"
+date: "2024-05-06"
+header-includes:
+  - \usepackage{mathtools}
+output:  
+  github_document:
+    html_preview: true
+    includes: 
+      in_header: _includes/head.html
+    toc: true
+    toc_depth: 3
+---
 
-<!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
-
-<!-- Setup Google Analytics -->
-<!-- {% include head-custom-google-analytics.html %} -->
-
-<!-- You can set your favicon here -->
-<!-- link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}" -->
-
-<!-- Change content width onfull screen -->
-<!-- <link rel="stylesheet" href="/Hurricane-Analysis/assets/css/custom.css"> -->
 
 
-<!-- MathJax -->
-<!-- inline config -->
-<script>
-  MathJax = {
-    tex: {
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-      macros: {
-      	RR: "{\\bf R}",
-      	bold: ["{\\bf #1}", 1],
-        indep: "{\\perp \\!\\!\\! \\perp}",
-    	}
-    },
-    svg: {
-    fontCache: 'global'
-  	},
-  };
-</script>
 
-<!-- load MathJax -->
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-</script>
-
-<!-- end custom head snippets -->
-
-- [Motivation](#motivation)
-- [Data](#data)
-  - [Spatial Structure](#spatial-structure)
-  - [Temporal Structure](#temporal-structure)
-- [Model Description](#model-description)
-  - [Data Preprocessing](#data-preprocessing)
-  - [Model Specification](#model-specification)
 
 # Motivation
 
-Coral bleaching occurs when corals experience stress due to changes in
-environmental conditions such as temperature, light, or nutrient levels.
-This stress leads corals to expel their symbiotic algae, resulting in
-the loss of their coloration and, in severe cases, coral death.
+Coral bleaching occurs when corals experience stress due to changes in environmental conditions such as temperature, light, or nutrient levels. This stress leads corals to expel their symbiotic algae, resulting in the loss of their coloration and, in severe cases, coral death.
 
-Several factors contribute to coral bleaching, including rising sea
-temperatures, sea-level changes, and ocean acidification, all of which
-are consequences of climate change. Understanding the key environmental
-drivers of bleaching is critical for conservation efforts.
+Several factors contribute to coral bleaching, including rising sea temperatures, sea-level changes, and ocean acidification, all of which are consequences of climate change. Understanding the key environmental drivers of bleaching is critical for conservation efforts.
 
-The objective of this study is to identify and quantify the **impact of
-key environmental covariates on coral bleaching** while also assessing
-**how bleaching has changed over time** across different locations in
-Florida. Using **spatiotemporal modeling**, we analyze trends in coral
-bleaching by incorporating both **spatial variation** (reef locations)
-and **temporal patterns** (yearly changes) within a **Bayesian
-regression framework**.
+The objective of this study is to identify and quantify the **impact of key environmental covariates on coral bleaching** while also assessing **how bleaching has changed over time** across different locations in Florida. Using **spatiotemporal modeling**, we analyze trends in coral bleaching by incorporating both **spatial variation** (reef locations) and **temporal patterns** (yearly changes) within a **Bayesian regression framework**.
+
+
 
 # Data
 
-This study utilizes a dataset with 2,394 observations collected between
-2006 and 2016 sourced from the [Florida Reef Resilience
-Program](https://www.bco-dmo.org/dataset/773466). The data includes
-various environmental and spatial covariates hypothesized to influence
-coral bleaching. The response variable, **Percent Bleaching**, measures
-the proportion of coral affected in each transect. Below is a list of
-key environmental and geographic covariates that may contribute to
-bleaching events:
+This study utilizes a dataset with 2,394 observations collected between 2006 and 2016 sourced from the [Florida Reef Resilience Program](https://www.bco-dmo.org/dataset/773466). The data includes various environmental and spatial covariates hypothesized to influence coral bleaching. The response variable, **Percent Bleaching**, measures the proportion of coral affected in each transect. Below is a list of key environmental and geographic covariates that may contribute to bleaching events: 
 
-<div id="xlwtlunpvv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#xlwtlunpvv table {
+
+```{=html}
+<div id="pavlukpwui" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pavlukpwui table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#xlwtlunpvv thead, #xlwtlunpvv tbody, #xlwtlunpvv tfoot, #xlwtlunpvv tr, #xlwtlunpvv td, #xlwtlunpvv th {
+
+#pavlukpwui thead, #pavlukpwui tbody, #pavlukpwui tfoot, #pavlukpwui tr, #pavlukpwui td, #pavlukpwui th {
   border-style: none;
 }
-&#10;#xlwtlunpvv p {
+
+#pavlukpwui p {
   margin: 0;
   padding: 0;
 }
-&#10;#xlwtlunpvv .gt_table {
+
+#pavlukpwui .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -115,11 +73,13 @@ bleaching events:
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_caption {
+
+#pavlukpwui .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#xlwtlunpvv .gt_title {
+
+#pavlukpwui .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -130,7 +90,8 @@ bleaching events:
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
-&#10;#xlwtlunpvv .gt_subtitle {
+
+#pavlukpwui .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -141,7 +102,8 @@ bleaching events:
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
-&#10;#xlwtlunpvv .gt_heading {
+
+#pavlukpwui .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -152,12 +114,14 @@ bleaching events:
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_bottom_border {
+
+#pavlukpwui .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_col_headings {
+
+#pavlukpwui .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -171,7 +135,8 @@ bleaching events:
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_col_heading {
+
+#pavlukpwui .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -190,7 +155,8 @@ bleaching events:
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#xlwtlunpvv .gt_column_spanner_outer {
+
+#pavlukpwui .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -201,13 +167,16 @@ bleaching events:
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#xlwtlunpvv .gt_column_spanner_outer:first-child {
+
+#pavlukpwui .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#xlwtlunpvv .gt_column_spanner_outer:last-child {
+
+#pavlukpwui .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#xlwtlunpvv .gt_column_spanner {
+
+#pavlukpwui .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -218,10 +187,12 @@ bleaching events:
   display: inline-block;
   width: 100%;
 }
-&#10;#xlwtlunpvv .gt_spanner_row {
+
+#pavlukpwui .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#xlwtlunpvv .gt_group_heading {
+
+#pavlukpwui .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -246,7 +217,8 @@ bleaching events:
   vertical-align: middle;
   text-align: left;
 }
-&#10;#xlwtlunpvv .gt_empty_group_heading {
+
+#pavlukpwui .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -260,13 +232,16 @@ bleaching events:
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#xlwtlunpvv .gt_from_md > :first-child {
+
+#pavlukpwui .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#xlwtlunpvv .gt_from_md > :last-child {
+
+#pavlukpwui .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#xlwtlunpvv .gt_row {
+
+#pavlukpwui .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -284,7 +259,8 @@ bleaching events:
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#xlwtlunpvv .gt_stub {
+
+#pavlukpwui .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -296,7 +272,8 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#xlwtlunpvv .gt_stub_row_group {
+
+#pavlukpwui .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -309,13 +286,16 @@ bleaching events:
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#xlwtlunpvv .gt_row_group_first td {
+
+#pavlukpwui .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#xlwtlunpvv .gt_row_group_first th {
+
+#pavlukpwui .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#xlwtlunpvv .gt_summary_row {
+
+#pavlukpwui .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -324,14 +304,17 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#xlwtlunpvv .gt_first_summary_row {
+
+#pavlukpwui .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_first_summary_row.thick {
+
+#pavlukpwui .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#xlwtlunpvv .gt_last_summary_row {
+
+#pavlukpwui .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -340,7 +323,8 @@ bleaching events:
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_grand_summary_row {
+
+#pavlukpwui .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -349,7 +333,8 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#xlwtlunpvv .gt_first_grand_summary_row {
+
+#pavlukpwui .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,7 +343,8 @@ bleaching events:
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_last_grand_summary_row_top {
+
+#pavlukpwui .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -367,10 +353,12 @@ bleaching events:
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_striped {
+
+#pavlukpwui .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#xlwtlunpvv .gt_table_body {
+
+#pavlukpwui .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -378,7 +366,8 @@ bleaching events:
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_footnotes {
+
+#pavlukpwui .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -391,7 +380,8 @@ bleaching events:
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_footnote {
+
+#pavlukpwui .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -399,7 +389,8 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#xlwtlunpvv .gt_sourcenotes {
+
+#pavlukpwui .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -412,64 +403,81 @@ bleaching events:
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#xlwtlunpvv .gt_sourcenote {
+
+#pavlukpwui .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#xlwtlunpvv .gt_left {
+
+#pavlukpwui .gt_left {
   text-align: left;
 }
-&#10;#xlwtlunpvv .gt_center {
+
+#pavlukpwui .gt_center {
   text-align: center;
 }
-&#10;#xlwtlunpvv .gt_right {
+
+#pavlukpwui .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#xlwtlunpvv .gt_font_normal {
+
+#pavlukpwui .gt_font_normal {
   font-weight: normal;
 }
-&#10;#xlwtlunpvv .gt_font_bold {
+
+#pavlukpwui .gt_font_bold {
   font-weight: bold;
 }
-&#10;#xlwtlunpvv .gt_font_italic {
+
+#pavlukpwui .gt_font_italic {
   font-style: italic;
 }
-&#10;#xlwtlunpvv .gt_super {
+
+#pavlukpwui .gt_super {
   font-size: 65%;
 }
-&#10;#xlwtlunpvv .gt_footnote_marks {
+
+#pavlukpwui .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#xlwtlunpvv .gt_asterisk {
+
+#pavlukpwui .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#xlwtlunpvv .gt_indent_1 {
+
+#pavlukpwui .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#xlwtlunpvv .gt_indent_2 {
+
+#pavlukpwui .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#xlwtlunpvv .gt_indent_3 {
+
+#pavlukpwui .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#xlwtlunpvv .gt_indent_4 {
+
+#pavlukpwui .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#xlwtlunpvv .gt_indent_5 {
+
+#pavlukpwui .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#xlwtlunpvv .katex-display {
+
+#pavlukpwui .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#xlwtlunpvv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+
+#pavlukpwui div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -512,99 +520,59 @@ bleaching events:
     <tr><td headers="Covariate" class="gt_row gt_left">TSA_DHW</td>
 <td headers="Description" class="gt_row gt_left">Degree heating weeks derived from TSA</td></tr>
   </tbody>
-  &#10;  
+  
+  
 </table>
 </div>
+```
 
-| **Covariate** | **Description** |
-|----|----|
-| **Date_Year** | Year of observation |
-| **Lat** | Latitude of the coral reef transect |
-| **Lon** | Longitude of the coral reef transect |
-| **Distance_to_Shore** | Distance from the reef to the shoreline (km) |
-| **Exposure** | Level of wave exposure (e.g., sheltered, exposed) |
-| **Turbidity** | Water clarity, with higher values indicating more suspended particles |
-| **Cyclone_Frequency** | Number of cyclones affecting the area per year |
-| **Depth_m** | Depth of the coral reef (meters) |
-| **Windspeed** | Average wind speed (m/s) |
-| **ClimSST** | Climatological sea surface temperature (°C) |
-| **SSTA** | Sea surface temperature anomaly (°C) |
-| **SSTA_DHW** | Degree heating weeks derived from SSTA |
-| **TSA** | Tropical sea surface temperature anomaly (°C) |
-| **TSA_DHW** | Degree heating weeks derived from TSA |
-| **City_Town_Name** | Categorical variable representing the specific city or town |
-
-The Percent Bleaching data exhibits a right-skewed distribution (Figure
-1), with a substantial number of observations reporting 0% bleaching.
+The Percent Bleaching data exhibits a right-skewed distribution (Figure 1), with a substantial number of observations reporting 0% bleaching.
 
 <div class="figure" style="text-align: center">
-
 <img src="README_files/figure-gfm/PercentBleaching Density-1.png" alt="Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef Samples"  />
-<p class="caption">
-Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef
-Samples
-</p>
-
+<p class="caption">Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef Samples</p>
 </div>
 
 ## Spatial Structure
 
-Coral bleaching observations were **geographically distributed across
-Florida’s reef systems** (Figure 2). Mapping Percent Bleaching reveals
-**spatial clustering**, with certain areas experiencing more severe
-bleaching than others.
+Coral bleaching observations were **geographically distributed across Florida's reef systems** (Figure 2). Mapping Percent Bleaching reveals **spatial clustering**, with certain areas experiencing more severe bleaching than others. 
 
 <div class="figure" style="text-align: center">
-
 <img src="README_files/figure-gfm/Spatial Structure-1.png" alt="Figure 2: Map of Percent Bleaching from 2,394 Coral Reef Samples around Florida"  />
-<p class="caption">
-Figure 2: Map of Percent Bleaching from 2,394 Coral Reef Samples around
-Florida
-</p>
-
+<p class="caption">Figure 2: Map of Percent Bleaching from 2,394 Coral Reef Samples around Florida</p>
 </div>
 
 ## Temporal Structure
 
-The dataset spans **2006 to 2016**, providing an opportunity to analyze
-**bleaching trends over time** (Figure 3). Boxplots of Percent Bleaching
-over the years, categorized by City_Town_Name, reveal distinct temporal
-patterns across locations.
+The dataset spans **2006 to 2016**, providing an opportunity to analyze **bleaching trends over time** (Figure 3). Boxplots of Percent Bleaching over the years, categorized by City_Town_Name, reveal distinct temporal patterns across locations.
 
 <div class="figure" style="text-align: center">
-
 <img src="README_files/figure-gfm/Temporal Structure-1.png" alt="Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name"  />
-<p class="caption">
-Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name
-</p>
-
+<p class="caption">Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name</p>
 </div>
 
 # Model Description
+
 
 ## Data Preprocessing
 
 Before fitting the model, we applied several preprocessing steps:
 
-- **Response Variable Transformation**: Since the Beta regression model
-  requires values strictly in the (0,1) range, we replaced:
+* **Response Variable Transformation**: Since the Beta regression model requires values strictly in the (0,1) range, we replaced:
 
-  - 0% bleaching values with 0.001
+  + 0\% bleaching values with 0.001
 
-  - 100% bleaching values with 0.999
+  + 100\% bleaching values with 0.999
 
-- **Covariate Transformations**:
+* **Covariate Transformations**:
 
-  - **Yeo-Johnson transformation** was applied to all continuous
-    covariates to reduce skewness.
+  + **Yeo-Johnson transformation** was applied to all continuous covariates to reduce skewness.
 
-  - **Centering and scaling** were performed to standardize covariates
-    for better model convergence.
-
+  + **Centering and scaling** were performed to standardize covariates for better model convergence.
+  
 ## Model Specification
 
-To model the proportion of coral bleaching $Y_i$, we use a **Bayesian
-Beta regression** with a **logit link function**:
+To model the proportion of coral bleaching $Y_i$, we use a **Bayesian Beta regression** with a **logit link function**:
 
 $$
 \begin{aligned}
@@ -612,11 +580,21 @@ Y_i \sim \text{Beta}(\mu_i \phi, (1-\mu_i) \phi)
 \end{aligned}
 $$
 
-where $\mu_i$ is the **mean bleaching percentage**, and $\phi$ is the
-**precision parameter**. The mean structure is defined as:
+where $\mu_i$ is the **mean bleaching percentage**, and $\phi$ is the **precision parameter**. The mean structure is defined as:
 
-1.  Model 1
+1. Model 1
 
-2.  Model 2
+2. Model 2
 
-3.  Model 3
+3. Model 3
+
+
+
+
+
+
+
+
+
+
+

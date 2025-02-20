@@ -122,7 +122,49 @@ bleachingData <- filteredData |>
 
 # Data
 
-This study utilizes a dataset with 2,394 observations collected between 2006 and 2016 sourced from the [Florida Reef Resilience Program](https://www.bco-dmo.org/dataset/773466). The data includes key covariates such as date year, latitude, longitude, sea surface temperature, turbidity, cyclone frequency, and other environmental factors. The response variable is Percent Bleaching, which measures the proportion of coral affected in each transect.
+This study utilizes a dataset with 2,394 observations collected between 2006 and 2016 sourced from the [Florida Reef Resilience Program](https://www.bco-dmo.org/dataset/773466). The data includes various environmental and spatial covariates hypothesized to influence coral bleaching. The response variable, **Percent Bleaching**, measures the proportion of coral affected in each transect. Below is a list of key environmental and geographic covariates that may contribute to bleaching events: 
+
+```{r Covariates}
+covDF <- data.frame(
+  Covariate = c(
+    "Date_Year",
+    "City_Town_Name",
+    "Lat",
+    "Lon",
+    "Distance_to_Shore",
+    "Exposure",
+    "Turbidity",
+    "Cyclone_Frequency",
+    "Depth_m",
+    "Windspeed",
+    "ClimSST",
+    "SSTA",
+    "SSTA_DHW",
+    "TSA",
+    "TSA_DHW"
+  ),
+  Description = c(
+    "Year of observation",
+    "Categorical variable representing the specific city or town",
+    "Latitude of the coral reef transect",
+    "Longitude of the coral reef transect",
+    "Distance from the reef to the shoreline (km)",
+    "Level of wave exposure (e.g., sheltered, exposed)",
+    "Water clarity, with higher values indicating more suspended particles",
+    "Number of cyclones affecting the area per year",
+    "Depth of the coral reef (meters)",
+    "Average wind speed (m/s)",
+    "Climatological sea surface temperature (°C)",
+    "Sea surface temperature anomaly (°C)",
+    "Degree heating weeks derived from SSTA",
+    "Tropical sea surface temperature anomaly (°C)",
+    "Degree heating weeks derived from TSA"
+  )
+)
+
+covDF |>
+  gt()
+```
 
 The Percent Bleaching data exhibits a right-skewed distribution (Figure 1), with a substantial number of observations reporting 0% bleaching.
 
@@ -212,13 +254,6 @@ yearCityPlot
 
 # Model Description
 
-| **Model** | **Temporal Structure** | **Spatial Structure** | **LOO Score** |
-|-----------|------------------------|------------------------|--------------|
-| **Model A** | Linear (`Date_Year`) | None | -XXXX |
-| **Model B** | Linear (`Date_Year`) | Lat/Lon Fixed Effects | -XXXX |
-| **Model C** | Global GP | None | -XXXX |
-| **Model D** | City-Specific GP | None | **Lowest LOO** |
-| **Final Model** | City-Specific GP | Spatial Smoother | Slightly lower LOO than Model D |
 
 ## Data Preprocessing
 

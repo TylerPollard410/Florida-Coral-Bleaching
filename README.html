@@ -711,11 +711,522 @@ within a <strong>Bayesian regression framework</strong>.</p>
 <h1 id="data">Data</h1>
 <p>This study utilizes a dataset with 2,394 observations collected
 between 2006 and 2016 sourced from the <a href="https://www.bco-dmo.org/dataset/773466">Florida Reef Resilience
-Program</a>. The data includes key covariates such as date year,
-latitude, longitude, sea surface temperature, turbidity, cyclone
-frequency, and other environmental factors. The response variable is
-Percent Bleaching, which measures the proportion of coral affected in
-each transect.</p>
+Program</a>. The data includes various environmental and spatial
+covariates hypothesized to influence coral bleaching. The response
+variable, <strong>Percent Bleaching</strong>, measures the proportion of
+coral affected in each transect. Below is a list of key environmental
+and geographic covariates that may contribute to bleaching events:</p>
+<div id="xlwtlunpvv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xlwtlunpvv table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#xlwtlunpvv thead, #xlwtlunpvv tbody, #xlwtlunpvv tfoot, #xlwtlunpvv tr, #xlwtlunpvv td, #xlwtlunpvv th {
+border-style: none;
+}
+#xlwtlunpvv p {
+margin: 0;
+padding: 0;
+}
+#xlwtlunpvv .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#xlwtlunpvv .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#xlwtlunpvv .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#xlwtlunpvv .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_col_headings {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#xlwtlunpvv .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#xlwtlunpvv .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#xlwtlunpvv .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#xlwtlunpvv .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#xlwtlunpvv .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#xlwtlunpvv .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#xlwtlunpvv .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#xlwtlunpvv .gt_from_md > :first-child {
+margin-top: 0;
+}
+#xlwtlunpvv .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#xlwtlunpvv .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#xlwtlunpvv .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xlwtlunpvv .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#xlwtlunpvv .gt_row_group_first td {
+border-top-width: 2px;
+}
+#xlwtlunpvv .gt_row_group_first th {
+border-top-width: 2px;
+}
+#xlwtlunpvv .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xlwtlunpvv .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#xlwtlunpvv .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xlwtlunpvv .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#xlwtlunpvv .gt_table_body {
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xlwtlunpvv .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#xlwtlunpvv .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#xlwtlunpvv .gt_left {
+text-align: left;
+}
+#xlwtlunpvv .gt_center {
+text-align: center;
+}
+#xlwtlunpvv .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#xlwtlunpvv .gt_font_normal {
+font-weight: normal;
+}
+#xlwtlunpvv .gt_font_bold {
+font-weight: bold;
+}
+#xlwtlunpvv .gt_font_italic {
+font-style: italic;
+}
+#xlwtlunpvv .gt_super {
+font-size: 65%;
+}
+#xlwtlunpvv .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#xlwtlunpvv .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#xlwtlunpvv .gt_indent_1 {
+text-indent: 5px;
+}
+#xlwtlunpvv .gt_indent_2 {
+text-indent: 10px;
+}
+#xlwtlunpvv .gt_indent_3 {
+text-indent: 15px;
+}
+#xlwtlunpvv .gt_indent_4 {
+text-indent: 20px;
+}
+#xlwtlunpvv .gt_indent_5 {
+text-indent: 25px;
+}
+#xlwtlunpvv .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#xlwtlunpvv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Covariate">Covariate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Description">Description</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Covariate" class="gt_row gt_left">Date_Year</td>
+<td headers="Description" class="gt_row gt_left">Year of observation</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">City_Town_Name</td>
+<td headers="Description" class="gt_row gt_left">Categorical variable representing the specific city or town</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">Lat</td>
+<td headers="Description" class="gt_row gt_left">Latitude of the coral reef transect</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">Lon</td>
+<td headers="Description" class="gt_row gt_left">Longitude of the coral reef transect</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">Distance_to_Shore</td>
+<td headers="Description" class="gt_row gt_left">Distance from the reef to the shoreline (km)</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">Exposure</td>
+<td headers="Description" class="gt_row gt_left">Level of wave exposure (e.g., sheltered, exposed)</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">Turbidity</td>
+<td headers="Description" class="gt_row gt_left">Water clarity, with higher values indicating more suspended particles</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">Cyclone_Frequency</td>
+<td headers="Description" class="gt_row gt_left">Number of cyclones affecting the area per year</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">Depth_m</td>
+<td headers="Description" class="gt_row gt_left">Depth of the coral reef (meters)</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">Windspeed</td>
+<td headers="Description" class="gt_row gt_left">Average wind speed (m/s)</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">ClimSST</td>
+<td headers="Description" class="gt_row gt_left">Climatological sea surface temperature (°C)</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">SSTA</td>
+<td headers="Description" class="gt_row gt_left">Sea surface temperature anomaly (°C)</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">SSTA_DHW</td>
+<td headers="Description" class="gt_row gt_left">Degree heating weeks derived from SSTA</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">TSA</td>
+<td headers="Description" class="gt_row gt_left">Tropical sea surface temperature anomaly (°C)</td></tr>
+    <tr><td headers="Covariate" class="gt_row gt_left">TSA_DHW</td>
+<td headers="Description" class="gt_row gt_left">Degree heating weeks derived from TSA</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+<table>
+<thead>
+<tr class="header">
+<th><strong>Covariate</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Date_Year</strong></td>
+<td>Year of observation</td>
+</tr>
+<tr class="even">
+<td><strong>Lat</strong></td>
+<td>Latitude of the coral reef transect</td>
+</tr>
+<tr class="odd">
+<td><strong>Lon</strong></td>
+<td>Longitude of the coral reef transect</td>
+</tr>
+<tr class="even">
+<td><strong>Distance_to_Shore</strong></td>
+<td>Distance from the reef to the shoreline (km)</td>
+</tr>
+<tr class="odd">
+<td><strong>Exposure</strong></td>
+<td>Level of wave exposure (e.g., sheltered, exposed)</td>
+</tr>
+<tr class="even">
+<td><strong>Turbidity</strong></td>
+<td>Water clarity, with higher values indicating more suspended
+particles</td>
+</tr>
+<tr class="odd">
+<td><strong>Cyclone_Frequency</strong></td>
+<td>Number of cyclones affecting the area per year</td>
+</tr>
+<tr class="even">
+<td><strong>Depth_m</strong></td>
+<td>Depth of the coral reef (meters)</td>
+</tr>
+<tr class="odd">
+<td><strong>Windspeed</strong></td>
+<td>Average wind speed (m/s)</td>
+</tr>
+<tr class="even">
+<td><strong>ClimSST</strong></td>
+<td>Climatological sea surface temperature (°C)</td>
+</tr>
+<tr class="odd">
+<td><strong>SSTA</strong></td>
+<td>Sea surface temperature anomaly (°C)</td>
+</tr>
+<tr class="even">
+<td><strong>SSTA_DHW</strong></td>
+<td>Degree heating weeks derived from SSTA</td>
+</tr>
+<tr class="odd">
+<td><strong>TSA</strong></td>
+<td>Tropical sea surface temperature anomaly (°C)</td>
+</tr>
+<tr class="even">
+<td><strong>TSA_DHW</strong></td>
+<td>Degree heating weeks derived from TSA</td>
+</tr>
+<tr class="odd">
+<td><strong>City_Town_Name</strong></td>
+<td>Categorical variable representing the specific city or town</td>
+</tr>
+</tbody>
+</table>
 <p>The Percent Bleaching data exhibits a right-skewed distribution
 (Figure 1), with a substantial number of observations reporting 0%
 bleaching.</p>
@@ -759,48 +1270,6 @@ Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name
 </div>
 
 <h1 id="model-description">Model Description</h1>
-<table>
-<thead>
-<tr class="header">
-<th><strong>Model</strong></th>
-<th><strong>Temporal Structure</strong></th>
-<th><strong>Spatial Structure</strong></th>
-<th><strong>LOO Score</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Model A</strong></td>
-<td>Linear (<code>Date_Year</code>)</td>
-<td>None</td>
-<td>-XXXX</td>
-</tr>
-<tr class="even">
-<td><strong>Model B</strong></td>
-<td>Linear (<code>Date_Year</code>)</td>
-<td>Lat/Lon Fixed Effects</td>
-<td>-XXXX</td>
-</tr>
-<tr class="odd">
-<td><strong>Model C</strong></td>
-<td>Global GP</td>
-<td>None</td>
-<td>-XXXX</td>
-</tr>
-<tr class="even">
-<td><strong>Model D</strong></td>
-<td>City-Specific GP</td>
-<td>None</td>
-<td><strong>Lowest LOO</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>Final Model</strong></td>
-<td>City-Specific GP</td>
-<td>Spatial Smoother</td>
-<td>Slightly lower LOO than Model D</td>
-</tr>
-</tbody>
-</table>
 <h2 id="data-preprocessing">Data Preprocessing</h2>
 <p>Before fitting the model, we applied several preprocessing steps:</p>
 <ul>
