@@ -43,33 +43,41 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
   - [Spatial Structure](#spatial-structure)
   - [Temporal Structure](#temporal-structure)
 - [Model Description](#model-description)
+  - [Data Preprocessing](#data-preprocessing)
+  - [Model Specification](#model-specification)
 
 # Motivation
 
-Coral bleaching is when corals are stressed by changes in conditions
-such as temperature, light, or nutrients, leading them to then expel the
-symbiotic algae living in their tissues, causing them to turn completely
-white. There are several factors that contribute to coral bleaching,
-including but not limited to: rising sea temperatures, rising sea
-levels, and ocean acidification, all of which are consequences of
-climate change. This study will utilize data containing covariates such
-as date year, latitude, longitude, temperature, turbidity, and more. The
-response variable for this study is the percentage of coral bleaching
-occurring in transect segments. The dataset contains 2,394 observations
-from 2006 to 2016 and is sourced from the [Florida Reef Resilience
-Program](https://www.bco-dmo.org/dataset/773466). .
+Coral bleaching occurs when corals experience stress due to changes in
+environmental conditions such as temperature, light, or nutrient levels.
+This stress leads corals to expel their symbiotic algae, resulting in
+the loss of their coloration and, in severe cases, coral death.
+
+Several factors contribute to coral bleaching, including rising sea
+temperatures, sea-level changes, and ocean acidification, all of which
+are consequences of climate change. Understanding the key environmental
+drivers of bleaching is critical for conservation efforts.
+
+The objective of this study is to identify and quantify the **impact of
+key environmental covariates on coral bleaching** while also assessing
+**how bleaching has changed over time** across different locations in
+Florida. Using **spatiotemporal modeling**, we analyze trends in coral
+bleaching by incorporating both **spatial variation** (reef locations)
+and **temporal patterns** (yearly changes) within a **Bayesian
+regression framework**.
 
 # Data
 
-The distribution for `PercentBleaching` was skewed right with support
-\[0,1\] and a relatively large number of observations (201 out of 2394)
-of 0 `PercentBleaching` as seen in the figure below. The beta
-distribution was a natural selection to model the data due to the
-support. After further examining the 0 values, they were deemed valid
-and considered as part of the same process that generated the rest of
-the data. To adhere to the soft (0,1) in beta regression, the 0 values
-were replaced with 0.001 and the 1 values were replaced by 0.999 as a
-simple workaround.
+This study utilizes a dataset with 2,394 observations collected between
+2006 and 2016 sourced from the [Florida Reef Resilience
+Program](https://www.bco-dmo.org/dataset/773466). The data includes key
+covariates such as date year, latitude, longitude, sea surface
+temperature, turbidity, cyclone frequency, and other environmental
+factors. The response variable is Percent Bleaching, which measures the
+proportion of coral affected in each transect.
+
+The Percent Bleaching data exhibits a right-skewed distribution (Figure
+1), with a substantial number of observations reporting 0% bleaching.
 
 <div class="figure" style="text-align: center">
 
@@ -84,10 +92,9 @@ Samples
 ## Spatial Structure
 
 Coral bleaching observations were **geographically distributed across
-Florida’s reef systems**. Mapping Percent Bleaching reveals **spatial
-clustering**, with certain areas experiencing more severe bleaching than
-others. These spatial effects were captured using a **tensor product
-spline (`t2(Lat, Lon)`)** to model continuous variation.
+Florida’s reef systems** (Figure 2). Mapping Percent Bleaching reveals
+**spatial clustering**, with certain areas experiencing more severe
+bleaching than others.
 
 <div class="figure" style="text-align: center">
 
@@ -101,12 +108,10 @@ Florida
 
 ## Temporal Structure
 
-The dataset spans **2006 to 2016**, allowing an analysis of **temporal
-bleaching trends**. Boxplots of Percent Bleaching across years show
-**variation over time**, with city-specific differences. To account for
-**nonlinear temporal trends**, we incorporated a **Gaussian Process
-(`gp(Date_Year, by = City_Town_Name)`)**, allowing each city to have its
-own temporal trend.
+The dataset spans **2006 to 2016**, providing an opportunity to analyze
+**bleaching trends over time** (Figure 3). Boxplots of Percent Bleaching
+over the years, categorized by City_Town_Name, reveal distinct temporal
+patterns across locations.
 
 <div class="figure" style="text-align: center">
 
@@ -119,15 +124,46 @@ Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name
 
 # Model Description
 
-To model the percentage of coral bleaching $Y_i$, a Bayesian Beta
-regression with a logit link function for the mean percentage $\mu_i$ is
-used:
+| **Model** | **Temporal Structure** | **Spatial Structure** | **LOO Score** |
+|----|----|----|----|
+| **Model A** | Linear (`Date_Year`) | None | -XXXX |
+| **Model B** | Linear (`Date_Year`) | Lat/Lon Fixed Effects | -XXXX |
+| **Model C** | Global GP | None | -XXXX |
+| **Model D** | City-Specific GP | None | **Lowest LOO** |
+| **Final Model** | City-Specific GP | Spatial Smoother | Slightly lower LOO than Model D |
+
+## Data Preprocessing
+
+Before fitting the model, we applied several preprocessing steps:
+
+- **Response Variable Transformation**: Since the Beta regression model
+  requires values strictly in the (0,1) range, we replaced:
+
+  - 0% bleaching values with 0.001
+
+  - 100% bleaching values with 0.999
+
+- **Covariate Transformations**:
+
+  - **Yeo-Johnson transformation** was applied to all continuous
+    covariates to reduce skewness.
+
+  - **Centering and scaling** were performed to standardize covariates
+    for better model convergence.
+
+## Model Specification
+
+To model the proportion of coral bleaching $Y_i$, we use a **Bayesian
+Beta regression** with a **logit link function**:
 
 $$
 \begin{aligned}
-Y_i \sim Beta(\mu_i\phi, \mu_i(1-\phi))
+Y_i \sim \text{Beta}(\mu_i \phi, (1-\mu_i) \phi)
 \end{aligned}
 $$
+
+where $\mu_i$ is the **mean bleaching percentage**, and $\phi$ is the
+**precision parameter**. The mean structure is defined as:
 
 1.  Model 1
 
