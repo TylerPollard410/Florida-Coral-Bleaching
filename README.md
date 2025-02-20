@@ -77,20 +77,20 @@ the proportion of coral affected in each transect. Below is a list of
 key environmental and geographic covariates that may contribute to
 bleaching events:
 
-<div id="pidcwitbkk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pidcwitbkk table {
+<div id="kuepysgipg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kuepysgipg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#pidcwitbkk thead, #pidcwitbkk tbody, #pidcwitbkk tfoot, #pidcwitbkk tr, #pidcwitbkk td, #pidcwitbkk th {
+&#10;#kuepysgipg thead, #kuepysgipg tbody, #kuepysgipg tfoot, #kuepysgipg tr, #kuepysgipg td, #kuepysgipg th {
   border-style: none;
 }
-&#10;#pidcwitbkk p {
+&#10;#kuepysgipg p {
   margin: 0;
   padding: 0;
 }
-&#10;#pidcwitbkk .gt_table {
+&#10;#kuepysgipg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -115,11 +115,11 @@ bleaching events:
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_caption {
+&#10;#kuepysgipg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#pidcwitbkk .gt_title {
+&#10;#kuepysgipg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -130,7 +130,7 @@ bleaching events:
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
-&#10;#pidcwitbkk .gt_subtitle {
+&#10;#kuepysgipg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -141,7 +141,7 @@ bleaching events:
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
-&#10;#pidcwitbkk .gt_heading {
+&#10;#kuepysgipg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -152,12 +152,12 @@ bleaching events:
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_bottom_border {
+&#10;#kuepysgipg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_col_headings {
+&#10;#kuepysgipg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -171,7 +171,7 @@ bleaching events:
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_col_heading {
+&#10;#kuepysgipg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -190,7 +190,7 @@ bleaching events:
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#pidcwitbkk .gt_column_spanner_outer {
+&#10;#kuepysgipg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -201,13 +201,13 @@ bleaching events:
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#pidcwitbkk .gt_column_spanner_outer:first-child {
+&#10;#kuepysgipg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#pidcwitbkk .gt_column_spanner_outer:last-child {
+&#10;#kuepysgipg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#pidcwitbkk .gt_column_spanner {
+&#10;#kuepysgipg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -218,10 +218,10 @@ bleaching events:
   display: inline-block;
   width: 100%;
 }
-&#10;#pidcwitbkk .gt_spanner_row {
+&#10;#kuepysgipg .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#pidcwitbkk .gt_group_heading {
+&#10;#kuepysgipg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -246,7 +246,7 @@ bleaching events:
   vertical-align: middle;
   text-align: left;
 }
-&#10;#pidcwitbkk .gt_empty_group_heading {
+&#10;#kuepysgipg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -260,13 +260,13 @@ bleaching events:
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#pidcwitbkk .gt_from_md > :first-child {
+&#10;#kuepysgipg .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#pidcwitbkk .gt_from_md > :last-child {
+&#10;#kuepysgipg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#pidcwitbkk .gt_row {
+&#10;#kuepysgipg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -284,7 +284,7 @@ bleaching events:
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#pidcwitbkk .gt_stub {
+&#10;#kuepysgipg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -296,7 +296,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#pidcwitbkk .gt_stub_row_group {
+&#10;#kuepysgipg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -309,13 +309,13 @@ bleaching events:
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#pidcwitbkk .gt_row_group_first td {
+&#10;#kuepysgipg .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#pidcwitbkk .gt_row_group_first th {
+&#10;#kuepysgipg .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#pidcwitbkk .gt_summary_row {
+&#10;#kuepysgipg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -324,14 +324,14 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#pidcwitbkk .gt_first_summary_row {
+&#10;#kuepysgipg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_first_summary_row.thick {
+&#10;#kuepysgipg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#pidcwitbkk .gt_last_summary_row {
+&#10;#kuepysgipg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -340,7 +340,7 @@ bleaching events:
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_grand_summary_row {
+&#10;#kuepysgipg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -349,7 +349,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#pidcwitbkk .gt_first_grand_summary_row {
+&#10;#kuepysgipg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,7 +358,7 @@ bleaching events:
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_last_grand_summary_row_top {
+&#10;#kuepysgipg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -367,10 +367,10 @@ bleaching events:
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_striped {
+&#10;#kuepysgipg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#pidcwitbkk .gt_table_body {
+&#10;#kuepysgipg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -378,7 +378,7 @@ bleaching events:
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_footnotes {
+&#10;#kuepysgipg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -391,7 +391,7 @@ bleaching events:
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_footnote {
+&#10;#kuepysgipg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -399,7 +399,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#pidcwitbkk .gt_sourcenotes {
+&#10;#kuepysgipg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -412,64 +412,64 @@ bleaching events:
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#pidcwitbkk .gt_sourcenote {
+&#10;#kuepysgipg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#pidcwitbkk .gt_left {
+&#10;#kuepysgipg .gt_left {
   text-align: left;
 }
-&#10;#pidcwitbkk .gt_center {
+&#10;#kuepysgipg .gt_center {
   text-align: center;
 }
-&#10;#pidcwitbkk .gt_right {
+&#10;#kuepysgipg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#pidcwitbkk .gt_font_normal {
+&#10;#kuepysgipg .gt_font_normal {
   font-weight: normal;
 }
-&#10;#pidcwitbkk .gt_font_bold {
+&#10;#kuepysgipg .gt_font_bold {
   font-weight: bold;
 }
-&#10;#pidcwitbkk .gt_font_italic {
+&#10;#kuepysgipg .gt_font_italic {
   font-style: italic;
 }
-&#10;#pidcwitbkk .gt_super {
+&#10;#kuepysgipg .gt_super {
   font-size: 65%;
 }
-&#10;#pidcwitbkk .gt_footnote_marks {
+&#10;#kuepysgipg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#pidcwitbkk .gt_asterisk {
+&#10;#kuepysgipg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#pidcwitbkk .gt_indent_1 {
+&#10;#kuepysgipg .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#pidcwitbkk .gt_indent_2 {
+&#10;#kuepysgipg .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#pidcwitbkk .gt_indent_3 {
+&#10;#kuepysgipg .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#pidcwitbkk .gt_indent_4 {
+&#10;#kuepysgipg .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#pidcwitbkk .gt_indent_5 {
+&#10;#kuepysgipg .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#pidcwitbkk .katex-display {
+&#10;#kuepysgipg .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#pidcwitbkk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+&#10;#kuepysgipg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -614,11 +614,18 @@ $$
 where: - $f(\text{Date_Year}, \text{City_Town_Name)$ follows a Gaussian
 Process (GP) with an exponentiated-quadratic (squared exponential)
 covariance function, capturing temporal variation with city-specific
-trends for $c = 1,2,3,4,5$ unique levels of City_Town_Name. +
-$f(\text{Date_Year}, \text{City_Town_Name}) \sim \mathcal{GP}(0, k_c(\text{Date_Year}, \text{Date_Year}'))$ -
-$g(\text{Lat}, \text{Lon})$ follows a tensor-product spline basis
-representation, modeling smooth spatial variation. - $X_{ij}$ represents
-environmental predictors (e.g., turbidity, depth, cyclone frequency). -
-**City_Town_Name** is included as a random effect to capture
-location-specific variability beyond what is explained by temporal and
-spatial patterns.
+trends for $c = 1,2,3,4,5$ unique levels of City_Town_Name.
+
+- $f(\text{Date_Year}, \text{City_Town_Name}) \sim \mathcal{GP}(0, k_c(\text{Date_Year}, \text{Date_Year}'))$
+
+- $k_c(\text{Date_Year}, \text{Date_Year}')$
+
+- $g(\text{Lat}, \text{Lon})$ follows a tensor-product spline basis
+  representation, modeling smooth spatial variation.
+
+- $X_{ij}$ represents environmental predictors (e.g., turbidity, depth,
+  cyclone frequency).
+
+- **City_Town_Name** is included as a random effect to capture
+  location-specific variability beyond what is explained by temporal and
+  spatial patterns.
