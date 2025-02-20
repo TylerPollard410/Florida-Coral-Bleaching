@@ -77,20 +77,20 @@ the proportion of coral affected in each transect. Below is a list of
 key environmental and geographic covariates that may contribute to
 bleaching events:
 
-<div id="kqvzrzdusr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kqvzrzdusr table {
+<div id="squcuvvmbh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#squcuvvmbh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#kqvzrzdusr thead, #kqvzrzdusr tbody, #kqvzrzdusr tfoot, #kqvzrzdusr tr, #kqvzrzdusr td, #kqvzrzdusr th {
+&#10;#squcuvvmbh thead, #squcuvvmbh tbody, #squcuvvmbh tfoot, #squcuvvmbh tr, #squcuvvmbh td, #squcuvvmbh th {
   border-style: none;
 }
-&#10;#kqvzrzdusr p {
+&#10;#squcuvvmbh p {
   margin: 0;
   padding: 0;
 }
-&#10;#kqvzrzdusr .gt_table {
+&#10;#squcuvvmbh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -115,11 +115,11 @@ bleaching events:
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_caption {
+&#10;#squcuvvmbh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#kqvzrzdusr .gt_title {
+&#10;#squcuvvmbh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -130,7 +130,7 @@ bleaching events:
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
-&#10;#kqvzrzdusr .gt_subtitle {
+&#10;#squcuvvmbh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -141,7 +141,7 @@ bleaching events:
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
-&#10;#kqvzrzdusr .gt_heading {
+&#10;#squcuvvmbh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -152,12 +152,12 @@ bleaching events:
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_bottom_border {
+&#10;#squcuvvmbh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_col_headings {
+&#10;#squcuvvmbh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -171,7 +171,7 @@ bleaching events:
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_col_heading {
+&#10;#squcuvvmbh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -190,7 +190,7 @@ bleaching events:
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#kqvzrzdusr .gt_column_spanner_outer {
+&#10;#squcuvvmbh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -201,13 +201,13 @@ bleaching events:
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#kqvzrzdusr .gt_column_spanner_outer:first-child {
+&#10;#squcuvvmbh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#kqvzrzdusr .gt_column_spanner_outer:last-child {
+&#10;#squcuvvmbh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#kqvzrzdusr .gt_column_spanner {
+&#10;#squcuvvmbh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -218,10 +218,10 @@ bleaching events:
   display: inline-block;
   width: 100%;
 }
-&#10;#kqvzrzdusr .gt_spanner_row {
+&#10;#squcuvvmbh .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#kqvzrzdusr .gt_group_heading {
+&#10;#squcuvvmbh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -246,7 +246,7 @@ bleaching events:
   vertical-align: middle;
   text-align: left;
 }
-&#10;#kqvzrzdusr .gt_empty_group_heading {
+&#10;#squcuvvmbh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -260,13 +260,13 @@ bleaching events:
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#kqvzrzdusr .gt_from_md > :first-child {
+&#10;#squcuvvmbh .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#kqvzrzdusr .gt_from_md > :last-child {
+&#10;#squcuvvmbh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#kqvzrzdusr .gt_row {
+&#10;#squcuvvmbh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -284,7 +284,7 @@ bleaching events:
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#kqvzrzdusr .gt_stub {
+&#10;#squcuvvmbh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -296,7 +296,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#kqvzrzdusr .gt_stub_row_group {
+&#10;#squcuvvmbh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -309,13 +309,13 @@ bleaching events:
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#kqvzrzdusr .gt_row_group_first td {
+&#10;#squcuvvmbh .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#kqvzrzdusr .gt_row_group_first th {
+&#10;#squcuvvmbh .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#kqvzrzdusr .gt_summary_row {
+&#10;#squcuvvmbh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -324,14 +324,14 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#kqvzrzdusr .gt_first_summary_row {
+&#10;#squcuvvmbh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_first_summary_row.thick {
+&#10;#squcuvvmbh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#kqvzrzdusr .gt_last_summary_row {
+&#10;#squcuvvmbh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -340,7 +340,7 @@ bleaching events:
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_grand_summary_row {
+&#10;#squcuvvmbh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -349,7 +349,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#kqvzrzdusr .gt_first_grand_summary_row {
+&#10;#squcuvvmbh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -358,7 +358,7 @@ bleaching events:
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_last_grand_summary_row_top {
+&#10;#squcuvvmbh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -367,10 +367,10 @@ bleaching events:
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_striped {
+&#10;#squcuvvmbh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#kqvzrzdusr .gt_table_body {
+&#10;#squcuvvmbh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -378,7 +378,7 @@ bleaching events:
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_footnotes {
+&#10;#squcuvvmbh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -391,7 +391,7 @@ bleaching events:
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_footnote {
+&#10;#squcuvvmbh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -399,7 +399,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#kqvzrzdusr .gt_sourcenotes {
+&#10;#squcuvvmbh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -412,64 +412,64 @@ bleaching events:
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#kqvzrzdusr .gt_sourcenote {
+&#10;#squcuvvmbh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#kqvzrzdusr .gt_left {
+&#10;#squcuvvmbh .gt_left {
   text-align: left;
 }
-&#10;#kqvzrzdusr .gt_center {
+&#10;#squcuvvmbh .gt_center {
   text-align: center;
 }
-&#10;#kqvzrzdusr .gt_right {
+&#10;#squcuvvmbh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#kqvzrzdusr .gt_font_normal {
+&#10;#squcuvvmbh .gt_font_normal {
   font-weight: normal;
 }
-&#10;#kqvzrzdusr .gt_font_bold {
+&#10;#squcuvvmbh .gt_font_bold {
   font-weight: bold;
 }
-&#10;#kqvzrzdusr .gt_font_italic {
+&#10;#squcuvvmbh .gt_font_italic {
   font-style: italic;
 }
-&#10;#kqvzrzdusr .gt_super {
+&#10;#squcuvvmbh .gt_super {
   font-size: 65%;
 }
-&#10;#kqvzrzdusr .gt_footnote_marks {
+&#10;#squcuvvmbh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#kqvzrzdusr .gt_asterisk {
+&#10;#squcuvvmbh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#kqvzrzdusr .gt_indent_1 {
+&#10;#squcuvvmbh .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#kqvzrzdusr .gt_indent_2 {
+&#10;#squcuvvmbh .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#kqvzrzdusr .gt_indent_3 {
+&#10;#squcuvvmbh .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#kqvzrzdusr .gt_indent_4 {
+&#10;#squcuvvmbh .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#kqvzrzdusr .gt_indent_5 {
+&#10;#squcuvvmbh .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#kqvzrzdusr .katex-display {
+&#10;#squcuvvmbh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#kqvzrzdusr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+&#10;#squcuvvmbh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -596,6 +596,30 @@ where $\mu_i$ is the **mean bleaching percentage**, and $\phi$ is the
 **precision parameter**. Various models for the mean structure were
 examined and defined as:
 
+$$
+\begin{aligned}
+\textbf{Model 1}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j \\
+\textbf{Model 2}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j \\
+\textbf{Model 3}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j \\
+\textbf{Model 4}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j \\
+\textbf{Model 5}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j \\
+\textbf{Model 6}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j \\
+\end{aligned}
+$$
+
+:
+$\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$
+:
+$\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$
+:
+$\text{logit}(\mu_i) = f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$
+:
+$\text{logit}(\mu_i) = f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$
+:
+$\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$
+:
+$\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$
+
 1.  Model 1
 
 $$
@@ -605,25 +629,25 @@ $$
 2.  Model 2
 
 $$
-\text{logit}(\mu_i) =f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j
+\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j
 $$
 
 3.  Model 3
 
 $$
-\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j
+\text{logit}(\mu_i) =f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j
 $$
 
 4.  Model 4
 
 $$
-\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j
+\text{logit}(\mu_i) =f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j
 $$
 
 5.  Model 5
 
 $$
-\text{logit}(\mu_i) =f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j
+\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j
 $$
 
 6.  Model 6
