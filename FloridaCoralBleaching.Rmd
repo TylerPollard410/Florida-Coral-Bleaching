@@ -293,7 +293,8 @@ $$
 </div>
 
 where:
-- $f(\text{Date_Year}, \text{City_Town_Name)$ follows a Gaussian Process (GP) with an exponentiated-quadratic (squared exponential) covariance function, capturing temporal variation with city-specific trends for $c = 1,2,3,4,5$ unique levels of City_Town_Name.
+
+- $f(\text{Date_Year}, \text{City_Town_Name})$ follows a Gaussian Process (GP) with an exponentiated-quadratic (squared exponential) covariance function, capturing temporal variation with city-specific trends for $c = 1,2,3,4,5$ unique levels of City_Town_Name.
 
   + $f(\text{Date_Year}, \text{City_Town_Name}) \sim \mathcal{GP}(0, k_c(\text{Date_Year}, \text{Date_Year}'))$ 
   
