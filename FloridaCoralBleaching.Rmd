@@ -290,12 +290,12 @@ $$
 \end{aligned}
 $$
 
-\textbf{Model 1}: $\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$
-\textbf{Model 2}: $\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$
-\textbf{Model 3}: $\text{logit}(\mu_i) = f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$
-\textbf{Model 4}: $\text{logit}(\mu_i) = f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$
-\textbf{Model 5}: $\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$
-\textbf{Model 6}: $\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$
+\textbf{Model 1}\: $\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$  
+\textbf{Model 2}\: $\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$  
+\textbf{Model 3}\: $\text{logit}(\mu_i) = f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$  
+\textbf{Model 4}\: $\text{logit}(\mu_i) = f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$ 
+\textbf{Model 5}\: $\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j$  
+\textbf{Model 6}\: $\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j$  
 
 1. Model 1
 
