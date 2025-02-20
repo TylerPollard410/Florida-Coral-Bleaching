@@ -1097,11 +1097,11 @@ hurdleLogNormalFitfinalFitUCB <- apply(hurdleLogNormalFitfinalFit, 2, function(x
 formulaBleaching_beta <- 
   bf(PercentBleachingBounded ~ 
        #Date_Year2 +
-       #gp(Date_Year, by = City_Town_Name) +
-       gp(Date_Year) +
-       Lat2 +
-       Lon2 +
-       #t2(Lat, Lon) +
+       gp(Date_Year, by = City_Town_Name) +
+       #gp(Date_Year) +
+       #Lat2 +
+       #Lon2 +
+       t2(Lat, Lon) +
        Distance_to_Shore +
        Exposure +
        Turbidity +

@@ -253,8 +253,6 @@ yearCityPlot
 ```
 
 # Model Description
-
-
 ## Data Preprocessing
 
 Before fitting the model, we applied several preprocessing steps:
@@ -276,18 +274,46 @@ Before fitting the model, we applied several preprocessing steps:
 To model the proportion of coral bleaching $Y_i$, we use a **Bayesian Beta regression** with a **logit link function**:
 
 $$
-\begin{aligned}
 Y_i \sim \text{Beta}(\mu_i \phi, (1-\mu_i) \phi)
-\end{aligned}
 $$
 
-where $\mu_i$ is the **mean bleaching percentage**, and $\phi$ is the **precision parameter**. The mean structure is defined as:
+where $\mu_i$ is the **mean bleaching percentage**, and $\phi$ is the **precision parameter**. Various models for the mean structure were examined and defined as:
 
 1. Model 1
 
+$$
+\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j
+$$
+
 2. Model 2
 
+$$
+\text{logit}(\mu_i) =f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j
+$$
+
 3. Model 3
+
+$$
+\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ij}\beta_j
+$$
+
+4. Model 4
+
+$$
+\text{logit}(\mu_i) = \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j
+$$
+
+5. Model 5
+
+$$
+\text{logit}(\mu_i) =f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j
+$$
+
+6. Model 6
+
+$$
+\text{logit}(\mu_i) = f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ij}\beta_j
+$$
 
 
 
