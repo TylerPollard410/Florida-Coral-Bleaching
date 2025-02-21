@@ -283,28 +283,30 @@ where $\mu_i$ is the **mean bleaching percentage**, and $\phi$ is the **precisio
 $$
 \begin{aligned}
 \textbf{Model 1}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 2}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + X_{ip}\beta_p \\
-\textbf{Model 3}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ip}\beta_p \\
-\textbf{Model 4}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + X_{ip}\beta_p \\
-\textbf{Model 5}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_c) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + X_{ip}\beta_p \\
-\textbf{Model 6}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_c) + g(\text{Lat}_i, \text{Lon}_i) + X_{ip}\beta_p \\
+\textbf{Model 2}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 3}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 4}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 5}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_c) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 6}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_c) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
 \end{aligned}
 $$
 </div>
 
 where:
 
-\subsection{Gaussian Process (GP) for Temporal Trends}
+### Gaussian Process (GP) for Temporal Trends {.unlisted} 
 - $f(\text{Date_Year}_i, \text{City_Town_Name}_c)$ follows a Gaussian Process (GP) with an exponentiated-quadratic (squared exponential) covariance function, capturing temporal variation with city-specific trends for $c = 1,2,3,4,5$ unique levels of City_Town_Name.
 
   + $f(\text{Date_Year}_i, \text{City_Town_Name}_c) \sim \mathcal{GP}(0, k_c(\text{Date_Year}_i, \text{Date_Year}_j)_{i,j = 1}^n)$ 
   
   + $k_c(\text{Date_Year}_i, \text{Date_Year}')$
 
-\subsection*{Time}
+### Tensor-Product Spline for Spatial Variation {.unlisted} 
 - $g(\text{Lat}, \text{Lon})$ follows a tensor-product spline basis representation, modeling smooth spatial variation.
 - $X_{ij}$ represents environmental predictors (e.g., turbidity, depth, cyclone frequency).
 - **City_Town_Name** is included as a random effect to capture location-specific variability beyond what is explained by temporal and spatial patterns.
+
+### Fixed Effects {.unlisted}
 
 
 
