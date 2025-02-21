@@ -297,7 +297,7 @@ where:
 ### Gaussian Process (GP) for Temporal Trends {.unlisted} 
 $f(\text{Date_Year}_i, \text{City_Town_Name}_c)$ follows a Gaussian Process (GP) with an exponentiated-quadratic (squared exponential) covariance function, capturing temporal variation with city-specific trends for $c = 1,2,3,4,5$ unique levels of City_Town_Name.
 
-* $f(\text{Date_Year}_i, \text{City_Town_Name}_c) \sim GP(0, k_c(\text{Date_Year}_i, \text{Date_Year}_j)_{i,j = 1}^n)$ 
+* $f(\text{Date_Year}_i, \text{City_Town_Name}_c) \sim GP(0, (k_c(\text{Date_Year}_i, \text{Date_Year}_j))_{i,j = 1}^n)$ 
   
 * $k_c(\text{Date_Year}_i, \text{Date_Year}')$
 
