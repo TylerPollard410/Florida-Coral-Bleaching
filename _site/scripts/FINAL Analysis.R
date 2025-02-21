@@ -1122,7 +1122,7 @@ default_prior(formulaBleaching_beta, data = procData2)
 priors <- c(
   prior(normal(0, 5), class = "b"),  # Fixed effects
   prior(cauchy(0,2), class = "sdgp"),  # GP output variance
-  prior(inv_gamma(0.1,0.1), class = "lscale"),  # GP length scale
+  prior(inv_gamma(4,1), class = "lscale"),  # GP length scale
   prior(cauchy(0,2), class = "sds"),  # Tensor spline smoothness
   prior(inv_gamma(0.1, 0.1), class = "phi")  # Beta regression precision
 )
@@ -1157,7 +1157,7 @@ betaFit <- brm(
 get_prior(betaFit)
 
 ## Diagnostics ----
-fitbeta <- 41
+fitbeta <- 42
 assign(paste0("betaFit", fitbeta), betaFit)
 #save(betaFitFINAL, file = "_data/betaFitFINAL.RData")
 
@@ -1242,7 +1242,7 @@ VarCorr(betaFit)
 #### MAE
 betaFitResidualsMean <- 
   residuals(
-    betaFit,
+    betaFit41,
     method = "posterior_predict",
     re_formula = NULL,
     robust = FALSE,
@@ -1258,7 +1258,7 @@ mean(abs(betaFitResidualsMean$Estimate))
 #### MAD
 betaFitResidualsMed <- 
   residuals(
-    betaFit,
+    betaFit41,
     method = "posterior_predict",
     re_formula = NULL,
     robust = TRUE,
@@ -1301,26 +1301,16 @@ loo_compare(
   loo(betaFit36), # t2(Date_Year2, Lat, Lon)
   loo(betaFit38), # gp(Date_Year) + t2(Lat, Lon)
   loo(betaFit39), # gp(Date_Year) + Lat2 + Lon2
-  loo(betaFit40) # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
-)
-
-loo_compare(
-  #loo(betaFit30), # gp(Date_Year2, by = City_Town_Name) + t2(Lat2, Lon2)
-  loo(betaFit31), # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
-  #loo(betaFit32), # gp(Date_Year2, by = City_Town_Name) + Lat2 + Lon2
-  #loo(betaFit33), # gp(Date_Year2, by = City_Town_Name)
-  #loo(betaFit34), # Date_Year2 + t2(Lat, Lon)
-  #loo(betaFit35), # Date_Year2 + Lat2 + Lon2
-  #loo(betaFit36), # t2(Date_Year2, Lat, Lon)
-  #loo(betaFit38), # gp(Date_Year) + t2(Lat, Lon)
-  #loo(betaFit39), # gp(Date_Year) + Lat2 + Lon2
   loo(betaFit40), # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
-  loo(betaFit41)
+  loo(betaFit41), # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
+  loo(betaFit42) # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
 )
 
 # elpd_diff se_diff
 # betaFit40    0.0       0.0 
+# betaFit42    0.0       0.0 
 # betaFit30   -0.2       0.4 
+# betaFit41   -0.4       0.4 
 # betaFit31   -0.6       0.5 
 # betaFit32  -17.6       6.6 
 # betaFit33  -20.2       7.1 
@@ -1330,6 +1320,13 @@ loo_compare(
 # betaFit34 -461.1      33.5 
 # betaFit35 -493.2      33.9 
 
+loo_compare(
+  loo(betaFit30), # gp(Date_Year2, by = City_Town_Name) + t2(Lat2, Lon2)
+  loo(betaFit31), # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
+  loo(betaFit40), # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
+  loo(betaFit41), # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
+  loo(betaFit42) # gp(Date_Year, by = City_Town_Name) + t2(Lat, Lon)
+)
 
 bayes_factor(betaFit11, betaFit14)
 # Estimated Bayes factor in favor of betaFit11 over betaFit14: 0.00161
@@ -1345,10 +1342,128 @@ bayes_factor(betaFit24, betaFit14)
 bayes_factor(betaFit24, betaFit26)
 bayes_factor(betaFit29, betaFit28)
 bayes_factor(betaFit31, betaFit30)
-bayes_factor(betaFit30, betaFit39)
+bayes_factor(betaFit41, betaFit40)
+bayes_factor(betaFit31, betaFit40)
+bayes_factor(betaFit31, betaFit42)
 
-betaFitsmooths <- conditional_smooths(betaFit,
-                                      method = "posterior_predict")
+betaFit40
+get_prior(betaFit40)
+
+## Report Models ----
+Model1 <- betaFit35
+Model2 <- betaFit34
+Model3 <- betaFit39
+Model4 <- betaFit38
+Model5 <- betaFit32
+Model6 <- betaFit40
+
+### Loo ----
+loo1 <- loo(Model1)
+loo2 <- loo(Model2)
+loo3 <- loo(Model3)
+loo4 <- loo(Model4)
+loo5 <- loo(Model5)
+loo6 <- loo(Model6)
+
+looList <- list(
+  "Model 1" = loo1,
+  "Model 2" = loo2,
+  "Model 3" = loo3,
+  "Model 4" = loo4,
+  "Model 5" = loo5,
+  "Model 6" = loo6
+)
+
+### WAIC ----
+waic1 <- waic(Model1)
+waic2 <- waic(Model2)
+waic3 <- waic(Model3)
+waic4 <- waic(Model4)
+waic5 <- waic(Model5)
+waic6 <- waic(Model6)
+
+waicList <- list(
+  "Model 1" = waic1,
+  "Model 2" = waic2,
+  "Model 3" = waic3,
+  "Model 4" = waic4,
+  "Model 5" = waic5,
+  "Model 6" = waic6
+)
+
+### Loo Compare ----
+looComp <- loo_compare(
+  looList
+)
+looComp
+
+looCompDF <- looComp |>
+  data.frame() |>
+  rownames_to_column(var = "Model")
+
+waicComp <- loo_compare(
+  waicList
+)
+waicList
+
+waicCompDF <- waicComp |>
+  data.frame() |>
+  rownames_to_column(var = "Model")
+
+
+fitCompDF <- data.frame(
+  Model = paste("Model", 1:6),
+  TempStr = c(
+    rep("Linear", 2),
+    rep("Global GP", 2),
+    rep("City-Specific GP", 2)
+  ),
+  SpaceStr = c(
+    rep(c("Linear", "Tensor Smooth"), times = 3)
+  )) |>
+  left_join(
+    looCompDF |> 
+      rename(
+        elpd_diff_loo = elpd_diff,
+        se_diff_loo = se_diff
+      )
+  ) |>
+  left_join(
+    waicCompDF |> 
+      rename(
+        elpd_diff_waic = elpd_diff,
+        se_diff_waic = se_diff
+      )
+  )
+
+save(fitCompDF, file = "_data/fitCompDF.RData")
+
+fitCompDF |>
+  select(
+    Model, 
+    TempStr,
+    SpaceStr, 
+    looic, 
+    se_looic, 
+    p_loo,
+    elpd_diff_loo, 
+    se_diff_loo
+  ) |>
+  gt() |>
+  fmt_auto() |>
+  cols_label(
+    TempStr = "Temporal Structure",
+    SpaceStr = "Spatial Structure",
+    looic = "LOOIC",
+    se_looic = "SE LOOIC",
+    p_loo = "p-value",
+    elpd_diff_loo = "LOO ELPD Difference",
+    se_diff_loo = "SE LOO Difference"
+  )
+
+betaFitsmooths <- conditional_smooths(betaFit31,
+                                      method = "posterior_predict",
+                                      spaghetti = TRUE)
 
 plot(betaFitsmooths,
      stype = "raster",
@@ -1359,9 +1474,9 @@ plot(betaFitsmooths,
      ask = FALSE,
      theme = theme(legend.position = "bottom"))
 
-betaFitsmooths <- conditional_effects(betaFit,
+betaFitEffects <- conditional_effects(betaFit,
                                       method = "posterior_predict")
-plot(betaFitsmooths,
+plot(betaFitEffects,
      #stype = "contour",
      ask = FALSE,
      points = TRUE, 
@@ -1411,7 +1526,7 @@ formulaBleaching_ziBeta <-
        #SSTA_DHW +
        TSA +
        TSA_DHW 
-       #(1 | City_Town_Name)
+     #(1 | City_Town_Name)
   ) + brmsfamily(family = "zero_inflated_beta")#, link = "logit")
 
 default_prior(formulaBleaching_ziBeta, data = procData)
