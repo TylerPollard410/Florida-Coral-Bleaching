@@ -1,17 +1,73 @@
-Tyler Pollard, Rachel Hardy, and Hanan Ali
-2024-05-06
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Home | Unveiling the Mysteries of Coral Bleaching</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Home" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A Bayesian Approach to Understanding Causality" />
+<meta property="og:description" content="A Bayesian Approach to Understanding Causality" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="Unveiling the Mysteries of Coral Bleaching" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Home" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"A Bayesian Approach to Understanding Causality","headline":"Home","name":"Unveiling the Mysteries of Coral Bleaching","url":"http://localhost:4000/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          
+
+          <h1 id="project_title">Unveiling the Mysteries of Coral Bleaching</h1>
+          <h2 id="project_tagline">A Bayesian Approach to Understanding Causality</h2>
+
+          
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Tyler Pollard, Rachel Hardy, and Hanan Ali
+2024-05-06</p>
 
 <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup Google Analytics -->
-<!-- {% include head-custom-google-analytics.html %} -->
+<!-- 
+ -->
 
 <!-- You can set your favicon here -->
-<!-- link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}" -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
 
 <!-- Change content width onfull screen -->
 <!-- <link rel="stylesheet" href="/Hurricane-Analysis/assets/css/custom.css"> -->
-
 
 <!-- MathJax -->
 <!-- inline config -->
@@ -32,56 +88,66 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
 </script>
 
 <!-- load MathJax -->
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+<script type="text/javascript" id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
 <!-- end custom head snippets -->
 
-- [Motivation](#motivation)
-- [Data](#data)
-  - [Spatial Structure](#spatial-structure)
-  - [Temporal Structure](#temporal-structure)
-- [Model Description](#model-description)
-  - [Data Preprocessing](#data-preprocessing)
-  - [Model Specification](#model-specification)
-    - [Gaussian Process (GP) for Temporal
-      Trends](#gaussian-process-gp-for-temporal-trends)
-    - [Tensor-Product Spline for Spatial
-      Variation](#tensor-product-spline-for-spatial-variation)
-    - [Fixed Effects](#fixed-effects)
-    - [Prior Specification](#prior-specification)
+<ul>
+  <li><a href="#motivation">Motivation</a></li>
+  <li><a href="#data">Data</a>
+    <ul>
+      <li><a href="#spatial-structure">Spatial Structure</a></li>
+      <li><a href="#temporal-structure">Temporal Structure</a></li>
+    </ul>
+  </li>
+  <li><a href="#model-description">Model Description</a>
+    <ul>
+      <li><a href="#data-preprocessing">Data Preprocessing</a></li>
+      <li><a href="#model-specification">Model Specification</a>
+        <ul>
+          <li><a href="#gaussian-process-gp-for-temporal-trends">Gaussian Process (GP) for Temporal
+Trends</a></li>
+          <li><a href="#tensor-product-spline-for-spatial-variation">Tensor-Product Spline for Spatial
+Variation</a></li>
+          <li><a href="#fixed-effects">Fixed Effects</a></li>
+          <li><a href="#prior-specification">Prior Specification</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-# Motivation
+<h1 id="motivation">Motivation</h1>
 
-Coral bleaching occurs when corals experience stress due to changes in
+<p>Coral bleaching occurs when corals experience stress due to changes in
 environmental conditions such as temperature, light, or nutrient levels.
 This stress leads corals to expel their symbiotic algae, resulting in
-the loss of their coloration and, in severe cases, coral death.
+the loss of their coloration and, in severe cases, coral death.</p>
 
-Several factors contribute to coral bleaching, including rising sea
+<p>Several factors contribute to coral bleaching, including rising sea
 temperatures, sea-level changes, and ocean acidification, all of which
 are consequences of climate change. Understanding the key environmental
-drivers of bleaching is critical for conservation efforts.
+drivers of bleaching is critical for conservation efforts.</p>
 
-The objective of this study is to identify and quantify the **impact of
-key environmental covariates on coral bleaching** while also assessing
-**how bleaching has changed over time** across different locations in
-Florida. Using **spatiotemporal modeling**, we analyze trends in coral
-bleaching by incorporating both **spatial variation** (reef locations)
-and **temporal patterns** (yearly changes) within a **Bayesian
-regression framework**.
+<p>The objective of this study is to identify and quantify the <strong>impact of
+key environmental covariates on coral bleaching</strong> while also assessing
+<strong>how bleaching has changed over time</strong> across different locations in
+Florida. Using <strong>spatiotemporal modeling</strong>, we analyze trends in coral
+bleaching by incorporating both <strong>spatial variation</strong> (reef locations)
+and <strong>temporal patterns</strong> (yearly changes) within a <strong>Bayesian
+regression framework</strong>.</p>
 
-# Data
+<h1 id="data">Data</h1>
 
-This study utilizes a dataset with 2,394 observations collected between
-2006 and 2016 sourced from the [Florida Reef Resilience
-Program](https://www.bco-dmo.org/dataset/773466). The data includes
+<p>This study utilizes a dataset with 2,394 observations collected between
+2006 and 2016 sourced from the <a href="https://www.bco-dmo.org/dataset/773466">Florida Reef Resilience
+Program</a>. The data includes
 various environmental and spatial covariates hypothesized to influence
-coral bleaching. The response variable, **Percent Bleaching**, measures
+coral bleaching. The response variable, <strong>Percent Bleaching</strong>, measures
 the proportion of coral affected in each transect. Below is a list of
 key environmental and geographic covariates that may contribute to
-bleaching events:
+bleaching events:</p>
 
 <div id="bzgseblpgm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#bzgseblpgm table {
@@ -522,12 +588,12 @@ bleaching events:
 </table>
 </div>
 
-The Percent Bleaching data exhibits a right-skewed distribution (Figure
-1), with a substantial number of observations reporting 0% bleaching.
+<p>The Percent Bleaching data exhibits a right-skewed distribution (Figure
+1), with a substantial number of observations reporting 0% bleaching.</p>
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/PercentBleaching Density-1.png" alt="Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef Samples"  />
+<img src="README_files/figure-gfm/PercentBleaching Density-1.png" alt="Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef Samples" />
 <p class="caption">
 Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef
 Samples
@@ -535,12 +601,12 @@ Samples
 
 </div>
 
-## Spatial Structure
+<h2 id="spatial-structure">Spatial Structure</h2>
 
-Coral bleaching observations were **geographically distributed across
-Florida’s reef systems** (Figure 2). Mapping Percent Bleaching reveals
-**spatial clustering**, with certain areas experiencing more severe
-bleaching than others.
+<p>Coral bleaching observations were <strong>geographically distributed across
+Florida’s reef systems</strong> (Figure 2). Mapping Percent Bleaching reveals
+<strong>spatial clustering</strong>, with certain areas experiencing more severe
+bleaching than others.</p>
 
 <div class="figure" style="text-align: center">
 
@@ -552,130 +618,162 @@ Florida
 
 </div>
 
-## Temporal Structure
+<h2 id="temporal-structure">Temporal Structure</h2>
 
-The dataset spans **2006 to 2016**, providing an opportunity to analyze
-**bleaching trends over time** (Figure 3). Boxplots of Percent Bleaching
+<p>The dataset spans <strong>2006 to 2016</strong>, providing an opportunity to analyze
+<strong>bleaching trends over time</strong> (Figure 3). Boxplots of Percent Bleaching
 over the years, categorized by City_Town_Name, reveal distinct temporal
-patterns across locations.
+patterns across locations.</p>
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/Temporal Structure-1.png" alt="Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name"  />
+<img src="README_files/figure-gfm/Temporal Structure-1.png" alt="Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name" />
 <p class="caption">
 Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name
 </p>
 
 </div>
 
-# Model Description
+<h1 id="model-description">Model Description</h1>
 
-## Data Preprocessing
+<h2 id="data-preprocessing">Data Preprocessing</h2>
 
-Before fitting the model, we applied several preprocessing steps:
+<p>Before fitting the model, we applied several preprocessing steps:</p>
 
-- **Response Variable Transformation**: Since the Beta regression model
-  requires values strictly in the (0,1) range, we replaced:
+<ul>
+  <li>
+    <p><strong>Response Variable Transformation</strong>: Since the Beta regression model
+requires values strictly in the (0,1) range, we replaced:</p>
 
-  - 0% bleaching values with 0.001
+    <ul>
+      <li>
+        <p>0% bleaching values with 0.001</p>
+      </li>
+      <li>
+        <p>100% bleaching values with 0.999</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Covariate Transformations</strong>:</p>
 
-  - 100% bleaching values with 0.999
+    <ul>
+      <li>
+        <p><strong>Yeo-Johnson transformation</strong> was applied to all continuous
+covariates to reduce skewness.</p>
+      </li>
+      <li>
+        <p><strong>Centering and scaling</strong> were performed to standardize covariates
+for better model convergence.</p>
+      </li>
+    </ul>
+  </li>
+</ul>
 
-- **Covariate Transformations**:
+<h2 id="model-specification">Model Specification</h2>
 
-  - **Yeo-Johnson transformation** was applied to all continuous
-    covariates to reduce skewness.
+<p>To model the proportion of coral bleaching $Y_i$ for $i = 1, …, 2835$,
+we use a <strong>Bayesian Beta regression</strong> with a <strong>logit link function</strong>:</p>
 
-  - **Centering and scaling** were performed to standardize covariates
-    for better model convergence.
+\[Y_i \sim \text{Beta}(\mu_i \phi, (1-\mu_i) \phi)\]
 
-## Model Specification
-
-To model the proportion of coral bleaching $Y_i$ for $i = 1, ..., 2835$,
-we use a **Bayesian Beta regression** with a **logit link function**:
-
-$$
-Y_i \sim \text{Beta}(\mu_i \phi, (1-\mu_i) \phi)
-$$
-
-where $\mu_i$ is the mean bleaching percentage, and $\phi$ is the
+<p>where $\mu_i$ is the mean bleaching percentage, and $\phi$ is the
 precision parameter. Various models for the mean structure were examined
-and defined as:
+and defined as:</p>
 
 <div style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;width:auto;">
 
 $$
 \begin{aligned}
-\textbf{Model 1}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 2}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 3}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 4}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 5}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 6}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 1}: \text{logit}(\mu_i) &amp;= \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 2}: \text{logit}(\mu_i) &amp;= \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 3}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 4}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 5}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 6}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
 \end{aligned}
 $$
 
 </div>
 
-where:
+<p>where:</p>
 
-### Gaussian Process (GP) for Temporal Trends
+<h3 id="gaussian-process-gp-for-temporal-trends">Gaussian Process (GP) for Temporal Trends</h3>
 
-$$
-f(\text{Date_Year}_i, \text{City_Town_Name}_i) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\ 
-$$
+\[f(\text{Date_Year}_i, \text{City_Town_Name}_i) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\\]
 
-where the covariance function for each city $c$ is:
+<p>where the covariance function for each city $c$ is:</p>
 
-$$
-k_c(t_i, t_j) = \sigma_c^2 \exp\left( -\frac{||t_i - t_j||^2}{2 \rho_c^2} \right)
-$$
+\[k_c(t_i, t_j) = \sigma_c^2 \exp\left( -\frac{||t_i - t_j||^2}{2 \rho_c^2} \right)\]
 
-with:
+<p>with:</p>
 
-- $t_i, t_j$ as observed `Date_Year` values.
-- $c_i$ representing the city (`City_Town_Name`), where each city has a
-  separate GP.
-- $k_c(t_i, t_j)$ as the covariance function, using an
-  exponentiated-quadratic (squared exponential) kernel.
-- $\sigma_c^2$ representing a standard deviation parameter of the GP for
-  city $c$.
-- $\rho_c$ as the characteristic length-scale parameter.
+<ul>
+  <li>$t_i, t_j$ as observed <code class="language-plaintext highlighter-rouge">Date_Year</code> values.</li>
+  <li>$c_i$ representing the city (<code class="language-plaintext highlighter-rouge">City_Town_Name</code>), where each city has a
+separate GP.</li>
+  <li>$k_c(t_i, t_j)$ as the covariance function, using an
+exponentiated-quadratic (squared exponential) kernel.</li>
+  <li>$\sigma_c^2$ representing a standard deviation parameter of the GP for
+city $c$.</li>
+  <li>$\rho_c$ as the characteristic length-scale parameter.</li>
+</ul>
 
-### Tensor-Product Spline for Spatial Variation
+<h3 id="tensor-product-spline-for-spatial-variation">Tensor-Product Spline for Spatial Variation</h3>
 
-$$
-g(\text{Lat}_i, \text{Lon}_i) = \sum_{k_1} \sum_{k_2} \beta_{k_1 k_2} B_{k_1}(\text{Lat}) B_{k_2}(\text{Lon})
-$$
+\[g(\text{Lat}_i, \text{Lon}_i) = \sum_{k_1} \sum_{k_2} \beta_{k_1 k_2} B_{k_1}(\text{Lat}) B_{k_2}(\text{Lon})\]
 
-where:
+<p>where:</p>
 
-- $B_{k_1}(\text{Lat})$ and $B_{k_2}(\text{Lon})$ are basis functions
-  for latitude and longitude.
-- $\beta_{k_1 k_2}$ are the coefficients to be estimated.
-- The smoothing penalty is controlled by a hyperparameter $\lambda$,
-  which regularizes the estimated coefficients.
+<ul>
+  <li>$B_{k_1}(\text{Lat})$ and $B_{k_2}(\text{Lon})$ are basis functions
+for latitude and longitude.</li>
+  <li>$\beta_{k_1 k_2}$ are the coefficients to be estimated.</li>
+  <li>The smoothing penalty is controlled by a hyperparameter $\lambda$,
+which regularizes the estimated coefficients.</li>
+</ul>
 
-### Fixed Effects
+<h3 id="fixed-effects">Fixed Effects</h3>
 
-$$
-\sum_{p} X_{ip} \beta_p
-$$
+\[\sum_{p} X_{ip} \beta_p\]
 
-where:
+<p>where:</p>
 
-- $X_{ip}$ is the value of the $p$-th covariate for observation $i$.
-- $\beta_p$ is the corresponding regression coefficient.
+<ul>
+  <li>$X_{ip}$ is the value of the $p$-th covariate for observation $i$.</li>
+  <li>$\beta_p$ is the corresponding regression coefficient.</li>
+</ul>
 
-### Prior Specification
+<h3 id="prior-specification">Prior Specification</h3>
 
-- **Fixed Effects**: $\beta_p \sim \mathcal{N}(0,5)$ for all covariates
-  $p$.
-- **Gaussian Process (Temporal Trends)**:
-  - $\sigma_c \sim \text{half-Cauchy}(0,2)$
-  - $\rho_c \sim \text{InvGamma}(0.1, 0.1)$
-- **Tensor-Product Spline**:
-  - $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
-  - $\lambda \sim \text{Gamma}(2,1)$ (if explicitly included in
-    smoothing penalty)
-- **Precision Parameter**: $\phi \sim \text{InvGamma}(0.1, 0.1)$
+<ul>
+  <li><strong>Fixed Effects</strong>: $\beta_p \sim \mathcal{N}(0,5)$ for all covariates
+$p$.</li>
+  <li><strong>Gaussian Process (Temporal Trends)</strong>:
+    <ul>
+      <li>$\sigma_c \sim \text{half-Cauchy}(0,2)$</li>
+      <li>$\rho_c \sim \text{InvGamma}(0.1, 0.1)$</li>
+    </ul>
+  </li>
+  <li><strong>Tensor-Product Spline</strong>:
+    <ul>
+      <li>$\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$</li>
+      <li>$\lambda \sim \text{Gamma}(2,1)$ (if explicitly included in
+smoothing penalty)</li>
+    </ul>
+  </li>
+  <li><strong>Precision Parameter</strong>: $\phi \sim \text{InvGamma}(0.1, 0.1)$</li>
+</ul>
+
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+  </body>
+</html>
