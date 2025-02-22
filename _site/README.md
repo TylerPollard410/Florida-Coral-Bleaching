@@ -84,20 +84,20 @@ the proportion of coral affected in each transect. Below is a list of
 key environmental and geographic covariates that may contribute to
 bleaching events:
 
-<div id="yjhnvlrmet" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yjhnvlrmet table {
+<div id="wdwgfgkzkc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wdwgfgkzkc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#yjhnvlrmet thead, #yjhnvlrmet tbody, #yjhnvlrmet tfoot, #yjhnvlrmet tr, #yjhnvlrmet td, #yjhnvlrmet th {
+&#10;#wdwgfgkzkc thead, #wdwgfgkzkc tbody, #wdwgfgkzkc tfoot, #wdwgfgkzkc tr, #wdwgfgkzkc td, #wdwgfgkzkc th {
   border-style: none;
 }
-&#10;#yjhnvlrmet p {
+&#10;#wdwgfgkzkc p {
   margin: 0;
   padding: 0;
 }
-&#10;#yjhnvlrmet .gt_table {
+&#10;#wdwgfgkzkc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -122,11 +122,11 @@ bleaching events:
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_caption {
+&#10;#wdwgfgkzkc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#yjhnvlrmet .gt_title {
+&#10;#wdwgfgkzkc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -137,7 +137,7 @@ bleaching events:
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
-&#10;#yjhnvlrmet .gt_subtitle {
+&#10;#wdwgfgkzkc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -148,7 +148,7 @@ bleaching events:
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
-&#10;#yjhnvlrmet .gt_heading {
+&#10;#wdwgfgkzkc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -159,12 +159,12 @@ bleaching events:
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_bottom_border {
+&#10;#wdwgfgkzkc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_col_headings {
+&#10;#wdwgfgkzkc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -178,7 +178,7 @@ bleaching events:
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_col_heading {
+&#10;#wdwgfgkzkc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -197,7 +197,7 @@ bleaching events:
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#yjhnvlrmet .gt_column_spanner_outer {
+&#10;#wdwgfgkzkc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -208,13 +208,13 @@ bleaching events:
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#yjhnvlrmet .gt_column_spanner_outer:first-child {
+&#10;#wdwgfgkzkc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#yjhnvlrmet .gt_column_spanner_outer:last-child {
+&#10;#wdwgfgkzkc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#yjhnvlrmet .gt_column_spanner {
+&#10;#wdwgfgkzkc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -225,10 +225,10 @@ bleaching events:
   display: inline-block;
   width: 100%;
 }
-&#10;#yjhnvlrmet .gt_spanner_row {
+&#10;#wdwgfgkzkc .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#yjhnvlrmet .gt_group_heading {
+&#10;#wdwgfgkzkc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -253,7 +253,7 @@ bleaching events:
   vertical-align: middle;
   text-align: left;
 }
-&#10;#yjhnvlrmet .gt_empty_group_heading {
+&#10;#wdwgfgkzkc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -267,13 +267,13 @@ bleaching events:
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#yjhnvlrmet .gt_from_md > :first-child {
+&#10;#wdwgfgkzkc .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#yjhnvlrmet .gt_from_md > :last-child {
+&#10;#wdwgfgkzkc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#yjhnvlrmet .gt_row {
+&#10;#wdwgfgkzkc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -291,7 +291,7 @@ bleaching events:
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#yjhnvlrmet .gt_stub {
+&#10;#wdwgfgkzkc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -303,7 +303,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#yjhnvlrmet .gt_stub_row_group {
+&#10;#wdwgfgkzkc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -316,13 +316,13 @@ bleaching events:
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#yjhnvlrmet .gt_row_group_first td {
+&#10;#wdwgfgkzkc .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#yjhnvlrmet .gt_row_group_first th {
+&#10;#wdwgfgkzkc .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#yjhnvlrmet .gt_summary_row {
+&#10;#wdwgfgkzkc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -331,14 +331,14 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#yjhnvlrmet .gt_first_summary_row {
+&#10;#wdwgfgkzkc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_first_summary_row.thick {
+&#10;#wdwgfgkzkc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#yjhnvlrmet .gt_last_summary_row {
+&#10;#wdwgfgkzkc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -347,7 +347,7 @@ bleaching events:
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_grand_summary_row {
+&#10;#wdwgfgkzkc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -356,7 +356,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#yjhnvlrmet .gt_first_grand_summary_row {
+&#10;#wdwgfgkzkc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -365,7 +365,7 @@ bleaching events:
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_last_grand_summary_row_top {
+&#10;#wdwgfgkzkc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -374,10 +374,10 @@ bleaching events:
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_striped {
+&#10;#wdwgfgkzkc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#yjhnvlrmet .gt_table_body {
+&#10;#wdwgfgkzkc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -385,7 +385,7 @@ bleaching events:
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_footnotes {
+&#10;#wdwgfgkzkc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -398,7 +398,7 @@ bleaching events:
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_footnote {
+&#10;#wdwgfgkzkc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -406,7 +406,7 @@ bleaching events:
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#yjhnvlrmet .gt_sourcenotes {
+&#10;#wdwgfgkzkc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -419,64 +419,64 @@ bleaching events:
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#yjhnvlrmet .gt_sourcenote {
+&#10;#wdwgfgkzkc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#yjhnvlrmet .gt_left {
+&#10;#wdwgfgkzkc .gt_left {
   text-align: left;
 }
-&#10;#yjhnvlrmet .gt_center {
+&#10;#wdwgfgkzkc .gt_center {
   text-align: center;
 }
-&#10;#yjhnvlrmet .gt_right {
+&#10;#wdwgfgkzkc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#yjhnvlrmet .gt_font_normal {
+&#10;#wdwgfgkzkc .gt_font_normal {
   font-weight: normal;
 }
-&#10;#yjhnvlrmet .gt_font_bold {
+&#10;#wdwgfgkzkc .gt_font_bold {
   font-weight: bold;
 }
-&#10;#yjhnvlrmet .gt_font_italic {
+&#10;#wdwgfgkzkc .gt_font_italic {
   font-style: italic;
 }
-&#10;#yjhnvlrmet .gt_super {
+&#10;#wdwgfgkzkc .gt_super {
   font-size: 65%;
 }
-&#10;#yjhnvlrmet .gt_footnote_marks {
+&#10;#wdwgfgkzkc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#yjhnvlrmet .gt_asterisk {
+&#10;#wdwgfgkzkc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#yjhnvlrmet .gt_indent_1 {
+&#10;#wdwgfgkzkc .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#yjhnvlrmet .gt_indent_2 {
+&#10;#wdwgfgkzkc .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#yjhnvlrmet .gt_indent_3 {
+&#10;#wdwgfgkzkc .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#yjhnvlrmet .gt_indent_4 {
+&#10;#wdwgfgkzkc .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#yjhnvlrmet .gt_indent_5 {
+&#10;#wdwgfgkzkc .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#yjhnvlrmet .katex-display {
+&#10;#wdwgfgkzkc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#yjhnvlrmet div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+&#10;#wdwgfgkzkc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -674,13 +674,14 @@ where:
   - $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
 - **Gaussian Process (Temporal Trends)**:
   - $\sigma_c \sim \text{half-Cauchy}(0,2)$
-  - $\rho_c \sim \text{InvGamma}(4, 1)$
+  - $\rho_c \sim \text{InvGamma}(4.308447, 0.957567)$ (explicitly
+    defined by `brms`)
 - **Tensor-Product Spline**:
   - $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
   - $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in
     smoothing penalty)
 - **Precision Parameter**:
-  - $\phi \sim \text{InvGamma}(0.1, 0.1)$
+  - $\phi \sim \text{Gamma}(0.1, 0.1)$
 
 This model accounts for both spatial and temporal dependencies, allowing
 for flexible trend estimation.
@@ -701,20 +702,20 @@ The final model was selected using **Leave-One-Out Cross-Validation
 (LOO-CV)**, ensuring it provided the best balance between fit and
 complexity.
 
-<div id="mywaczysrz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#mywaczysrz table {
+<div id="urbtawhhig" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#urbtawhhig table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#mywaczysrz thead, #mywaczysrz tbody, #mywaczysrz tfoot, #mywaczysrz tr, #mywaczysrz td, #mywaczysrz th {
+&#10;#urbtawhhig thead, #urbtawhhig tbody, #urbtawhhig tfoot, #urbtawhhig tr, #urbtawhhig td, #urbtawhhig th {
   border-style: none;
 }
-&#10;#mywaczysrz p {
+&#10;#urbtawhhig p {
   margin: 0;
   padding: 0;
 }
-&#10;#mywaczysrz .gt_table {
+&#10;#urbtawhhig .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -739,11 +740,11 @@ complexity.
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_caption {
+&#10;#urbtawhhig .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#mywaczysrz .gt_title {
+&#10;#urbtawhhig .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -754,7 +755,7 @@ complexity.
   border-bottom-color: #FFFFFF;
   border-bottom-width: 0;
 }
-&#10;#mywaczysrz .gt_subtitle {
+&#10;#urbtawhhig .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -765,7 +766,7 @@ complexity.
   border-top-color: #FFFFFF;
   border-top-width: 0;
 }
-&#10;#mywaczysrz .gt_heading {
+&#10;#urbtawhhig .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -776,12 +777,12 @@ complexity.
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_bottom_border {
+&#10;#urbtawhhig .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_col_headings {
+&#10;#urbtawhhig .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -795,7 +796,7 @@ complexity.
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_col_heading {
+&#10;#urbtawhhig .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -814,7 +815,7 @@ complexity.
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#mywaczysrz .gt_column_spanner_outer {
+&#10;#urbtawhhig .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -825,13 +826,13 @@ complexity.
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#mywaczysrz .gt_column_spanner_outer:first-child {
+&#10;#urbtawhhig .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#mywaczysrz .gt_column_spanner_outer:last-child {
+&#10;#urbtawhhig .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#mywaczysrz .gt_column_spanner {
+&#10;#urbtawhhig .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -842,10 +843,10 @@ complexity.
   display: inline-block;
   width: 100%;
 }
-&#10;#mywaczysrz .gt_spanner_row {
+&#10;#urbtawhhig .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#mywaczysrz .gt_group_heading {
+&#10;#urbtawhhig .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -870,7 +871,7 @@ complexity.
   vertical-align: middle;
   text-align: left;
 }
-&#10;#mywaczysrz .gt_empty_group_heading {
+&#10;#urbtawhhig .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -884,13 +885,13 @@ complexity.
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#mywaczysrz .gt_from_md > :first-child {
+&#10;#urbtawhhig .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#mywaczysrz .gt_from_md > :last-child {
+&#10;#urbtawhhig .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#mywaczysrz .gt_row {
+&#10;#urbtawhhig .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -908,7 +909,7 @@ complexity.
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#mywaczysrz .gt_stub {
+&#10;#urbtawhhig .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -920,7 +921,7 @@ complexity.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#mywaczysrz .gt_stub_row_group {
+&#10;#urbtawhhig .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -933,13 +934,13 @@ complexity.
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#mywaczysrz .gt_row_group_first td {
+&#10;#urbtawhhig .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#mywaczysrz .gt_row_group_first th {
+&#10;#urbtawhhig .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#mywaczysrz .gt_summary_row {
+&#10;#urbtawhhig .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -948,14 +949,14 @@ complexity.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#mywaczysrz .gt_first_summary_row {
+&#10;#urbtawhhig .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_first_summary_row.thick {
+&#10;#urbtawhhig .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#mywaczysrz .gt_last_summary_row {
+&#10;#urbtawhhig .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -964,7 +965,7 @@ complexity.
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_grand_summary_row {
+&#10;#urbtawhhig .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -973,7 +974,7 @@ complexity.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#mywaczysrz .gt_first_grand_summary_row {
+&#10;#urbtawhhig .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -982,7 +983,7 @@ complexity.
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_last_grand_summary_row_top {
+&#10;#urbtawhhig .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -991,10 +992,10 @@ complexity.
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_striped {
+&#10;#urbtawhhig .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#mywaczysrz .gt_table_body {
+&#10;#urbtawhhig .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1002,7 +1003,7 @@ complexity.
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_footnotes {
+&#10;#urbtawhhig .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1015,7 +1016,7 @@ complexity.
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_footnote {
+&#10;#urbtawhhig .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1023,7 +1024,7 @@ complexity.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#mywaczysrz .gt_sourcenotes {
+&#10;#urbtawhhig .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1036,130 +1037,146 @@ complexity.
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#mywaczysrz .gt_sourcenote {
+&#10;#urbtawhhig .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#mywaczysrz .gt_left {
+&#10;#urbtawhhig .gt_left {
   text-align: left;
 }
-&#10;#mywaczysrz .gt_center {
+&#10;#urbtawhhig .gt_center {
   text-align: center;
 }
-&#10;#mywaczysrz .gt_right {
+&#10;#urbtawhhig .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#mywaczysrz .gt_font_normal {
+&#10;#urbtawhhig .gt_font_normal {
   font-weight: normal;
 }
-&#10;#mywaczysrz .gt_font_bold {
+&#10;#urbtawhhig .gt_font_bold {
   font-weight: bold;
 }
-&#10;#mywaczysrz .gt_font_italic {
+&#10;#urbtawhhig .gt_font_italic {
   font-style: italic;
 }
-&#10;#mywaczysrz .gt_super {
+&#10;#urbtawhhig .gt_super {
   font-size: 65%;
 }
-&#10;#mywaczysrz .gt_footnote_marks {
+&#10;#urbtawhhig .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#mywaczysrz .gt_asterisk {
+&#10;#urbtawhhig .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#mywaczysrz .gt_indent_1 {
+&#10;#urbtawhhig .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#mywaczysrz .gt_indent_2 {
+&#10;#urbtawhhig .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#mywaczysrz .gt_indent_3 {
+&#10;#urbtawhhig .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#mywaczysrz .gt_indent_4 {
+&#10;#urbtawhhig .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#mywaczysrz .gt_indent_5 {
+&#10;#urbtawhhig .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#mywaczysrz .katex-display {
+&#10;#urbtawhhig .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#mywaczysrz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+&#10;#urbtawhhig div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
   <thead>
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Model">Model</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="TempStr">Temporal Structure</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="SpaceStr">Spatial Structure</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="looic">LOOIC</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="se_looic">SE LOOIC</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="p_loo">p-value</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="elpd_diff_loo">LOO ELPD Difference</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="se_diff_loo">SE LOO Difference</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="Model">Model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="TempStr">Temporal Structure</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="SpaceStr">Spatial Structure</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="elpd_diff_loo">elpd_diff_loo<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="se_diff_loo">se_diff_loo<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="p_loo">p_loo<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>3</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="looic">looic<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>4</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="se_looic">se_looic<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>5</sup></span></th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="Model" class="gt_row gt_left">Model 1</td>
-<td headers="TempStr" class="gt_row gt_left">Linear</td>
-<td headers="SpaceStr" class="gt_row gt_left">Linear</td>
-<td headers="looic" class="gt_row gt_right">−4,727.645</td>
-<td headers="se_looic" class="gt_row gt_right">118.698</td>
-<td headers="p_loo" class="gt_row gt_right">18.498</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right">−493.157</td>
-<td headers="se_diff_loo" class="gt_row gt_right">33.89 </td></tr>
-    <tr><td headers="Model" class="gt_row gt_left">Model 2</td>
-<td headers="TempStr" class="gt_row gt_left">Linear</td>
-<td headers="SpaceStr" class="gt_row gt_left">Tensor Smooth</td>
-<td headers="looic" class="gt_row gt_right">−4,791.822</td>
-<td headers="se_looic" class="gt_row gt_right">120.67 </td>
-<td headers="p_loo" class="gt_row gt_right">23.558</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right">−461.068</td>
-<td headers="se_diff_loo" class="gt_row gt_right">33.452</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left">Model 3</td>
-<td headers="TempStr" class="gt_row gt_left">Global GP</td>
-<td headers="SpaceStr" class="gt_row gt_left">Linear</td>
-<td headers="looic" class="gt_row gt_right">−5,467.242</td>
-<td headers="se_looic" class="gt_row gt_right">132.2  </td>
-<td headers="p_loo" class="gt_row gt_right">33.294</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right">−123.358</td>
-<td headers="se_diff_loo" class="gt_row gt_right">21.817</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left">Model 4</td>
-<td headers="TempStr" class="gt_row gt_left">Global GP</td>
-<td headers="SpaceStr" class="gt_row gt_left">Tensor Smooth</td>
-<td headers="looic" class="gt_row gt_right">−5,524.901</td>
-<td headers="se_looic" class="gt_row gt_right">133.619</td>
-<td headers="p_loo" class="gt_row gt_right">43.173</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right"> −94.529</td>
-<td headers="se_diff_loo" class="gt_row gt_right">20.475</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left">Model 5</td>
-<td headers="TempStr" class="gt_row gt_left">City-Specific GP</td>
-<td headers="SpaceStr" class="gt_row gt_left">Linear</td>
-<td headers="looic" class="gt_row gt_right">−5,678.716</td>
-<td headers="se_looic" class="gt_row gt_right">133.964</td>
-<td headers="p_loo" class="gt_row gt_right">75.686</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right"> −17.621</td>
-<td headers="se_diff_loo" class="gt_row gt_right"> 6.604</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left">Model 6</td>
-<td headers="TempStr" class="gt_row gt_left">City-Specific GP</td>
-<td headers="SpaceStr" class="gt_row gt_left">Tensor Smooth</td>
-<td headers="looic" class="gt_row gt_right">−5,713.958</td>
-<td headers="se_looic" class="gt_row gt_right">134.556</td>
-<td headers="p_loo" class="gt_row gt_right">79.812</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right">   0    </td>
-<td headers="se_diff_loo" class="gt_row gt_right"> 0    </td></tr>
+    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 6</td>
+<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">City-Specific GP</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Tensor Smooth</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">0.00</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">0.00</td>
+<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">80.47</td>
+<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−5,711.89</td>
+<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">134.45</td></tr>
+    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 5</td>
+<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">City-Specific GP</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−16.19</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">6.26</td>
+<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">75.56</td>
+<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−5,679.50</td>
+<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">133.96</td></tr>
+    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 4</td>
+<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">Global GP</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Tensor Smooth</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−93.13</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">20.50</td>
+<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">43.11</td>
+<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−5,525.64</td>
+<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">133.72</td></tr>
+    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 3</td>
+<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">Global GP</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−124.21</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">22.02</td>
+<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">33.40</td>
+<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−5,463.46</td>
+<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">131.95</td></tr>
+    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 2</td>
+<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Tensor Smooth</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−460.63</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">33.49</td>
+<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">24.05</td>
+<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−4,790.64</td>
+<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">120.73</td></tr>
+    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 1</td>
+<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−491.58</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">33.90</td>
+<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">18.32</td>
+<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−4,728.73</td>
+<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">118.72</td></tr>
   </tbody>
-  &#10;  
+  &#10;  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Difference in Expected Log pointwise Predictive Density for a new dataset</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Standard Error of component-wise elpd_diff_loo between two models</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>3</sup></span> Effective number of parameters</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>4</sup></span> Leave-one-out Information Criteria</td>
+    </tr>
+    <tr>
+      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>5</sup></span> Standard Error of looic</td>
+    </tr>
+  </tfoot>
 </table>
 </div>

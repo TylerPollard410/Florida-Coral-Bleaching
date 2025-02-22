@@ -272,7 +272,17 @@ Before fitting the model, we applied several preprocessing steps:
 ## Model Specification
 
 ```{r Model Spec}
+# Final Model
+load(file = "_data/finalMod.RData")
 
+# Get priors
+finalModPriors <- get_prior(finalMod)
+gpPrior <- finalModPriors |>
+  filter(class == "lscale", source == "default") |>
+  pull(prior) |>
+  unique()
+lscalePriorAlpha <- as.numeric(str_extract(gpPrior, "(?<=inv_gamma\\()[^,]+"))
+lscalePriorBeta <- as.numeric(str_extract(gpPrior, "(?<=, )[^)]+"))
 ```
 
 To model the proportion of coral bleaching $Y_i$ for $i = 1, ..., 2835$, we use a **Bayesian Beta regression** with a **logit link function**:
@@ -346,7 +356,7 @@ where:
   + $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
 * **Gaussian Process (Temporal Trends)**:
   + $\sigma_c \sim \text{half-Cauchy}(0,2)$
-  + $\rho_c \sim \text{InvGamma}(4, 1)$
+  + $\rho_c \sim \text{InvGamma}(`r lscalePriorAlpha`, `r lscalePriorBeta`)$ (explicitly defined by `brms`)
 * **Tensor-Product Spline**:
   + $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
   + $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in smoothing penalty)
@@ -355,7 +365,7 @@ where:
 
 This model accounts for both spatial and temporal dependencies, allowing for flexible trend estimation.
 
-## Model Comparison
+# Model Comparison
 
 We tested the 6 models abive to evaluate different approaches for capturing spatiotemporal variation in coral bleaching. The candidate models included:
 
@@ -363,7 +373,7 @@ We tested the 6 models abive to evaluate different approaches for capturing spat
 - **Gaussian Process (GP) models**, both with and without city-specific trends.
 - **Spatial models**, incorporating either Lat and Lon as fixed effects or a smooth spatial term.
  
-The final model was selected using **Leave-One-Out Cross-Validation (LOO-CV)**, ensuring it provided the best balance between fit and complexity.
+After running convergence checks, the final model was selected using **Leave-One-Out Cross-Validation (LOO-CV)**, ensuring it provided the best balance between fit and complexity.
 
 ```{r Model Comparison}
 # Load comparison data
@@ -374,14 +384,14 @@ fitCompDF |>
     Model, 
     TempStr,
     SpaceStr, 
-    looic, 
-    se_looic, 
-    p_loo,
     elpd_diff_loo, 
-    se_diff_loo
+    se_diff_loo,
+    p_loo,
+    looic, 
+    se_looic
   ) |>
+  arrange(desc(elpd_diff_loo)) |>
   gt() |>
-  fmt_auto() |>
   cols_label(
     TempStr = "Temporal Structure",
     SpaceStr = "Spatial Structure"
@@ -390,6 +400,36 @@ fitCompDF |>
     # p_loo = "p-value",
     # elpd_diff_loo = "LOO ELPD Difference",
     # se_diff_loo = "SE LOO Difference"
+  ) |>
+  fmt_number() |>
+  tab_footnote(
+    footnote = "Difference in Expected Log pointwise Predictive Density for a new dataset",
+    locations = cells_column_labels(columns = elpd_diff_loo)
+  ) |>
+  tab_footnote(
+    footnote = "Standard Error of component-wise elpd_diff_loo between two models",
+    locations = cells_column_labels(columns = se_diff_loo)
+  )  |>
+  tab_footnote(
+    footnote = "Effective number of parameters",
+    locations = cells_column_labels(columns = p_loo)
+  ) |>
+  tab_footnote(
+    footnote = "Leave-one-out Information Criteria",
+    locations = cells_column_labels(columns = looic)
+  ) |>
+  tab_footnote(
+    footnote = "Standard Error of looic",
+    locations = cells_column_labels(columns = se_looic)
+  ) |>
+  tab_options(
+    footnotes.sep = " "  # Removes default footnote separation lines
+    #footnotes.font.size = px(10),  # Adjusts footnote size
+    #footnotes.padding = px(0)  # Removes spacing between footnotes
+  ) |>
+  tab_style(
+    style = cell_text(whitespace = "nowrap"),
+    locations = list(cells_body(), cells_column_labels())
   )
 ```
 

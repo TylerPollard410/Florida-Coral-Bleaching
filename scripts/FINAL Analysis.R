@@ -966,6 +966,8 @@ fitCompDF |>
 
 # 4. FINAL MODEL =======================
 finalMod <- fitMod6
+save(finalMod, file = "_data/finalMod.RData")
+
 finalModPriors <- get_prior(finalMod)
 gpPrior <- finalModPriors |>
   filter(class == "lscale", source == "default") |>
