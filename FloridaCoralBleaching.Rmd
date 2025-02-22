@@ -271,6 +271,10 @@ Before fitting the model, we applied several preprocessing steps:
   
 ## Model Specification
 
+```{r Model Spec}
+
+```
+
 To model the proportion of coral bleaching $Y_i$ for $i = 1, ..., 2835$, we use a **Bayesian Beta regression** with a **logit link function**:
 
 $$
@@ -347,7 +351,7 @@ where:
   + $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
   + $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in smoothing penalty)
 * **Precision Parameter**: 
-  + $\phi \sim \text{InvGamma}(0.1, 0.1)$
+  + $\phi \sim \text{Gamma}(0.1, 0.1)$
 
 This model accounts for both spatial and temporal dependencies, allowing for flexible trend estimation.
 
@@ -380,12 +384,12 @@ fitCompDF |>
   fmt_auto() |>
   cols_label(
     TempStr = "Temporal Structure",
-    SpaceStr = "Spatial Structure",
-    looic = "LOOIC",
-    se_looic = "SE LOOIC",
-    p_loo = "p-value",
-    elpd_diff_loo = "LOO ELPD Difference",
-    se_diff_loo = "SE LOO Difference"
+    SpaceStr = "Spatial Structure"
+    # looic = "LOOIC",
+    # se_looic = "SE LOOIC",
+    # p_loo = "p-value",
+    # elpd_diff_loo = "LOO ELPD Difference",
+    # se_diff_loo = "SE LOO Difference"
   )
 ```
 
