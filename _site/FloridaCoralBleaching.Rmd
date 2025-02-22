@@ -149,12 +149,14 @@ covDF <- data.frame(
 )
 
 covDF |>
-  gt()
+  gt() |>
+  opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 1: Covariate Descriptions"))
 ```
 
 The Percent Bleaching data exhibits a right-skewed distribution (Figure 1), with a substantial number of observations reporting 0% bleaching.
 
-```{r PercentBleaching Density, fig.align='center', fig.cap="Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef Samples", out.width="100%"}
+```{r PercentBleaching Density, fig.align='center', fig.cap="Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef Samples", out.width="90%"}
 percentBleachingDensPlot <- ggplot(data = bleachingData) +
   geom_histogram(
     aes(x = PercentBleaching), # after_stat(density)),
@@ -168,9 +170,9 @@ percentBleachingDensPlot <- ggplot(data = bleachingData) +
   scale_y_continuous(expand = expansion(mult = c(0,0.05))) +
   scale_x_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
   labs(#title = "Density Plot of Percent Bleaching from 2,394 Coral\nReef Samples",
-       #subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
-       x = "Percent Bleaching",
-       y = "Count") +
+    #subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+    x = "Percent Bleaching",
+    y = "Count") +
   theme_bw() +
   theme(
     plot.title = element_text(size = 16, face = "bold"),
@@ -183,7 +185,7 @@ percentBleachingDensPlot
 
 Coral bleaching observations were **geographically distributed across Florida's reef systems** (Figure 2). Mapping Percent Bleaching reveals **spatial clustering**, with certain areas experiencing more severe bleaching than others. 
 
-```{r Spatial Structure, fig.align='center', fig.cap="Figure 2: Map of Percent Bleaching from 2,394 Coral Reef Samples around Florida", out.width="100%"}
+```{r Spatial Structure, fig.align='center', fig.cap="Figure 2: Map of Percent Bleaching from 2,394 Coral Reef Samples around Florida", out.width="90%"}
 ## Map Spatial Covariates 
 county_coordinates <- map_data("county") 
 spatialMap <- ggplot() +
@@ -202,9 +204,12 @@ spatialMap <- ggplot() +
   #facet_wrap(vars(Date_Year)) +
   scale_color_continuous(low = "green", high = "red") +
   labs(#title = "Map of Percent Bleaching from 2,394 Coral\nReef Samples around Florida",
-       x = "Longitude",
-       y = "Latitude") +
-  theme_bw()
+    x = "Longitude",
+    y = "Latitude") +
+  theme_bw() +
+  theme(
+    legend.position = "bottom"
+  )
 spatialMap
 ```
 
@@ -212,12 +217,12 @@ spatialMap
 
 The dataset spans **2006 to 2016**, providing an opportunity to analyze **bleaching trends over time** (Figure 3). Boxplots of Percent Bleaching over the years, categorized by City_Town_Name, reveal distinct temporal patterns across locations.
 
-```{r Temporal Structure, fig.align='center', fig.cap="Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name", out.width="100%"}
+```{r Temporal Structure, fig.align='center', fig.cap="Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name", out.width="90%"}
 ## Boxplots of Percent Bleaching vs Year
 yearCityPlot <- ggplot(data = bleachingData) +
   geom_boxplot(
     aes(x = factor(Date_Year), y = PercentBleaching, fill = City_Town_Name))+
-    #color = "#99c7c7", fill = "#bcdcdc") +
+  #color = "#99c7c7", fill = "#bcdcdc") +
   scale_y_continuous(breaks = seq(0,1,0.1), labels = scales::label_percent()) +
   scale_fill_discrete(name = "City Town Name", 
                       labels = c("Broward\nCounty",
@@ -226,9 +231,9 @@ yearCityPlot <- ggplot(data = bleachingData) +
                                  "Monroe\nCounty",
                                  "Palm Beach\nCounty")) +
   labs(#title = "Boxplots of Percent Bleaching vs Year by City Town Name",
-       #subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
-       x = "Date Year",
-       y = "Percent Bleaching") +
+    #subtitle = "Data was Collected by the Florida Reef Resilience Program from 2006 to 2016",
+    x = "Date Year",
+    y = "Percent Bleaching") +
   theme_bw() +
   theme(
     plot.title = element_text(size = 16, face = "bold"),
@@ -245,16 +250,16 @@ Before fitting the model, we applied several preprocessing steps:
 
 * **Response Variable Transformation**: Since the Beta regression model requires values strictly in the (0,1) range, we replaced:
 
-  + 0\% bleaching values with 0.001
++ 0\% bleaching values with 0.001
 
-  + 100\% bleaching values with 0.999
++ 100\% bleaching values with 0.999
 
 * **Covariate Transformations**:
 
-  + **Yeo-Johnson transformation** was applied to all continuous covariates to reduce skewness.
++ **Yeo-Johnson transformation** was applied to all continuous covariates to reduce skewness.
 
-  + **Centering and scaling** were performed to standardize covariates for better model convergence.
-  
++ **Centering and scaling** were performed to standardize covariates for better model convergence.
+
 ## Model Specification
 
 ```{r Model Spec}
@@ -339,15 +344,15 @@ where:
 ### Prior Specification
 
 * **Fixed Effects**: 
-  + $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
++ $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
 * **Gaussian Process (Temporal Trends)**:
-  + $\sigma_c \sim \text{half-Cauchy}(0,2)$
-  + $\rho_c \sim \text{InvGamma}(`r lscalePriorAlpha`, `r lscalePriorBeta`)$ (explicitly defined by `brms`)
++ $\sigma_c \sim \text{half-Cauchy}(0,2)$
++ $\rho_c \sim \text{InvGamma}(`r lscalePriorAlpha`, `r lscalePriorBeta`)$ (explicitly defined by `brms`)
 * **Tensor-Product Spline**:
-  + $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
-  + $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in smoothing penalty)
++ $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
++ $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in smoothing penalty)
 * **Precision Parameter**: 
-  + $\phi \sim \text{Gamma}(0.1, 0.1)$
++ $\phi \sim \text{Gamma}(0.1, 0.1)$
 
 This model accounts for both spatial and temporal dependencies, allowing for flexible trend estimation.
 
@@ -356,9 +361,9 @@ This model accounts for both spatial and temporal dependencies, allowing for fle
 We tested the 6 models abive to evaluate different approaches for capturing spatiotemporal variation in coral bleaching. The candidate models included:
 
 - **Linear models** with Date_Year as a fixed effect.
-- **Gaussian Process (GP) models**, both with and without city-specific trends.
-- **Spatial models**, incorporating either Lat and Lon as fixed effects or a smooth spatial term.
- 
+- **GP models**, both with and without city-specific trends.
+- **Smoothed Spline models**, incorporating either Lat and Lon as fixed effects or a smooth spatial term.
+
 After running convergence checks, the final model was selected using **Leave-One-Out Cross-Validation (LOO-CV)**, ensuring it provided the best balance between fit and complexity.
 
 ```{r Model Comparison}
@@ -416,9 +421,444 @@ fitCompDF |>
   tab_style(
     style = cell_text(whitespace = "nowrap"),
     locations = list(cells_body(), cells_column_labels())
-  )
+  ) |>
+  opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 2: Model Comparison using LOO-CV"))
 ```
 
+## Selected Model
+
+Model 6 emerged as the best-performing model in the comparison based on Leave-One-Out Information Criterion (LOOIC) and expected log predictive density (ELPD). It achieved the lowest LOOIC and the highest ELPD, indicating superior predictive accuracy while effectively balancing model complexity.
+
+A key advantage of Model 6 was its flexible structure, incorporating:
+
+* **City-Specific GPs** for temporal variation, capturing localized trends in bleaching over time.
+* A **Tensor-Product Smoothed Spline** for spatial variation, allowing for smooth, nonlinear geographic effects.
+* A broad set of environmental and physical predictors, including **Distance to Shore, Exposure, Turbidity, Cyclone Frequency, Depth, Windspeed, ClimSST, SSTA, TSA, and TSA_DHW**, hypothesized to drive bleaching dynamics.
+
+Compared to alternative models, Model 6 provided the best trade-off between fit and generalizability, avoiding overfitting while preserving essential temporal and spatial dependencies. However, some covariates exhibited credible intervals overlapping zero, suggesting they might not contribute meaningfully. To enhance interpretability and model efficiency, we performed an iterative variable selection process, systematically removing weak predictors and reassessing model performance.
+
+## Model Refinement and Variable Selection
+
+To improve model parsimony and predictive performance, an iterative refinement process was conducted to remove covariates that did not contribute significantly to the model. The refinement process followed these steps:
+
+1. Identify Non-Significant Covariates  
+  + Variables whose 95% credible intervals contained zero were considered weak contributors.
+2. Iterative Variable Removal & Refitting
+  + The least significant covariate was removed from the model. 
+  + The model was then refit without that covariate to assess its impact. 
+3. Evaluate Model Fit via Bayes Factor & MAE
+  + **Bayes Factor (BF) Comparison**: The refined model was compared to the previous iteration using bayes_factor(). If BF > 10, the new model was preferred. 
+  + **Mean Absolute Error** (MAE): The predictive performance was evaluated using the PPD from refined model compared to observed Percent Bleaching to check model improvement/degradation. If MAE improved or remained stable, the new model was retained.
+4. Repeat Until No Further Improvement
+  + This process continued until all remaining covariates contributed meaningfully, ensuring the final model was both interpretable and robust.
+
+Through this process, unnecessary covariates were systematically removed, leading to a final optimized model that retained only the most relevant predictors while maintaining strong predictive accuracy.
+
+```{r Refinement}
+load(file = "_data/refinementDF.RData")
+
+refinementDF |>
+  select(
+    PriorModel, 
+    RefinedModel,
+    CovariateRemoved,
+    BF,
+    RefinedMAE
+  ) |>
+  gt() |>
+  cols_label(
+    PriorModel = "Prior Model",
+    RefinedModel = "Refined Model",
+    CovariateRemoved = "Covariate Removed",
+    RefinedMAE = "MAE"
+  ) |>
+  sub_missing() |>
+  fmt_number(
+    columns = BF,
+    decimals = 1
+  ) |>
+  fmt_number(
+    columns = RefinedMAE,
+    decimals = 4
+  ) |>
+  tab_style(
+    style = cell_text(whitespace = "nowrap"),
+    locations = list(cells_body(), cells_column_labels())
+  ) |>
+  opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 3: Model Refinement using BF and MAE"))
+```
+
+## Final Model
+
+# Goodness of Fit
+
+A key aspect of evaluating the selected model’s reliability is examining its ability to replicate observed data patterns. Posterior predictive checks provide a direct way to assess the extent to which simulations from the model align with the actual observed data.
+
+## Posterior Predictive Checks
+
+To evaluate the model’s fit, we conducted posterior predictive checks (PPCs), which compare the observed data to simulated draws from the posterior predictive distribution. The following visualizations assess whether the model-generated data resemble the observed coral bleaching percentages.
+
+```{r PPC}
+### PPC ----
+# Makes draws for plots
+set.seed(52) # for reproducibility
+posteriorFinalMod <- posterior_predict(finalMod)
+
+# Observed data
+## Response
+obsY <- bleachingData$PercentBleachingBounded
+
+## Grouping
+groupCity <- bleachingData$City_Town_Name
+
+# Random draws
+numDraws <- 250
+set.seed(52) # for reproducibility
+drawsInd <- sample(x = 1:sims, size = numDraws)
+
+# Posterior sample
+postYsamp <- posteriorFinalMod[drawsInd, ]
+
+#### Plot guide 
+fillPPC <- "#d1e1ec"
+colorPPC <- "#b3cde0"
+fill2PPC <- "#011f4b"
+```
+
+### Distribution Overlay
+
+Figure 4 presents an overlay of the posterior predictive distribution (PPD) against the observed bleaching percentages. The solid black line represents the observed data ($y$), while the blue-shaded posterior simulations ($y_{rep}$) provide an indication of model uncertainty. The strong alignment between the observed and predicted densities suggests that the model successfully captures the overall distribution of coral bleaching percentages.
+
+```{r PPC Distribution, fig.align='center', out.width="90%", fig.cap="Figure 4: Posterior Predictive Distribution vs Observed Percent Bleaching from 250 posterior draws"}
+#### Density ----
+set.seed(52) # for reproducibility
+ppcDensPlot <- ppc_dens_overlay(
+  y = obsY,
+  #yrep = posteriorFinalMod
+  yrep = postYsamp
+) +
+  scale_x_continuous(
+    name = "Percent Bleaching",
+    limits = c(0,1),
+    breaks = seq(0, 1, 0.1)
+  ) +
+  scale_y_continuous(
+    name = "Density",
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  labs(
+    #title = "Posterior Predictive Distribution vs Observed Percent Bleaching",
+    subtitle = paste(sims, "Simulations")
+  )
+ppcDensPlot
+```
+
+### Distributional Statistics
+
+The set of plots in Figure 5 evaluates how well the model reproduces key summary statistics of the observed data, including:
+
+* Mean
+* Standard deviation (SD)
+* 2.5% Lower credible bound (LCB)
+* Median
+* 97.5% Upper credible bound (UCB)
+
+Each histogram represents the distribution of these statistics across 8000 posterior simulations, with the vertical black line indicating the observed statistic. The Bayesian p-values assess whether the observed value is typical less than the posterior predictive distribution values. Values close to 0.5 suggest a good fit, while values near 0 or 1 may indicate potential discrepancies.
+
+Overall, these diagnostics confirm that the final model provides a reasonable approximation of the observed data, supporting its validity for inference and prediction.
+
+```{r PPC Stats, fig.align='center', out.width = "90%", fig.cap = "Figure 5: Posterior Predictive Checks for Distributional Statistics"}
+#### Stats ----
+# Make stat functions
+meanFunc <- function(y){mean(y)}
+sdFunc <- function(y){sd(y)}
+medianFunc <- function(y){median(y)}
+lcbFunc <- function(y){quantile(y, 0.025)}
+ucbFunc <- function(y){quantile(y, 0.975)}
+
+##### Mean ----
+set.seed(52) # for reproducibility
+meanY <- meanFunc(obsY)
+
+ppcMeanStat <- ppc_stat_data(
+  y = obsY,
+  yrep = posteriorFinalMod,
+  group = NULL,
+  stat = c("meanFunc")
+) |>
+  mutate(
+    meanProbLow = value < meanY,
+    meanProbHigh = value > meanY
+  )
+
+ppcMeanPlotGG <- ggplot() +
+  geom_histogram(
+    data = ppcMeanStat |> filter(variable != "y"),
+    aes(x = value, color = "Posterior"),
+    fill = fillPPC
+  ) +
+  geom_vline(
+    data = ppcMeanStat |> filter(variable == "y"),
+    aes(xintercept = value, color = "Observed"),
+    linewidth = 1
+  ) +
+  scale_x_continuous(
+    name = "Percent Bleaching"
+  ) +
+  scale_y_continuous(
+    name = "Number of Posterior Draws",
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  scale_color_manual(
+    name = "Data",
+    values = c(
+      "Posterior" = colorPPC,
+      "Observed" = "black"
+    ),
+    breaks = c("Posterior", "Observed")
+  ) +
+  labs(title = "Mean",
+       subtitle = paste("p-value =", round(mean(ppcMeanStat$meanProbLow[-1]), 4))
+  ) +
+  theme_bw() +
+  guides(color = guide_legend(byrow = TRUE)) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    legend.key.spacing.y = unit(5, "points")
+  )
+
+##### SD ----
+set.seed(52) # for reproducibility
+sdY <- sdFunc(obsY)
+
+ppcSDStat <- ppc_stat_data(
+  y = obsY,
+  yrep = posteriorFinalMod,
+  group = NULL,
+  stat = c("sdFunc")
+) |>
+  mutate(
+    sdProbLow = value < sdY,
+    sdProbHigh = value > sdY
+  )
+
+ppcSDPlotGG <- ggplot() +
+  geom_histogram(
+    data = ppcSDStat |> filter(variable != "y"),
+    aes(x = value, color = "Posterior"),
+    fill = fillPPC
+  ) +
+  geom_vline(
+    data = ppcSDStat |> filter(variable == "y"),
+    aes(xintercept = value, color = "Observed"),
+    linewidth = 1
+  ) +
+  scale_x_continuous(
+    name = "Percent Bleaching"
+  ) +
+  scale_y_continuous(
+    name = "Number of Posterior Draws",
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  scale_color_manual(
+    name = "Data",
+    values = c(
+      "Posterior" = colorPPC,
+      "Observed" = "black"
+    ),
+    breaks = c("Posterior", "Observed")
+  ) +
+  labs(title = "SD",
+       subtitle = paste("p-value =", round(mean(ppcSDStat$sdProbLow[-1]), 4))
+  ) +
+  theme_bw() +
+  guides(color = guide_legend(byrow = TRUE)) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    legend.key.spacing.y = unit(5, "points")
+  )
+
+##### Median ----
+set.seed(52) # for reproducibility
+medianY <- medianFunc(obsY)
+
+ppcMedianStat <- ppc_stat_data(
+  y = obsY,
+  yrep = posteriorFinalMod,
+  group = NULL,
+  stat = c("medianFunc")
+) |>
+  mutate(
+    medianProbLow = value < medianY,
+    medianProbHigh = value > medianY
+  )
+
+ppcMedianPlotGG <- ggplot() +
+  geom_histogram(
+    data = ppcMedianStat |> filter(variable != "y"),
+    aes(x = value, color = "Posterior"),
+    fill = fillPPC
+  ) +
+  geom_vline(
+    data = ppcMedianStat |> filter(variable == "y"),
+    aes(xintercept = value, color = "Observed"),
+    linewidth = 1
+  ) +
+  scale_x_continuous(
+    name = "Percent Bleaching"
+  ) +
+  scale_y_continuous(
+    name = "Number of Posterior Draws",
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  scale_color_manual(
+    name = "Data",
+    values = c(
+      "Posterior" = colorPPC,
+      "Observed" = "black"
+    ),
+    breaks = c("Posterior", "Observed")
+  ) +
+  labs(title = "Median",
+       subtitle = paste("p-value =", round(mean(ppcMedianStat$medianProbLow[-1]), 4))
+  ) +
+  theme_bw() +
+  guides(color = guide_legend(byrow = TRUE)) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    legend.key.spacing.y = unit(5, "points")
+  )
+
+##### LCB ----
+set.seed(52) # for reproducibility
+lcbY <- lcbFunc(obsY)
+
+ppcLCBStat <- ppc_stat_data(
+  y = obsY,
+  yrep = posteriorFinalMod,
+  group = NULL,
+  stat = c("lcbFunc")
+) |>
+  mutate(
+    lcbProbLow = value < lcbY,
+    lcbProbHigh = value > lcbY
+  )
+
+ppcLCBPlotGG <- ggplot() +
+  geom_histogram(
+    data = ppcLCBStat |> filter(variable != "y"),
+    aes(x = value, color = "Posterior"),
+    fill = fillPPC
+  ) +
+  geom_vline(
+    data = ppcLCBStat |> filter(variable == "y"),
+    aes(xintercept = value, color = "Observed"),
+    linewidth = 1
+  ) +
+  scale_x_continuous(
+    name = "Percent Bleaching"
+  ) +
+  scale_y_continuous(
+    name = "Number of Posterior Draws",
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  scale_color_manual(
+    name = "Data",
+    values = c(
+      "Posterior" = colorPPC,
+      "Observed" = "black"
+    ),
+    breaks = c("Posterior", "Observed")
+  ) +
+  labs(title = "LCB",
+       subtitle = paste("p-value =", round(mean(ppcLCBStat$lcbProbLow[-1]), 4))
+  ) +
+  theme_bw() +
+  guides(color = guide_legend(byrow = TRUE)) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    legend.key.spacing.y = unit(5, "points")
+  )
+
+##### UCB ----
+set.seed(52) # for reproducibility
+ucbY <- ucbFunc(obsY)
+
+ppcUCBStat <- ppc_stat_data(
+  y = obsY,
+  yrep = posteriorFinalMod,
+  group = NULL,
+  stat = c("ucbFunc")
+) |>
+  mutate(
+    ucbProbLow = value < ucbY,
+    ucbProbHigh = value > ucbY
+  )
+
+ppcUCBPlotGG <- ggplot() +
+  geom_histogram(
+    data = ppcUCBStat |> filter(variable != "y"),
+    aes(x = value, color = "Posterior"),
+    fill = fillPPC
+  ) +
+  geom_vline(
+    data = ppcUCBStat |> filter(variable == "y"),
+    aes(xintercept = value, color = "Observed"),
+    linewidth = 1
+  ) +
+  scale_x_continuous(
+    name = "Percent Bleaching"
+  ) +
+  scale_y_continuous(
+    name = "Number of Posterior Draws",
+    expand = expansion(mult = c(0, 0.01))
+  ) +
+  scale_color_manual(
+    name = "Data",
+    values = c(
+      "Posterior" = colorPPC,
+      "Observed" = "black"
+    ),
+    breaks = c("Posterior", "Observed")
+  ) +
+  labs(title = "UCB",
+       subtitle = paste("p-value =", round(mean(ppcUCBStat$ucbProbLow[-1]), 4))
+  ) +
+  theme_bw() +
+  guides(color = guide_legend(byrow = TRUE)) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    legend.key.spacing.y = unit(5, "points")
+  )
+
+#### Combined plot ----
+ppcCombPlot <- 
+  (ppcMeanPlotGG + ppcSDPlotGG) /
+  (ppcLCBPlotGG + ppcMedianPlotGG + ppcUCBPlotGG) +
+  plot_layout(
+    guides = "collect",
+    axes = "collect_x"
+  ) +
+  plot_annotation(
+    #title = "Posterior Predictive Checks for Distributional Statistics",
+    subtitle = paste("Bayesian predictive p-values for", sims, "Simulations"),
+    theme = theme(
+      legend.position = "bottom"
+    )
+  )
+ppcCombPlot
+```
+
+# Model Results
+
+## Variable Importance
 
 
 

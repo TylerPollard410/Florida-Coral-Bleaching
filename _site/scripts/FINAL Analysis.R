@@ -964,8 +964,231 @@ fitCompDF |>
     # se_diff_loo = "SE LOO Difference"
   )
 
-# 4. FINAL MODEL =======================
-finalMod <- fitMod6
+# 4. Model refinement-----
+load(file = "_data/models/Model6.RData")
+selectBaseMod <- Model6
+
+formulaModSelect <- 
+  bf(PercentBleachingBounded ~ 
+       gp(Date_Year, by = City_Town_Name) +
+       t2(Lat, Lon) +
+       Distance_to_Shore +
+       #Exposure + # Remove 2
+       Turbidity +
+       #Cyclone_Frequency + # Remove 4
+       #Depth_m + # Remove 3
+       Windspeed +
+       #ClimSST + # Remove 1
+       #SSTA +
+       #SSTA_DHW + # Remove 5
+       TSA +
+       TSA_DHW
+  ) + brmsfamily(family = "Beta", link = "logit")
+
+default_prior(formulaModSelect, data = procData2)
+
+priorsModSelect <- c(
+  prior(normal(0,5), class = "b"),  # Fixed effects
+  prior(cauchy(0,2), class = "sdgp"),  # GP output variance
+  #prior(inv_gamma(4,1), class = "lscale"),  # GP length scale
+  prior(cauchy(0,2), class = "sds"),  # Tensor spline smoothness
+  prior(gamma(0.1, 0.1), class = "phi")  # Beta regression precision
+)
+
+iters <- 2000
+burn <- 1000
+chains <- 2
+sims <- (iters-burn)*chains
+
+system.time(
+  fitModSelect <- brm(
+    formulaModSelect,
+    data = procData2,
+    prior = priorsModSelect,
+    save_pars = save_pars(all = TRUE), 
+    chains = chains,
+    iter = iters,
+    cores = parallel::detectCores(),
+    seed = 52,
+    warmup = burn,
+    #init = 0,
+    normalize = TRUE,
+    control = list(adapt_delta = 0.95)
+    #backend = "cmdstanr"
+  )
+)
+
+#save(fitModSelect, file = "_data/models/fitMod6.RData")
+get_prior(fitModSelect)
+
+fitSelect <- 5
+assign(paste0("fitModSelect", fitSelect), fitModSelect)
+
+print(fitModSelect, digits = 4)
+
+## Fixed Effects ----
+fixedEffSelect <- fixef(fitModSelect) |>
+  data.frame() |>
+  mutate(
+    p_val = dnorm(Estimate/Est.Error)
+  ) |>
+  mutate(
+    across(everything(), function(x){round(x, 4)})
+  ) |>
+  mutate(
+    Sig = ifelse(p_val < 0.01, "***",
+                 ifelse(p_val < 0.05, "**",
+                        ifelse(p_val < 0.1, "*", "")))
+  )
+print(fixedEffSelect, digits = 4)
+
+## Compare ----
+### Bayes Factor ----
+fitModSelectBF_1B <- bayes_factor(fitModSelect1, selectBaseMod) # Removed ClimSST
+fitModSelectBF_21 <- bayes_factor(fitModSelect2, fitModSelect1) # Removed Exposure
+fitModSelectBF_32 <- bayes_factor(fitModSelect3, fitModSelect2) # Removed Depth_m
+fitModSelectBF_43 <- bayes_factor(fitModSelect4, fitModSelect3) # Removed Depth_m
+
+### MAE ----
+set.seed(52)
+selectBaseModMAE <- 
+  residuals(
+    selectBaseMod,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = FALSE,
+    probs = c(0.025, 0.975)) |>
+  data.frame() |>
+  summarise(
+    MAE = mean(abs(Estimate))
+  ) |>
+  pull(MAE)
+selectBaseModMAEdf <- data.frame(
+  Model = "Baseline",
+  MAE = selectBaseModMAE
+)
+
+set.seed(52)
+fitModSelectResidualsMean <- 
+  residuals(
+    fitModSelect, 
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = FALSE,
+    probs = c(0.025, 0.975)) |>
+  data.frame() |>
+  summarise(
+    MAE = mean(abs(Estimate))
+  ) |>
+  pull(MAE)
+
+#fitSelectMAEtemp <- mean(abs(fitModSelectResidualsMean$Estimate))
+fitSelectMAEtemp <- data.frame(
+  Model = paste("Mod", fitSelect),
+  MAE = fitModSelectResidualsMean
+)
+fitSelectMAE <- bind_rows(
+  fitSelectMAEtemp,
+  fitSelectMAE
+)
+#fitSelectMAE <- selectBaseModMAEdf
+fitSelectMAE |>
+  arrange(MAE)
+
+### MAD ----
+set.seed(52)
+selectBaseModMAD <- 
+  residuals(
+    selectBaseMod,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = TRUE,
+    probs = c(0.025, 0.975)) |>
+  data.frame() |>
+  summarise(
+    MAD = mean(abs(Estimate))
+  ) |>
+  pull(MAD)
+selectBaseModMADdf <- data.frame(
+  Model = "Baseline",
+  MAD = selectBaseModMAD
+)
+
+set.seed(52)
+fitModSelectResidualsMAD <- 
+  residuals(
+    fitModSelect, 
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = TRUE,
+    probs = c(0.025, 0.975)) |>
+  data.frame() |>
+  summarise(
+    MAD = mean(abs(Estimate))
+  ) |>
+  pull(MAD)
+
+#fitSelectMADtemp <- mean(abs(fitModSelectResidualsMean$Estimate))
+fitSelectMADtemp <- data.frame(
+  Model = paste("Mod", fitSelect),
+  MAD = fitModSelectResidualsMAD
+)
+fitSelectMAD <- bind_rows(
+  fitSelectMADtemp,
+  fitSelectMAD
+)
+#fitSelectMAD <- selectBaseModMADdf
+fitSelectMAD |>
+  arrange(MAD)
+
+## Refinement Table ----
+refinementDF <- data.frame(
+  PriorModel = c(
+    NA,
+    "Model 6",
+    "Model 7",
+    "Model 8",
+    "Model 9"
+  ),
+  RefinedModel = c(
+    "Model 6",
+    "Model 7",
+    "Model 8",
+    "Model 9",
+    "Model 10"
+  ),
+  CovariateRemoved = c(
+    NA,
+    "ClimSST",
+    "Exposure",
+    "Depth_m",
+    "Cyclone_Frequency"
+  ),
+  BF = c(
+    NA,
+    fitModSelectBF_1B$bf,
+    fitModSelectBF_21$bf,
+    fitModSelectBF_32$bf,
+    fitModSelectBF_43$bf
+  ),
+  RefinedMAE = c(
+    rev(fitSelectMAE$MAE)
+  ),
+  RefinedMAD = c(
+    rev(fitSelectMAD$MAD)
+  )
+)
+
+# save(fitModSelect1, file = "_data/models/refineFit1.RData")
+# save(fitModSelect2, file = "_data/models/refineFit2.RData")
+# save(fitModSelect3, file = "_data/models/refineFit3.RData")
+# save(fitModSelect4, file = "_data/models/refineFit4.RData")
+# save(refinementDF, file = "_data/refinementDF.RData")
+
+# 5. FINAL MODEL =======================
+load(file = "_data/models/refineFit4.RData")
+finalMod <- fitModSelect4
+#finalMod <- fitMod6
 save(finalMod, file = "_data/finalMod.RData")
 
 finalModPriors <- get_prior(finalMod)
@@ -975,6 +1198,9 @@ gpPrior <- finalModPriors |>
   unique()
 lscalePriorAlpha <- as.numeric(str_extract(gpPrior, "(?<=inv_gamma\\()[^,]+"))
 lscalePriorBeta <- as.numeric(str_extract(gpPrior, "(?<=, )[^)]+"))
+
+## Model Refinement ----
+
 
 ## Diagnostics ----
 prior_summary(finalMod)
@@ -1398,6 +1624,7 @@ ppcCombPlot
 
 
 ## Fixed Effects ----
+print(finalMod, digits = 4)
 fixedEff <- fixef(finalMod) |>
   data.frame() |>
   mutate(

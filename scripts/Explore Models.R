@@ -1712,7 +1712,346 @@ ziBetaFitfinalFitMed <- apply(ziBetaFitfinalFit, 2, function(x){quantile(x, 0.5)
 ziBetaFitfinalFitLCB <- apply(ziBetaFitfinalFit, 2, function(x){quantile(x, 0.025)})
 ziBetaFitfinalFitUCB <- apply(ziBetaFitfinalFit, 2, function(x){quantile(x, 0.975)})
 
+# 3. Model refinement-----
+selectBaseMod <- Model6
 
+formulaModSelect <- 
+  bf(PercentBleachingBounded ~ 
+       gp(Date_Year, by = City_Town_Name) +
+       t2(Lat, Lon) +
+       Distance_to_Shore +
+       #Exposure +
+       Turbidity +
+       #Cyclone_Frequency +
+       #Depth_m +
+       #Windspeed +
+       #ClimSST +
+       #SSTA +
+       #SSTA_DHW +
+       TSA +
+       TSA_DHW
+  ) + brmsfamily(family = "Beta", link = "logit")
+
+default_prior(formulaModSelect, data = procData2)
+
+priorsModSelect <- c(
+  prior(normal(0,5), class = "b"),  # Fixed effects
+  prior(cauchy(0,2), class = "sdgp"),  # GP output variance
+  #prior(inv_gamma(4,1), class = "lscale"),  # GP length scale
+  prior(cauchy(0,2), class = "sds"),  # Tensor spline smoothness
+  prior(gamma(0.1, 0.1), class = "phi")  # Beta regression precision
+)
+
+iters <- 2000
+burn <- 1000
+chains <- 2
+sims <- (iters-burn)*chains
+
+system.time(
+  fitModSelect <- brm(
+    formulaModSelect,
+    data = procData2,
+    prior = priorsModSelect,
+    save_pars = save_pars(all = TRUE), 
+    chains = chains,
+    iter = iters,
+    cores = parallel::detectCores(),
+    seed = 52,
+    warmup = burn,
+    #init = 0,
+    normalize = TRUE,
+    control = list(adapt_delta = 0.95)
+    #backend = "cmdstanr"
+  )
+)
+
+#save(fitModSelect, file = "_data/models/fitMod6.RData")
+get_prior(fitModSelect)
+
+fitSelect <- 5
+assign(paste0("fitModSelect", fitSelect), fitModSelect)
+
+print(fitModSelect4, digits = 4)
+
+## Fixed Effects ----
+fixedEffSelect <- fixef(fitModSelect4) |>
+  data.frame() |>
+  mutate(
+    p_val = dnorm(Estimate/Est.Error)
+  ) |>
+  mutate(
+    across(everything(), function(x){round(x, 4)})
+  ) |>
+  mutate(
+    Sig = ifelse(p_val < 0.01, "***",
+                 ifelse(p_val < 0.05, "**",
+                        ifelse(p_val < 0.1, "*", "")))
+  )
+print(fixedEffSelect, digits = 4)
+
+## Hypothesis ----
+hyp1 <- hypothesis(fitModSelect1,
+           hypothesis = c(
+             "Distance_to_Shore = 0",
+             "ExposureSheltered = 0",
+             "Turbidity = 0",
+             "Cyclone_Frequency = 0",
+             "Depth_m = 0",
+             "Windspeed = 0",
+             "SSTA = 0",
+             "TSA = 0",
+             "TSA_DHW = 0"
+           ),
+           robust = TRUE
+)
+hyp1
+
+hyp2 <- hypothesis(fitModSelect2,
+                   hypothesis = c(
+                     "Distance_to_Shore = 0",
+                     #"ExposureSheltered = 0",
+                     "Turbidity = 0",
+                     "Cyclone_Frequency = 0",
+                     "Depth_m = 0",
+                     "Windspeed = 0",
+                     "SSTA = 0",
+                     "TSA = 0",
+                     "TSA_DHW = 0"
+                   ),
+                   robust = TRUE
+)
+hyp2
+
+hyp3 <- hypothesis(fitModSelect3,
+                   hypothesis = c(
+                     "Distance_to_Shore = 0",
+                     #"ExposureSheltered = 0",
+                     "Turbidity = 0",
+                     "Cyclone_Frequency = 0",
+                     #"Depth_m = 0",
+                     "Windspeed = 0",
+                     "SSTA = 0",
+                     "TSA = 0",
+                     "TSA_DHW = 0"
+                   ),
+                   robust = TRUE
+)
+hyp3
+
+hyp4 <- hypothesis(fitModSelect4,
+                   hypothesis = c(
+                     "Distance_to_Shore = 0",
+                     #"ExposureSheltered = 0",
+                     "Turbidity = 0",
+                     #"Cyclone_Frequency = 0",
+                     #"Depth_m = 0",
+                     "Windspeed = 0",
+                     "SSTA = 0",
+                     "TSA = 0",
+                     "TSA_DHW = 0"
+                   ),
+                   robust = TRUE
+)
+hyp4
+
+hyp5 <- hypothesis(fitModSelect5,
+                   hypothesis = c(
+                     "Distance_to_Shore = 0",
+                     #"ExposureSheltered = 0",
+                     "Turbidity = 0",
+                     #"Cyclone_Frequency = 0",
+                     #"Depth_m = 0",
+                     "Windspeed = 0",
+                     #"SSTA = 0",
+                     "TSA = 0",
+                     "TSA_DHW = 0"
+                   ),
+                   robust = TRUE
+)
+hyp5
+
+
+hyp1
+hyp2
+hyp3
+hyp4
+hyp5
+
+
+## Compare ----
+selectBaseMod$formula
+fitModSelect1$formula
+fitModSelect2$formula
+fitModSelect3$formula
+fitModSelect4$formula
+fitModSelect5$formula
+
+### Bayes Factor ----
+fitModSelectBF_1B <- bayes_factor(fitModSelect1, selectBaseMod) # Removed ClimSST
+fitModSelectBF_21 <- bayes_factor(fitModSelect2, fitModSelect1) # Removed Exposure
+fitModSelectBF_32 <- bayes_factor(fitModSelect3, fitModSelect2) # Removed Depth_m
+fitModSelectBF_43 <- bayes_factor(fitModSelect4, fitModSelect3) # Removed Cyclone_Frequency
+fitModSelectBF_54 <- bayes_factor(fitModSelect5, fitModSelect4) # Removed SSTA
+
+### Loo ----
+looSelectBase <- loo(selectBaseMod)
+looSelect1 <- loo(fitModSelect1)
+looSelect2 <- loo(fitModSelect2)
+looSelect3 <- loo(fitModSelect3)
+looSelect4 <- loo(fitModSelect4)
+looSelect5 <- loo(fitModSelect5)
+
+looSelectComp <- loo_compare(
+  looSelectBase,
+  looSelect1,
+  looSelect2,
+  looSelect3,
+  looSelect4,
+  looSelect5
+)
+looSelectComp
+
+### MAE ----
+set.seed(52)
+selectBaseModMAE <- 
+  residuals(
+    selectBaseMod,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = FALSE,
+    probs = c(0.025, 0.975)) |>
+  data.frame() |>
+  summarise(
+    MAE = mean(abs(Estimate))
+  ) |>
+  pull(MAE)
+selectBaseModMAEdf <- data.frame(
+  Model = "Baseline",
+  MAE = selectBaseModMAE
+)
+
+set.seed(52)
+fitModSelectResidualsMean <- 
+  residuals(
+    fitModSelect, 
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = FALSE,
+    probs = c(0.025, 0.975)) |>
+  data.frame() |>
+  summarise(
+    MAE = mean(abs(Estimate))
+  ) |>
+  pull(MAE)
+
+#fitSelectMAEtemp <- mean(abs(fitModSelectResidualsMean$Estimate))
+fitSelectMAEtemp <- data.frame(
+  Model = paste("Mod", fitSelect),
+  MAE = fitModSelectResidualsMean
+)
+fitSelectMAE <- bind_rows(
+  fitSelectMAEtemp,
+  fitSelectMAE
+)
+#fitSelectMAE <- selectBaseModMAEdf
+fitSelectMAE |>
+  arrange(MAE)
+
+### MAD ----
+set.seed(52)
+selectBaseModMAD <- 
+  residuals(
+    selectBaseMod,
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = TRUE,
+    probs = c(0.025, 0.975)) |>
+  data.frame() |>
+  summarise(
+    MAD = mean(abs(Estimate))
+  ) |>
+  pull(MAD)
+selectBaseModMADdf <- data.frame(
+  Model = "Baseline",
+  MAD = selectBaseModMAD
+)
+
+set.seed(52)
+fitModSelectResidualsMAD <- 
+  residuals(
+    fitModSelect, 
+    method = "posterior_predict",
+    re_formula = NULL,
+    robust = TRUE,
+    probs = c(0.025, 0.975)) |>
+  data.frame() |>
+  summarise(
+    MAD = mean(abs(Estimate))
+  ) |>
+  pull(MAD)
+
+#fitSelectMADtemp <- mean(abs(fitModSelectResidualsMean$Estimate))
+fitSelectMADtemp <- data.frame(
+  Model = paste("Mod", fitSelect),
+  MAD = fitModSelectResidualsMAD
+)
+fitSelectMAD <- bind_rows(
+  fitSelectMADtemp,
+  fitSelectMAD
+)
+#fitSelectMAD <- selectBaseModMADdf
+fitSelectMAD |>
+  arrange(MAD)
+
+## Refinement Table ----
+refinementDF <- data.frame(
+  PriorModel = c(
+    NA,
+    "Model 6",
+    "Model 7",
+    "Model 8",
+    "Model 9"
+    #"Model 10"
+  ),
+  RefinedModel = c(
+    "Model 6",
+    "Model 7",
+    "Model 8",
+    "Model 9",
+    "Model 10"
+    #"Model 11"
+  ),
+  CovariateRemoved = c(
+    NA,
+    "ClimSST",
+    "Exposure",
+    "Depth_m",
+    "Cyclone_Frequency"
+    #"SSTA"
+  ),
+  BF = c(
+    NA,
+    fitModSelectBF_1B$bf,
+    fitModSelectBF_21$bf,
+    fitModSelectBF_32$bf,
+    fitModSelectBF_43$bf
+    #fitModSelectBF_54$bf
+  ),
+  RefinedMAE = c(
+    rev(fitSelectMAE$MAE)[-1]
+  ),
+  RefinedMAD = c(
+    rev(fitSelectMAD$MAD)[-1]
+  )
+)
+refinementDF
+
+save(fitModSelect1, file = "_data/models/refineFit1.RData")
+save(fitModSelect2, file = "_data/models/refineFit2.RData")
+save(fitModSelect3, file = "_data/models/refineFit3.RData")
+save(fitModSelect4, file = "_data/models/refineFit4.RData")
+save(fitModSelect5, file = "_data/models/refineFit5.RData")
+save(refinementDF, file = "_data/refinementDF.RData")
 
 # 4. FINAL MODEL =======================
 iters <- 4000
@@ -1720,8 +2059,61 @@ burn <- 2000
 chains <- 4
 sims <- (iters-burn)*chains
 
+formulaModfinal <- 
+  bf(PercentBleachingBounded ~ 
+       gp(Date_Year, by = City_Town_Name) +
+       t2(Lat, Lon) +
+       Distance_to_Shore +
+       #Exposure +
+       Turbidity +
+       #Cyclone_Frequency +
+       #Depth_m +
+       Windspeed +
+       #ClimSST +
+       SSTA +
+       #SSTA_DHW +
+       TSA +
+       TSA_DHW
+  ) + brmsfamily(family = "Beta", link = "logit")
+
+default_prior(formulaModfinal, data = procData2)
+
+priorsModFinal <- c(
+  prior(normal(0,5), class = "b"),  # Fixed effects
+  prior(cauchy(0,2), class = "sdgp"),  # GP output variance
+  #prior(inv_gamma(4,1), class = "lscale"),  # GP length scale
+  prior(cauchy(0,2), class = "sds"),  # Tensor spline smoothness
+  prior(gamma(0.1, 0.1), class = "phi")  # Beta regression precision
+)
+
+iters <- 4000
+burn <- 2000
+chains <- 4
+sims <- (iters-burn)*chains
+
+system.time(
+  finalMod <- brm(
+    formulaModfinal,
+    data = procData2,
+    prior = priorsModFinal,
+    save_pars = save_pars(all = TRUE), 
+    chains = chains,
+    iter = iters,
+    cores = parallel::detectCores(),
+    seed = 52,
+    warmup = burn,
+    #init = 0,
+    normalize = TRUE,
+    control = list(adapt_delta = 0.95)
+    #backend = "cmdstanr"
+  )
+)
+
+#save(fitModSelect, file = "_data/models/fitMod6.RData")
+
 load(file = "_data/models/fitMod6.RData")
 finalMod <- fitMod6
+finalMod <- fit
 
 ## Diagnostics ----
 prior_summary(finalMod)
@@ -1748,7 +2140,7 @@ obsY <- bleachingData$PercentBleachingBounded
 groupCity <- bleachingData$City_Town_Name
 
 # Random draws
-numDraws <- 20
+numDraws <- 1000
 set.seed(52) # for reproducibility
 drawsInd <- sample(x = 1:sims, size = numDraws)
 
