@@ -2066,7 +2066,7 @@ formulaModfinal <-
        Distance_to_Shore +
        #Exposure +
        Turbidity +
-       #Cyclone_Frequency +
+       Cyclone_Frequency +
        #Depth_m +
        Windspeed +
        #ClimSST +
@@ -2109,7 +2109,8 @@ system.time(
   )
 )
 
-#save(fitModSelect, file = "_data/models/fitMod6.RData")
+finalMod4 <- finalMod
+save(finalMod4, file = "_data/models/finalMod4.RData")
 
 load(file = "_data/models/fitMod6.RData")
 finalMod <- fitMod6

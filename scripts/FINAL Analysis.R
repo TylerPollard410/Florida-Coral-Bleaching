@@ -1307,10 +1307,6 @@ save(fitModSelect5, file = "_data/models/refineFit5.RData")
 save(refinementDF, file = "_data/refinementDF.RData")
 
 # 5. FINAL MODEL =======================
-#load(file = "_data/models/refineFit4.RData")
-#finalMod <- fitModSelect4
-#finalMod <- fitMod6
-
 formulaModfinal <- 
   bf(PercentBleachingBounded ~ 
        gp(Date_Year, by = City_Town_Name) +
@@ -1362,6 +1358,11 @@ system.time(
 )
 
 save(finalMod, file = "_data/finalMod.RData")
+
+load(file = "_data/models/finalMod3.RData")
+finalMod <- finalMod3
+#finalMod <- fitModSelect4
+#finalMod <- fitMod6
 
 finalModPriors <- get_prior(finalMod)
 gpPrior <- finalModPriors |>
@@ -1453,14 +1454,14 @@ ppcMeanStat <- ppc_stat_data(
     meanProbHigh = value > meanY
   )
 
-ppcMeanPlot <- ppc_stat(
-  y = obsY,
-  yrep = posteriorFinalMod,
-  stat = "mean",
-  freq = TRUE
-)
-ppcMeanPlot
-ppcMeanPlotBuild <- ggplot_build(ppcMeanPlot)
+# ppcMeanPlot <- ppc_stat(
+#   y = obsY,
+#   yrep = posteriorFinalMod,
+#   stat = "mean",
+#   freq = TRUE
+# )
+# ppcMeanPlot
+# ppcMeanPlotBuild <- ggplot_build(ppcMeanPlot)
 
 ppcMeanPlotGG <- ggplot() +
   geom_histogram(
@@ -1523,13 +1524,13 @@ ppcSDStat <- ppc_stat_data(
     sdProbHigh = value > sdY
   )
 
-ppcSDPlot <- ppc_stat(
-  y = obsY,
-  yrep = posteriorFinalMod,
-  stat = "sdFunc",
-  freq = TRUE
-)
-ppcSDPlot
+# ppcSDPlot <- ppc_stat(
+#   y = obsY,
+#   yrep = posteriorFinalMod,
+#   stat = "sdFunc",
+#   freq = TRUE
+# )
+# ppcSDPlot
 #ppcSDPlotBuild <- ggplot_build(ppcSDPlot)
 
 ppcSDPlotGG <- ggplot() +
@@ -1590,13 +1591,13 @@ ppcMedianStat <- ppc_stat_data(
     medianProbHigh = value > medianY
   )
 
-ppcMedianPlot <- ppc_stat(
-  y = obsY,
-  yrep = posteriorFinalMod,
-  stat = "medianFunc",
-  freq = TRUE
-)
-ppcMedianPlot
+# ppcMedianPlot <- ppc_stat(
+#   y = obsY,
+#   yrep = posteriorFinalMod,
+#   stat = "medianFunc",
+#   freq = TRUE
+# )
+# ppcMedianPlot
 #ppcMedianPlotBuild <- ggplot_build(ppcMedianPlot)
 
 ppcMedianPlotGG <- ggplot() +
@@ -1657,13 +1658,13 @@ ppcLCBStat <- ppc_stat_data(
     lcbProbHigh = value > lcbY
   )
 
-ppcLCBPlot <- ppc_stat(
-  y = obsY,
-  yrep = posteriorFinalMod,
-  stat = "lcbFunc",
-  freq = TRUE
-)
-ppcLCBPlot
+# ppcLCBPlot <- ppc_stat(
+#   y = obsY,
+#   yrep = posteriorFinalMod,
+#   stat = "lcbFunc",
+#   freq = TRUE
+# )
+# ppcLCBPlot
 #ppcLCBPlotBuild <- ggplot_build(ppcLCBPlot)
 
 ppcLCBPlotGG <- ggplot() +
@@ -1724,13 +1725,13 @@ ppcUCBStat <- ppc_stat_data(
     ucbProbHigh = value > ucbY
   )
 
-ppcUCBPlot <- ppc_stat(
-  y = obsY,
-  yrep = posteriorFinalMod,
-  stat = "ucbFunc",
-  freq = TRUE
-)
-ppcUCBPlot
+# ppcUCBPlot <- ppc_stat(
+#   y = obsY,
+#   yrep = posteriorFinalMod,
+#   stat = "ucbFunc",
+#   freq = TRUE
+# )
+# ppcUCBPlot
 #ppcUCBPlotBuild <- ggplot_build(ppcUCBPlot)
 
 ppcUCBPlotGG <- ggplot() +
