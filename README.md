@@ -1697,6 +1697,24 @@ relevant predictors while maintaining strong predictive accuracy.
 
 ## Final Model
 
+Through iterative model comparison, Model 10 was selected as the
+best-performing model, showing improvements over Model 6 in terms of fit
+and interpretability. This selection process involved removing
+non-significant covariates one at a time while assessing model
+performance metrics. Importantly, the smoothing parameters remained
+unchanged throughout this refinement process, ensuring consistency in
+spatial and temporal trends. The final model captures essential
+environmental and climatic predictors, balancing complexity and
+generalizability.
+
+Model 10 includes key predictors such as Distance to Shore, Turbidity,
+Windspeed, Sea Surface Temperature Anomalies (SSTA and TSA), and Degree
+Heating Weeks derived from TSA (TSA_DHW). These covariates were retained
+based on their statistical significance and their ecological relevance
+to coral bleaching dynamics. The refined model structure provides a
+robust framework for understanding and predicting bleaching patterns,
+facilitating targeted conservation efforts.
+
 # Goodness of Fit
 
 A key aspect of evaluating the selected model’s reliability is examining
@@ -1765,4 +1783,46 @@ Figure 5: Posterior Predictive Checks for Distributional Statistics
 
 # Model Results
 
+The final model’s results offer insights into the factors influencing
+coral bleaching percentages.
+
 ## Variable Importance
+
+1.  Parameter Estimates  
+    The table below presents the estimated coefficients, standard
+    errors, and 95% credible intervals for each covariate:
+
+Interpretation:
+
+- Distance to Shore: A positive coefficient suggests that as the
+  distance from shore increases, the percentage of coral bleaching also
+  increases.
+- Turbidity: The negative coefficient indicates that higher turbidity
+  (murkier water) is associated with a decrease in coral bleaching
+  percentages.  
+- Windspeed: Higher wind speeds are linked to reduced coral bleaching.  
+- SSTA (Sea Surface Temperature Anomaly): A slight increase in SSTA
+  correlates with a decrease in bleaching, though the effect size is
+  small.
+- TSA (Tropical Sea Surface Temperature Anomaly): Higher TSA values are
+  associated with increased coral bleaching.  
+- TSA_DHW (Degree Heating Weeks derived from TSA): Elevated TSA_DHW
+  corresponds to higher bleaching percentages.
+
+2.  Smoothing Spline and Gaussian Process Hyperparameters: The model
+    incorporates spatial and temporal random effects to account for
+    variability across different locations and times:
+
+- Spatial Effects (t2(Lat, Lon)): The estimated standard deviations for
+  the spatial components suggest variability in bleaching across
+  different latitudes and longitudes.
+- Temporal Effects (gp(Date_Year) by City_Town_Name): The Gaussian
+  Process terms capture temporal trends within each city or town,
+  indicating that bleaching patterns change over time differently across
+  locations.
+
+3.  Precision Parameter (phi): The estimated precision parameter (phi)
+    is 8.8059, with a standard error of 0.2647. A higher phi value
+    indicates that the data points are closely clustered around the
+    mean, suggesting less variability in bleaching percentages after
+    accounting for the covariates.
