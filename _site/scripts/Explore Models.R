@@ -1768,13 +1768,14 @@ system.time(
 #save(fitModSelect, file = "_data/models/fitMod6.RData")
 get_prior(fitModSelect)
 
-fitSelect <- 5
+fitSelect <- 4
 assign(paste0("fitModSelect", fitSelect), fitModSelect)
 
-print(fitModSelect4, digits = 4)
+fitModSelect <- fitModSelect4
+print(fitModSelect, digits = 4)
 
 ## Fixed Effects ----
-fixedEffSelect <- fixef(fitModSelect4) |>
+fixedEffSelect <- fixef(fitModSelect) |>
   data.frame() |>
   mutate(
     p_val = dnorm(Estimate/Est.Error)
@@ -1788,6 +1789,12 @@ fixedEffSelect <- fixef(fitModSelect4) |>
                         ifelse(p_val < 0.1, "*", "")))
   )
 print(fixedEffSelect, digits = 4)
+assign(paste0("fixedEffSelect", fitSelect), fixedEffSelect)
+
+print(fixedEffSelect1, digits = 4)
+print(fixedEffSelect2, digits = 4)
+print(fixedEffSelect3, digits = 4)
+print(fixedEffSelect4, digits = 4)
 
 ## Hypothesis ----
 hyp1 <- hypothesis(fitModSelect1,
@@ -1887,9 +1894,13 @@ fitModSelect4$formula
 fitModSelect5$formula
 
 ### Bayes Factor ----
+set.seed(52)
 fitModSelectBF_1B <- bayes_factor(fitModSelect1, selectBaseMod) # Removed ClimSST
+set.seed(52)
 fitModSelectBF_21 <- bayes_factor(fitModSelect2, fitModSelect1) # Removed Exposure
+set.seed(52)
 fitModSelectBF_32 <- bayes_factor(fitModSelect3, fitModSelect2) # Removed Depth_m
+set.seed(52)
 fitModSelectBF_43 <- bayes_factor(fitModSelect4, fitModSelect3) # Removed Cyclone_Frequency
 fitModSelectBF_54 <- bayes_factor(fitModSelect5, fitModSelect4) # Removed SSTA
 
@@ -2037,6 +2048,13 @@ refinementDF <- data.frame(
     fitModSelectBF_43$bf
     #fitModSelectBF_54$bf
   ),
+  LOOIC = c(
+    looSelectBase$estimates["looic", "Estimate"],
+    looSelect1$estimates["looic", "Estimate"],
+    looSelect2$estimates["looic", "Estimate"],
+    looSelect3$estimates["looic", "Estimate"],
+    looSelect4$estimates["looic", "Estimate"]
+  ),
   RefinedMAE = c(
     rev(fitSelectMAE$MAE)[-1]
   ),
@@ -2066,7 +2084,7 @@ formulaModfinal <-
        Distance_to_Shore +
        #Exposure +
        Turbidity +
-       #Cyclone_Frequency +
+       Cyclone_Frequency +
        #Depth_m +
        Windspeed +
        #ClimSST +
@@ -2109,7 +2127,8 @@ system.time(
   )
 )
 
-#save(fitModSelect, file = "_data/models/fitMod6.RData")
+finalMod4 <- finalMod
+save(finalMod4, file = "_data/models/finalMod4.RData")
 
 load(file = "_data/models/fitMod6.RData")
 finalMod <- fitMod6

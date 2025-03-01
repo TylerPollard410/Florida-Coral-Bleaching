@@ -938,6 +938,7 @@ fitCompDF <- data.frame(
   )
 fitCompDF
 save(fitCompDF, file = "_data/fitCompDF.RData")
+load(file = "_data/fitCompDF.RData")
 
 ### gt ----
 fitCompDF |>
@@ -945,15 +946,14 @@ fitCompDF |>
     Model, 
     TempStr,
     SpaceStr, 
-    looic, 
-    se_looic, 
-    p_loo,
     elpd_diff_loo, 
-    se_diff_loo
+    se_diff_loo,
+    p_loo,
+    looic, 
+    se_looic
   ) |>
   arrange(desc(elpd_diff_loo)) |>
   gt() |>
-  fmt_auto() |>
   cols_label(
     TempStr = "Temporal Structure",
     SpaceStr = "Spatial Structure"
@@ -962,7 +962,41 @@ fitCompDF |>
     # p_loo = "p-value",
     # elpd_diff_loo = "LOO ELPD Difference",
     # se_diff_loo = "SE LOO Difference"
-  )
+  ) |>
+  fmt_number(
+    use_seps = FALSE
+  ) |>
+  tab_footnote(
+    footnote = "Difference in Expected Log pointwise Predictive Density for a new dataset",
+    locations = cells_column_labels(columns = elpd_diff_loo)
+  ) |>
+  tab_footnote(
+    footnote = "Standard Error of component-wise elpd_diff_loo between two models",
+    locations = cells_column_labels(columns = se_diff_loo)
+  )  |>
+  tab_footnote(
+    footnote = "Effective number of parameters",
+    locations = cells_column_labels(columns = p_loo)
+  ) |>
+  tab_footnote(
+    footnote = "Leave-one-out Information Criteria",
+    locations = cells_column_labels(columns = looic)
+  ) |>
+  tab_footnote(
+    footnote = "Standard Error of looic",
+    locations = cells_column_labels(columns = se_looic)
+  ) |>
+  tab_options(
+    footnotes.sep = " "  # Removes default footnote separation lines
+    #footnotes.font.size = px(10),  # Adjusts footnote size
+    #footnotes.padding = px(0)  # Removes spacing between footnotes
+  ) |>
+  tab_style(
+    style = cell_text(whitespace = "nowrap"),
+    locations = list(cells_body(), cells_column_labels())
+  ) |>
+  opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 2: Model Comparison using LOO-CV"))
 
 # 4. Model refinement-----
 load(file = "_data/models/Model6.RData")
@@ -979,8 +1013,8 @@ formulaModSelect <-
        #Depth_m + # Remove 3
        Windspeed +
        #ClimSST + # Remove 1
-       #SSTA +
-       #SSTA_DHW + # Remove 5
+       SSTA + # Remove 5
+       #SSTA_DHW + 
        TSA +
        TSA_DHW
   ) + brmsfamily(family = "Beta", link = "logit")
@@ -1021,9 +1055,10 @@ system.time(
 #save(fitModSelect, file = "_data/models/fitMod6.RData")
 get_prior(fitModSelect)
 
-fitSelect <- 5
+fitSelect <- 4
 assign(paste0("fitModSelect", fitSelect), fitModSelect)
 
+fitModSelect <- fitModSelect4
 print(fitModSelect, digits = 4)
 
 ## Fixed Effects ----
@@ -1041,6 +1076,12 @@ fixedEffSelect <- fixef(fitModSelect) |>
                         ifelse(p_val < 0.1, "*", "")))
   )
 print(fixedEffSelect, digits = 4)
+assign(paste0("fixedEffSelect", fitSelect), fixedEffSelect)
+
+print(fixedEffSelect1, digits = 4)
+print(fixedEffSelect2, digits = 4)
+print(fixedEffSelect3, digits = 4)
+print(fixedEffSelect4, digits = 4)
 
 ## Hypothesis ----
 hyp1 <- hypothesis(fitModSelect1,
@@ -1140,9 +1181,13 @@ fitModSelect4$formula
 fitModSelect5$formula
 
 ### Bayes Factor ----
+set.seed(52)
 fitModSelectBF_1B <- bayes_factor(fitModSelect1, selectBaseMod) # Removed ClimSST
+set.seed(52)
 fitModSelectBF_21 <- bayes_factor(fitModSelect2, fitModSelect1) # Removed Exposure
+set.seed(52)
 fitModSelectBF_32 <- bayes_factor(fitModSelect3, fitModSelect2) # Removed Depth_m
+set.seed(52)
 fitModSelectBF_43 <- bayes_factor(fitModSelect4, fitModSelect3) # Removed Cyclone_Frequency
 fitModSelectBF_54 <- bayes_factor(fitModSelect5, fitModSelect4) # Removed SSTA
 
@@ -1290,6 +1335,13 @@ refinementDF <- data.frame(
     fitModSelectBF_43$bf
     #fitModSelectBF_54$bf
   ),
+  LOOIC = c(
+    looSelectBase$estimates["looic", "Estimate"],
+    looSelect1$estimates["looic", "Estimate"],
+    looSelect2$estimates["looic", "Estimate"],
+    looSelect3$estimates["looic", "Estimate"],
+    looSelect4$estimates["looic", "Estimate"]
+  ),
   RefinedMAE = c(
     rev(fitSelectMAE$MAE)[-1]
   ),
@@ -1306,15 +1358,56 @@ save(fitModSelect4, file = "_data/models/refineFit4.RData")
 save(fitModSelect5, file = "_data/models/refineFit5.RData")
 save(refinementDF, file = "_data/refinementDF.RData")
 
+### gt ----
+load(file = "_data/refinementDF.RData")
+
+refinementDF |>
+  select(
+    PriorModel, 
+    RefinedModel,
+    CovariateRemoved,
+    BF,
+    LOOIC,
+    RefinedMAE
+  ) |>
+  gt() |>
+  cols_label(
+    PriorModel = "Prior Model",
+    RefinedModel = "Refined Model",
+    CovariateRemoved = "Covariate Removed",
+    RefinedMAE = "MAE"
+  ) |>
+  sub_missing() |>
+  fmt_number(
+    columns = BF,
+    decimals = 1,
+    use_seps = FALSE
+  ) |>
+  fmt_number(
+    columns = LOOIC,
+    decimals = 1,
+    use_seps = FALSE
+  ) |>
+  fmt_number(
+    columns = RefinedMAE,
+    decimals = 4
+  ) |>
+  tab_style(
+    style = cell_text(whitespace = "nowrap"),
+    locations = list(cells_body(), cells_column_labels())
+  ) |>
+  opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 3: Model Refinement using BF, LOOIC, and MAE"))
+
 # 5. FINAL MODEL =======================
 formulaModfinal <- 
   bf(PercentBleachingBounded ~ 
        gp(Date_Year, by = City_Town_Name) +
-       t2(Lat, Lon) +
+       t2(Lon, Lat) +
        Distance_to_Shore +
        #Exposure +
        Turbidity +
-       #Cyclone_Frequency +
+       Cyclone_Frequency +
        #Depth_m +
        Windspeed +
        #ClimSST +
@@ -1352,15 +1445,18 @@ system.time(
     warmup = burn,
     #init = 0,
     normalize = TRUE,
-    control = list(adapt_delta = 0.95)
-    #backend = "cmdstanr"
+    control = list(
+      adapt_delta = 0.95,
+      max_treedepth = 15
+    ),
+    backend = "cmdstanr"
   )
 )
 
 save(finalMod, file = "_data/finalMod.RData")
 
-load(file = "_data/models/finalMod3.RData")
-finalMod <- finalMod3
+load(file = "_data/finalMod.RData")
+#finalMod <- finalMod3
 #finalMod <- fitModSelect4
 #finalMod <- fitMod6
 
@@ -1392,7 +1488,7 @@ obsY <- bleachingData$PercentBleachingBounded
 groupCity <- bleachingData$City_Town_Name
 
 # Random draws
-numDraws <- 250
+numDraws <- 400
 set.seed(52) # for reproducibility
 drawsInd <- sample(x = 1:sims, size = numDraws)
 
@@ -1437,7 +1533,7 @@ sdFunc <- function(y){sd(y)}
 medianFunc <- function(y){median(y)}
 lcbFunc <- function(y){quantile(y, 0.025)}
 ucbFunc <- function(y){quantile(y, 0.975)}
-rangeFunc <- function(y){max(y) - min(y)}
+#rangeFunc <- function(y){max(y) - min(y)}
 
 ##### Mean ----
 set.seed(52) # for reproducibility
@@ -1505,7 +1601,9 @@ ppcMeanPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 ppcMeanPlotGG
 
@@ -1571,7 +1669,9 @@ ppcSDPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 ppcSDPlotGG
 
@@ -1638,7 +1738,9 @@ ppcMedianPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 ppcMedianPlotGG
 
@@ -1705,7 +1807,9 @@ ppcLCBPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 ppcLCBPlotGG
 
@@ -1772,7 +1876,9 @@ ppcUCBPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 ppcUCBPlotGG
 
@@ -1784,11 +1890,16 @@ ppcCombPlot <-
   (ppcLCBPlotGG + ppcMedianPlotGG + ppcUCBPlotGG) +
   plot_layout(
     guides = "collect",
-    axes = "collect_x"
+    axes = "collect"
+    #axis_titles = "collect_y"
   ) +
   plot_annotation(
     title = "Posterior Predictive Checks for Distributional Statistics",
-    subtitle = paste("Bayesian predictive p-values for", sims, "Simulations")
+    subtitle = paste("Bayesian predictive p-values for", sims, "Simulations"),
+    theme = theme(
+      legend.position = "bottom",
+      legend.direction = "horizontal"
+    )
   )
 ppcCombPlot
 
@@ -1810,20 +1921,158 @@ fixedEff <- fixef(finalMod) |>
   )
 print(fixedEff, digits = 4)
 
+### gt ----
+fixedEff |>
+  rownames_to_column(var = "Parameter") |>
+  select(
+    Parameter,
+    Estimate,
+    Est.Error,
+    Q2.5,
+    Q97.5
+  ) |>
+  filter(str_detect(Parameter, "t2", negate = TRUE)) |>
+  gt() |>
+  cols_label(
+    Estimate = "{{:beta:}}",
+    Est.Error = "SD({{:beta:}})"
+  ) |>
+  cols_merge(
+    columns = c(Q2.5, Q97.5), pattern = "({1}, {2})"
+  ) |>
+  cols_label(
+    Q2.5 = "95% CI"
+  ) |>
+  cols_align(
+    columns = Q2.5,
+    align = "center"
+  ) |>
+  tab_footnote(
+    footnote = "Parameter estimate",
+    locations = cells_column_labels(columns = Estimate)
+  ) |>
+  tab_footnote(
+    footnote = "Standard Deviation of parameter estimate",
+    locations = cells_column_labels(columns = Est.Error)
+  ) |>
+  tab_footnote(
+    footnote = "95% Credible Interval of parameter estimate",
+    locations = cells_column_labels(columns = Q2.5)
+  ) |>
+  tab_style(
+    style = cell_text(whitespace = "nowrap"),
+    locations = list(cells_body(), cells_column_labels())
+  ) |>
+  tab_style(
+    style = list(
+      cell_text(
+        align = "center"
+      )
+    ),
+    locations = list(
+      cells_column_labels(
+        columns = c(Estimate, Est.Error)
+      )
+    )
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#373737"),
+      cell_text(color = "#fff")
+    ),
+    locations = list(
+      cells_column_labels()
+    )
+  ) |>
+  tab_options(
+    column_labels.padding = "10px",
+    table.background.color = "#f2f2f2"
+  ) |>
+  #opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 4: Parameter Estimates"))
+
+
+## Conditional Effects ----
+fixef(finalMod)
 condEffData <- conditional_effects(
   finalMod, 
+  effects = c(
+    "Date_Year",
+    "City_Town_Name",
+    "Date_Year:City_Town_Name"
+  ),
   re_formula = NULL,
   method = "posterior_predict",
   robust = FALSE
 )
 condEffPlot <- plot(
-  condEffData,
+  condEffData$`Date_Year:City_Town_Name`,
   ask = FALSE,
-  points = TRUE
+  points = TRUE,
+  plot = FALSE,
+  facet_args = "City_Town_Name"
 )
 condEffPlot
 
 
+condEffData2 <- conditional_effects(
+  finalMod, 
+  effects = c(
+    "Date_Year:City_Town_Name"
+  ),
+  re_formula = NULL,
+  method = "predict",
+  robust = FALSE
+)
+condEffPlot2 <- plot(
+  condEffData2,
+  ask = FALSE,
+  points = TRUE,
+  plot = FALSE,
+  facet_args = list(vars(City_Town_Name))
+)
+condEffPlot2
+
+condEffConds3 <- data.frame(
+  City_Town_Name = unique(bleachingData$City_Town_Name)
+)
+condEffConds3 <- make_conditions(condEffConds3, 
+                                 vars = "City_Town_Name", 
+                                 incl_vars = FALSE)
+condEffData3 <- conditional_effects(
+  finalMod, 
+  effects = c(
+    "Date_Year"
+  ),
+  conditions = condEffConds3,
+  re_formula = NULL,
+  method = "predict",
+  robust = FALSE
+)
+
+condEffPlot3 <- plot(
+  condEffData3,
+  ask = FALSE,
+  points = TRUE,
+  plot = FALSE
+)
+condEffPlot3
+
+## Conditional Smooths ----
+condSmoothData <- conditional_smooths(
+  finalMod, 
+  re_formula = NULL,
+  method = "posterior_predict",
+  robust = FALSE
+)
+condSmoothPlot <- plot(
+  condSmoothData,
+  ask = FALSE,
+  #stype = "contour",
+  stype = "raster",
+  plot = FALSE
+)
+condSmoothPlot
 
 
 

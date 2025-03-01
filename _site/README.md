@@ -94,441 +94,46 @@ the proportion of coral affected in each transect. Below is a list of
 key environmental and geographic covariates that may contribute to
 bleaching events:
 
-<div id="rssxenwcqu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rssxenwcqu table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-&#10;#rssxenwcqu thead, #rssxenwcqu tbody, #rssxenwcqu tfoot, #rssxenwcqu tr, #rssxenwcqu td, #rssxenwcqu th {
-  border-style: none;
-}
-&#10;#rssxenwcqu p {
-  margin: 0;
-  padding: 0;
-}
-&#10;#rssxenwcqu .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-&#10;#rssxenwcqu .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-&#10;#rssxenwcqu .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-&#10;#rssxenwcqu .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 1.25px;
-  padding-bottom: 2.25px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-&#10;#rssxenwcqu .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-&#10;#rssxenwcqu .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-&#10;#rssxenwcqu .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-&#10;#rssxenwcqu .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 1.25px;
-  padding-bottom: 1.25px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-&#10;#rssxenwcqu .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-&#10;#rssxenwcqu .gt_group_heading {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-&#10;#rssxenwcqu .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-&#10;#rssxenwcqu .gt_from_md > :first-child {
-  margin-top: 0;
-}
-&#10;#rssxenwcqu .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-&#10;#rssxenwcqu .gt_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-&#10;#rssxenwcqu .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rssxenwcqu .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-&#10;#rssxenwcqu .gt_row_group_first td {
-  border-top-width: 2px;
-}
-&#10;#rssxenwcqu .gt_row_group_first th {
-  border-top-width: 2px;
-}
-&#10;#rssxenwcqu .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rssxenwcqu .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-&#10;#rssxenwcqu .gt_last_summary_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rssxenwcqu .gt_first_grand_summary_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_last_grand_summary_row_top {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-&#10;#rssxenwcqu .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rssxenwcqu .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-&#10;#rssxenwcqu .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rssxenwcqu .gt_left {
-  text-align: left;
-}
-&#10;#rssxenwcqu .gt_center {
-  text-align: center;
-}
-&#10;#rssxenwcqu .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-&#10;#rssxenwcqu .gt_font_normal {
-  font-weight: normal;
-}
-&#10;#rssxenwcqu .gt_font_bold {
-  font-weight: bold;
-}
-&#10;#rssxenwcqu .gt_font_italic {
-  font-style: italic;
-}
-&#10;#rssxenwcqu .gt_super {
-  font-size: 65%;
-}
-&#10;#rssxenwcqu .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-&#10;#rssxenwcqu .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-&#10;#rssxenwcqu .gt_indent_1 {
-  text-indent: 5px;
-}
-&#10;#rssxenwcqu .gt_indent_2 {
-  text-indent: 10px;
-}
-&#10;#rssxenwcqu .gt_indent_3 {
-  text-indent: 15px;
-}
-&#10;#rssxenwcqu .gt_indent_4 {
-  text-indent: 20px;
-}
-&#10;#rssxenwcqu .gt_indent_5 {
-  text-indent: 25px;
-}
-&#10;#rssxenwcqu .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-&#10;#rssxenwcqu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <caption><span class='gt_from_md'>Table 1: Covariate Descriptions</span></caption>
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Covariate">Covariate</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Description">Description</th>
+<div id="mwdxrmjvny" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
+  <caption><span class="gt_from_md">Table 1: Covariate Descriptions</span></caption>
+  <thead style="border-style: none;">
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; background-color: #373737; color: #FFFFFF;" scope="col" id="Covariate" bgcolor="#373737" valign="bottom" align="left">Covariate</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; background-color: #373737; color: #FFFFFF;" scope="col" id="Description" bgcolor="#373737" valign="bottom" align="left">Description</th>
     </tr>
   </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Covariate" class="gt_row gt_left">Date_Year</td>
-<td headers="Description" class="gt_row gt_left">Year of observation</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">City_Town_Name</td>
-<td headers="Description" class="gt_row gt_left">Categorical variable representing the specific city or town</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">Lat</td>
-<td headers="Description" class="gt_row gt_left">Latitude of the coral reef transect</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">Lon</td>
-<td headers="Description" class="gt_row gt_left">Longitude of the coral reef transect</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">Distance_to_Shore</td>
-<td headers="Description" class="gt_row gt_left">Distance from the reef to the shoreline (km)</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">Exposure</td>
-<td headers="Description" class="gt_row gt_left">Level of wave exposure (e.g., sheltered, exposed)</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">Turbidity</td>
-<td headers="Description" class="gt_row gt_left">Water clarity, with higher values indicating more suspended particles</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">Cyclone_Frequency</td>
-<td headers="Description" class="gt_row gt_left">Number of cyclones affecting the area per year</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">Depth_m</td>
-<td headers="Description" class="gt_row gt_left">Depth of the coral reef (meters)</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">Windspeed</td>
-<td headers="Description" class="gt_row gt_left">Average wind speed (m/s)</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">ClimSST</td>
-<td headers="Description" class="gt_row gt_left">Climatological sea surface temperature (°C)</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">SSTA</td>
-<td headers="Description" class="gt_row gt_left">Sea surface temperature anomaly (°C)</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">SSTA_DHW</td>
-<td headers="Description" class="gt_row gt_left">Degree heating weeks derived from SSTA</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">TSA</td>
-<td headers="Description" class="gt_row gt_left">Tropical sea surface temperature anomaly (°C)</td></tr>
-    <tr><td headers="Covariate" class="gt_row gt_left">TSA_DHW</td>
-<td headers="Description" class="gt_row gt_left">Degree heating weeks derived from TSA</td></tr>
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Date_Year</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Year of observation</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">City_Town_Name</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Categorical variable representing the specific city or town</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Lat</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Latitude of the coral reef transect</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Lon</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Longitude of the coral reef transect</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Distance_to_Shore</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Distance from the reef to the shoreline (km)</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Exposure</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Level of wave exposure (e.g., sheltered, exposed)</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Turbidity</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Water clarity, with higher values indicating more suspended particles</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Cyclone_Frequency</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Number of cyclones affecting the area per year</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Depth_m</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Depth of the coral reef (meters)</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Windspeed</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Average wind speed (m/s)</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">ClimSST</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Climatological sea surface temperature (°C)</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">SSTA</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Sea surface temperature anomaly (°C)</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">SSTA_DHW</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Degree heating weeks derived from SSTA</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">TSA</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Tropical sea surface temperature anomaly (°C)</td></tr>
+    <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">TSA_DHW</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Degree heating weeks derived from TSA</td></tr>
   </tbody>
   &#10;  
 </table>
@@ -588,18 +193,13 @@ Before fitting the model, we applied several preprocessing steps:
 
 - **Response Variable Transformation**: Since the Beta regression model
   requires values strictly in the (0,1) range, we replaced:
-
-- 0% bleaching values with 0.001
-
-- 100% bleaching values with 0.999
-
+  - 0% bleaching values with 0.001
+  - 100% bleaching values with 0.999
 - **Covariate Transformations**:
-
-- **Yeo-Johnson transformation** was applied to all continuous
-  covariates to reduce skewness.
-
-- **Centering and scaling** were performed to standardize covariates for
-  better model convergence.
+  - **Yeo-Johnson transformation** was applied to all continuous
+    covariates to reduce skewness.
+  - **Centering and scaling** were performed to standardize covariates
+    for better model convergence.
 
 ## Model Specification
 
@@ -633,9 +233,13 @@ where:
 
 ### Gaussian Process (GP) for Temporal Trends
 
+<div style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;width:auto;">
+
 $$
 f(\text{Date_Year}_i, \text{City_Town_Name}_i) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\ 
 $$
+
+</div>
 
 where the covariance function for each city $c$ is:
 
@@ -682,17 +286,17 @@ where:
 ### Prior Specification
 
 - **Fixed Effects**:
-- $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
+  - $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
 - **Gaussian Process (Temporal Trends)**:
-- $\sigma_c \sim \text{half-Cauchy}(0,2)$
-- $\rho_c \sim \text{InvGamma}(4.308447, 0.957567)$ (explicitly defined
-  by `brms`)
+  - $\sigma_c \sim \text{half-Cauchy}(0,2)$
+  - $\rho_c \sim \text{InvGamma}(NA, 4.308447, NA, 0.957567)$
+    (explicitly defined by `brms`)
 - **Tensor-Product Spline**:
-- $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
-- $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in
-  smoothing penalty)
+  - $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
+  - $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in
+    smoothing penalty)
 - **Precision Parameter**:
-- $\phi \sim \text{Gamma}(0.1, 0.1)$
+  - $\phi \sim \text{Gamma}(0.1, 0.1)$
 
 This model accounts for both spatial and temporal dependencies, allowing
 for flexible trend estimation.
@@ -712,481 +316,86 @@ After running convergence checks, the final model was selected using
 **Leave-One-Out Cross-Validation (LOO-CV)**, ensuring it provided the
 best balance between fit and complexity.
 
-<div id="rhhwnwxumd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rhhwnwxumd table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-&#10;#rhhwnwxumd thead, #rhhwnwxumd tbody, #rhhwnwxumd tfoot, #rhhwnwxumd tr, #rhhwnwxumd td, #rhhwnwxumd th {
-  border-style: none;
-}
-&#10;#rhhwnwxumd p {
-  margin: 0;
-  padding: 0;
-}
-&#10;#rhhwnwxumd .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-&#10;#rhhwnwxumd .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-&#10;#rhhwnwxumd .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-&#10;#rhhwnwxumd .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 1.25px;
-  padding-bottom: 2.25px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-&#10;#rhhwnwxumd .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-&#10;#rhhwnwxumd .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-&#10;#rhhwnwxumd .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-&#10;#rhhwnwxumd .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 1.25px;
-  padding-bottom: 1.25px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-&#10;#rhhwnwxumd .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-&#10;#rhhwnwxumd .gt_group_heading {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-&#10;#rhhwnwxumd .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-&#10;#rhhwnwxumd .gt_from_md > :first-child {
-  margin-top: 0;
-}
-&#10;#rhhwnwxumd .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-&#10;#rhhwnwxumd .gt_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-&#10;#rhhwnwxumd .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rhhwnwxumd .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-&#10;#rhhwnwxumd .gt_row_group_first td {
-  border-top-width: 2px;
-}
-&#10;#rhhwnwxumd .gt_row_group_first th {
-  border-top-width: 2px;
-}
-&#10;#rhhwnwxumd .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rhhwnwxumd .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-&#10;#rhhwnwxumd .gt_last_summary_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rhhwnwxumd .gt_first_grand_summary_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_last_grand_summary_row_top {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-&#10;#rhhwnwxumd .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rhhwnwxumd .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-&#10;#rhhwnwxumd .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#rhhwnwxumd .gt_left {
-  text-align: left;
-}
-&#10;#rhhwnwxumd .gt_center {
-  text-align: center;
-}
-&#10;#rhhwnwxumd .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-&#10;#rhhwnwxumd .gt_font_normal {
-  font-weight: normal;
-}
-&#10;#rhhwnwxumd .gt_font_bold {
-  font-weight: bold;
-}
-&#10;#rhhwnwxumd .gt_font_italic {
-  font-style: italic;
-}
-&#10;#rhhwnwxumd .gt_super {
-  font-size: 65%;
-}
-&#10;#rhhwnwxumd .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-&#10;#rhhwnwxumd .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-&#10;#rhhwnwxumd .gt_indent_1 {
-  text-indent: 5px;
-}
-&#10;#rhhwnwxumd .gt_indent_2 {
-  text-indent: 10px;
-}
-&#10;#rhhwnwxumd .gt_indent_3 {
-  text-indent: 15px;
-}
-&#10;#rhhwnwxumd .gt_indent_4 {
-  text-indent: 20px;
-}
-&#10;#rhhwnwxumd .gt_indent_5 {
-  text-indent: 25px;
-}
-&#10;#rhhwnwxumd .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-&#10;#rhhwnwxumd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <caption><span class='gt_from_md'>Table 2: Model Comparison using LOO-CV</span></caption>
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="Model">Model</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="TempStr">Temporal Structure</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="SpaceStr">Spatial Structure</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="elpd_diff_loo">elpd_diff_loo<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="se_diff_loo">se_diff_loo<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="p_loo">p_loo<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>3</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="looic">looic<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>4</sup></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="se_looic">se_looic<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>5</sup></span></th>
+<div id="gsavkceuoy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
+  <caption><span class="gt_from_md">Table 2: Model Comparison using LOO-CV</span></caption>
+  <thead style="border-style: none;">
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="Model" bgcolor="#373737" valign="bottom" align="left">Model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="TempStr" bgcolor="#373737" valign="bottom" align="left">Temporal Structure</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="SpaceStr" bgcolor="#373737" valign="bottom" align="left">Spatial Structure</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="elpd_diff_loo" bgcolor="#373737" valign="bottom" align="right">elpd_diff_loo<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="se_diff_loo" bgcolor="#373737" valign="bottom" align="right">se_diff_loo<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="p_loo" bgcolor="#373737" valign="bottom" align="right">p_loo<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>3</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="looic" bgcolor="#373737" valign="bottom" align="right">looic<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>4</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="se_looic" bgcolor="#373737" valign="bottom" align="right">se_looic<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>5</sup></span></th>
     </tr>
   </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 6</td>
-<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">City-Specific GP</td>
-<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Tensor Smooth</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">0.00</td>
-<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">0.00</td>
-<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">80.47</td>
-<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−5,711.89</td>
-<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">134.45</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 5</td>
-<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">City-Specific GP</td>
-<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−16.19</td>
-<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">6.26</td>
-<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">75.56</td>
-<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−5,679.50</td>
-<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">133.96</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 4</td>
-<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">Global GP</td>
-<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Tensor Smooth</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−93.13</td>
-<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">20.50</td>
-<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">43.11</td>
-<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−5,525.64</td>
-<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">133.72</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 3</td>
-<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">Global GP</td>
-<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−124.21</td>
-<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">22.02</td>
-<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">33.40</td>
-<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−5,463.46</td>
-<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">131.95</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 2</td>
-<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
-<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Tensor Smooth</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−460.63</td>
-<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">33.49</td>
-<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">24.05</td>
-<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−4,790.64</td>
-<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">120.73</td></tr>
-    <tr><td headers="Model" class="gt_row gt_left" style="white-space: nowrap;">Model 1</td>
-<td headers="TempStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
-<td headers="SpaceStr" class="gt_row gt_left" style="white-space: nowrap;">Linear</td>
-<td headers="elpd_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">−491.58</td>
-<td headers="se_diff_loo" class="gt_row gt_right" style="white-space: nowrap;">33.90</td>
-<td headers="p_loo" class="gt_row gt_right" style="white-space: nowrap;">18.32</td>
-<td headers="looic" class="gt_row gt_right" style="white-space: nowrap;">−4,728.73</td>
-<td headers="se_looic" class="gt_row gt_right" style="white-space: nowrap;">118.72</td></tr>
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+    <tr style="border-style: none;"><td headers="Model" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 6</td>
+<td headers="TempStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">City-Specific GP</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Tensor Smooth</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.00</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.00</td>
+<td headers="p_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">80.47</td>
+<td headers="looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5711.89</td>
+<td headers="se_looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">134.45</td></tr>
+    <tr style="border-style: none;"><td headers="Model" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 5</td>
+<td headers="TempStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">City-Specific GP</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Linear</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−16.19</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">6.26</td>
+<td headers="p_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">75.56</td>
+<td headers="looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5679.50</td>
+<td headers="se_looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">133.96</td></tr>
+    <tr style="border-style: none;"><td headers="Model" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 4</td>
+<td headers="TempStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Global GP</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Tensor Smooth</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−93.13</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">20.50</td>
+<td headers="p_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">43.11</td>
+<td headers="looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5525.64</td>
+<td headers="se_looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">133.72</td></tr>
+    <tr style="border-style: none;"><td headers="Model" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 3</td>
+<td headers="TempStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Global GP</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Linear</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−124.21</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">22.02</td>
+<td headers="p_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">33.40</td>
+<td headers="looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5463.46</td>
+<td headers="se_looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">131.95</td></tr>
+    <tr style="border-style: none;"><td headers="Model" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 2</td>
+<td headers="TempStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Linear</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Tensor Smooth</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−460.63</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">33.49</td>
+<td headers="p_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">24.05</td>
+<td headers="looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−4790.64</td>
+<td headers="se_looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">120.73</td></tr>
+    <tr style="border-style: none;"><td headers="Model" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 1</td>
+<td headers="TempStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Linear</td>
+<td headers="SpaceStr" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Linear</td>
+<td headers="elpd_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−491.58</td>
+<td headers="se_diff_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">33.90</td>
+<td headers="p_loo" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">18.32</td>
+<td headers="looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−4728.73</td>
+<td headers="se_looic" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">118.72</td></tr>
   </tbody>
-  &#10;  <tfoot class="gt_footnotes">
-    <tr>
-      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> Difference in Expected Log pointwise Predictive Density for a new dataset</td>
+  &#10;  <tfoot class="gt_footnotes" style="border-style: none; color: #333333; background-color: #F2F2F2; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3;" bgcolor="#F2F2F2">
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="8" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>1</sup></span> Difference in Expected Log pointwise Predictive Density for a new dataset</td>
     </tr>
-    <tr>
-      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>2</sup></span> Standard Error of component-wise elpd_diff_loo between two models</td>
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="8" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>2</sup></span> Standard Error of component-wise elpd_diff_loo between two models</td>
     </tr>
-    <tr>
-      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>3</sup></span> Effective number of parameters</td>
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="8" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>3</sup></span> Effective number of parameters</td>
     </tr>
-    <tr>
-      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>4</sup></span> Leave-one-out Information Criteria</td>
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="8" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>4</sup></span> Leave-one-out Information Criteria</td>
     </tr>
-    <tr>
-      <td class="gt_footnote" colspan="8"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>5</sup></span> Standard Error of looic</td>
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="8" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>5</sup></span> Standard Error of looic</td>
     </tr>
   </tfoot>
 </table>
@@ -1227,50 +436,54 @@ refinement process was conducted to remove covariates that did not
 contribute significantly to the model. The refinement process followed
 these steps:
 
-1.  Identify Non-Significant Covariates  
+1.  Identify Non-Significant Covariates
 
-- Variables whose 95% credible intervals contained zero were considered
-  weak contributors.
+    - Variables whose 95% credible intervals contained zero were
+      considered weak contributors.
 
 2.  Iterative Variable Removal & Refitting
 
-- The least significant covariate was removed from the model.
-- The model was then refit without that covariate to assess its impact.
+    - The least significant covariate was removed from the model.
+    - The model was then refit without that covariate to assess its
+      impact.
 
 3.  Evaluate Model Fit via Bayes Factor & MAE
 
-- **Bayes Factor (BF) Comparison**: The refined model was compared to
-  the previous iteration using bayes_factor(). If BF \> 10, the new
-  model was preferred.
-- **Mean Absolute Error** (MAE): The predictive performance was
-  evaluated using the PPD from refined model compared to observed
-  Percent Bleaching to check model improvement/degradation. If MAE
-  improved or remained stable, the new model was retained.
+    - **Bayes Factor (BF) Comparison**: The refined model was compared
+      to the previous iteration using `bayes_factor()`. If BF \> 10, the
+      new model was preferred.
+    - **LOOIC**: The reliability of how the refined model generalizes to
+      new data was estimated. If LOOIC was lower, the new model was
+      retained.
+    - **Mean Absolute Error** (MAE): The predictive performance was
+      evaluated using the PPD from refined model compared to observed
+      Percent Bleaching to check model improvement/degradation. If MAE
+      improved or remained stable, the new model was retained.
 
 4.  Repeat Until No Further Improvement
 
-- This process continued until all remaining covariates contributed
-  meaningfully, ensuring the final model was both interpretable and
-  robust.
+    - This process continued until all remaining covariates contributed
+      meaningfully, ensuring the final model was both interpretable and
+      robust.
 
 Through this process, unnecessary covariates were systematically
 removed, leading to a final optimized model that retained only the most
 relevant predictors while maintaining strong predictive accuracy.
 
-<div id="bwaolnqarf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bwaolnqarf table {
+<div id="uvulhzfmyo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#uvulhzfmyo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&#10;#bwaolnqarf thead, #bwaolnqarf tbody, #bwaolnqarf tfoot, #bwaolnqarf tr, #bwaolnqarf td, #bwaolnqarf th {
+&#10;#uvulhzfmyo thead, #uvulhzfmyo tbody, #uvulhzfmyo tfoot, #uvulhzfmyo tr, #uvulhzfmyo td, #uvulhzfmyo th {
   border-style: none;
 }
-&#10;#bwaolnqarf p {
+&#10;#uvulhzfmyo p {
   margin: 0;
   padding: 0;
 }
-&#10;#bwaolnqarf .gt_table {
+&#10;#uvulhzfmyo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1280,7 +493,7 @@ relevant predictors while maintaining strong predictive accuracy.
   font-size: 16px;
   font-weight: normal;
   font-style: normal;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   width: auto;
   border-top-style: solid;
   border-top-width: 2px;
@@ -1295,36 +508,36 @@ relevant predictors while maintaining strong predictive accuracy.
   border-left-width: 2px;
   border-left-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_caption {
+&#10;#uvulhzfmyo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
-&#10;#bwaolnqarf .gt_title {
+&#10;#uvulhzfmyo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
-  border-bottom-color: #FFFFFF;
+  border-bottom-color: #F2F2F2;
   border-bottom-width: 0;
 }
-&#10;#bwaolnqarf .gt_subtitle {
+&#10;#uvulhzfmyo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
-  padding-top: 0px;
-  padding-bottom: 2px;
+  padding-top: 3px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
-  border-top-color: #FFFFFF;
+  border-top-color: #F2F2F2;
   border-top-width: 0;
 }
-&#10;#bwaolnqarf .gt_heading {
-  background-color: #FFFFFF;
+&#10;#uvulhzfmyo .gt_heading {
+  background-color: #F2F2F2;
   text-align: center;
-  border-bottom-color: #FFFFFF;
+  border-bottom-color: #F2F2F2;
   border-left-style: none;
   border-left-width: 1px;
   border-left-color: #D3D3D3;
@@ -1332,12 +545,12 @@ relevant predictors while maintaining strong predictive accuracy.
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_bottom_border {
+&#10;#uvulhzfmyo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_col_headings {
+&#10;#uvulhzfmyo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1351,9 +564,9 @@ relevant predictors while maintaining strong predictive accuracy.
   border-right-width: 1px;
   border-right-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_col_heading {
+&#10;#uvulhzfmyo .gt_col_heading {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   font-size: 100%;
   font-weight: normal;
   text-transform: inherit;
@@ -1364,15 +577,15 @@ relevant predictors while maintaining strong predictive accuracy.
   border-right-width: 1px;
   border-right-color: #D3D3D3;
   vertical-align: bottom;
-  padding-top: 1.25px;
-  padding-bottom: 2.25px;
+  padding-top: 10px;
+  padding-bottom: 11px;
   padding-left: 5px;
   padding-right: 5px;
   overflow-x: hidden;
 }
-&#10;#bwaolnqarf .gt_column_spanner_outer {
+&#10;#uvulhzfmyo .gt_column_spanner_outer {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   font-size: 100%;
   font-weight: normal;
   text-transform: inherit;
@@ -1381,33 +594,33 @@ relevant predictors while maintaining strong predictive accuracy.
   padding-left: 4px;
   padding-right: 4px;
 }
-&#10;#bwaolnqarf .gt_column_spanner_outer:first-child {
+&#10;#uvulhzfmyo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
-&#10;#bwaolnqarf .gt_column_spanner_outer:last-child {
+&#10;#uvulhzfmyo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
-&#10;#bwaolnqarf .gt_column_spanner {
+&#10;#uvulhzfmyo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
   vertical-align: bottom;
-  padding-top: 1.25px;
-  padding-bottom: 1.25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   overflow-x: hidden;
   display: inline-block;
   width: 100%;
 }
-&#10;#bwaolnqarf .gt_spanner_row {
+&#10;#uvulhzfmyo .gt_spanner_row {
   border-bottom-style: hidden;
 }
-&#10;#bwaolnqarf .gt_group_heading {
-  padding-top: 2px;
-  padding-bottom: 2px;
+&#10;#uvulhzfmyo .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   font-size: 100%;
   font-weight: initial;
   text-transform: inherit;
@@ -1426,10 +639,10 @@ relevant predictors while maintaining strong predictive accuracy.
   vertical-align: middle;
   text-align: left;
 }
-&#10;#bwaolnqarf .gt_empty_group_heading {
+&#10;#uvulhzfmyo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   font-size: 100%;
   font-weight: initial;
   border-top-style: solid;
@@ -1440,15 +653,15 @@ relevant predictors while maintaining strong predictive accuracy.
   border-bottom-color: #D3D3D3;
   vertical-align: middle;
 }
-&#10;#bwaolnqarf .gt_from_md > :first-child {
+&#10;#uvulhzfmyo .gt_from_md > :first-child {
   margin-top: 0;
 }
-&#10;#bwaolnqarf .gt_from_md > :last-child {
+&#10;#uvulhzfmyo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
-&#10;#bwaolnqarf .gt_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
+&#10;#uvulhzfmyo .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
   margin: 10px;
@@ -1464,9 +677,9 @@ relevant predictors while maintaining strong predictive accuracy.
   vertical-align: middle;
   overflow-x: hidden;
 }
-&#10;#bwaolnqarf .gt_stub {
+&#10;#uvulhzfmyo .gt_stub {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   font-size: 100%;
   font-weight: initial;
   text-transform: inherit;
@@ -1476,9 +689,9 @@ relevant predictors while maintaining strong predictive accuracy.
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#bwaolnqarf .gt_stub_row_group {
+&#10;#uvulhzfmyo .gt_stub_row_group {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   font-size: 100%;
   font-weight: initial;
   text-transform: inherit;
@@ -1489,68 +702,68 @@ relevant predictors while maintaining strong predictive accuracy.
   padding-right: 5px;
   vertical-align: top;
 }
-&#10;#bwaolnqarf .gt_row_group_first td {
+&#10;#uvulhzfmyo .gt_row_group_first td {
   border-top-width: 2px;
 }
-&#10;#bwaolnqarf .gt_row_group_first th {
+&#10;#uvulhzfmyo .gt_row_group_first th {
   border-top-width: 2px;
 }
-&#10;#bwaolnqarf .gt_summary_row {
+&#10;#uvulhzfmyo .gt_summary_row {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   text-transform: inherit;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#bwaolnqarf .gt_first_summary_row {
+&#10;#uvulhzfmyo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_first_summary_row.thick {
+&#10;#uvulhzfmyo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
-&#10;#bwaolnqarf .gt_last_summary_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
+&#10;#uvulhzfmyo .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_grand_summary_row {
+&#10;#uvulhzfmyo .gt_grand_summary_row {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   text-transform: inherit;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#bwaolnqarf .gt_first_grand_summary_row {
-  padding-top: 2px;
-  padding-bottom: 2px;
+&#10;#uvulhzfmyo .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
   border-top-style: double;
   border-top-width: 6px;
   border-top-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_last_grand_summary_row_top {
-  padding-top: 2px;
-  padding-bottom: 2px;
+&#10;#uvulhzfmyo .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
   padding-left: 5px;
   padding-right: 5px;
   border-bottom-style: double;
   border-bottom-width: 6px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_striped {
+&#10;#uvulhzfmyo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
-&#10;#bwaolnqarf .gt_table_body {
+&#10;#uvulhzfmyo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1558,9 +771,9 @@ relevant predictors while maintaining strong predictive accuracy.
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_footnotes {
+&#10;#uvulhzfmyo .gt_footnotes {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1571,17 +784,17 @@ relevant predictors while maintaining strong predictive accuracy.
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_footnote {
+&#10;#uvulhzfmyo .gt_footnote {
   margin: 0px;
   font-size: 90%;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#bwaolnqarf .gt_sourcenotes {
+&#10;#uvulhzfmyo .gt_sourcenotes {
   color: #333333;
-  background-color: #FFFFFF;
+  background-color: #F2F2F2;
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1592,76 +805,77 @@ relevant predictors while maintaining strong predictive accuracy.
   border-right-width: 2px;
   border-right-color: #D3D3D3;
 }
-&#10;#bwaolnqarf .gt_sourcenote {
+&#10;#uvulhzfmyo .gt_sourcenote {
   font-size: 90%;
-  padding-top: 1px;
-  padding-bottom: 1px;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 5px;
   padding-right: 5px;
 }
-&#10;#bwaolnqarf .gt_left {
+&#10;#uvulhzfmyo .gt_left {
   text-align: left;
 }
-&#10;#bwaolnqarf .gt_center {
+&#10;#uvulhzfmyo .gt_center {
   text-align: center;
 }
-&#10;#bwaolnqarf .gt_right {
+&#10;#uvulhzfmyo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
-&#10;#bwaolnqarf .gt_font_normal {
+&#10;#uvulhzfmyo .gt_font_normal {
   font-weight: normal;
 }
-&#10;#bwaolnqarf .gt_font_bold {
+&#10;#uvulhzfmyo .gt_font_bold {
   font-weight: bold;
 }
-&#10;#bwaolnqarf .gt_font_italic {
+&#10;#uvulhzfmyo .gt_font_italic {
   font-style: italic;
 }
-&#10;#bwaolnqarf .gt_super {
+&#10;#uvulhzfmyo .gt_super {
   font-size: 65%;
 }
-&#10;#bwaolnqarf .gt_footnote_marks {
+&#10;#uvulhzfmyo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
-&#10;#bwaolnqarf .gt_asterisk {
+&#10;#uvulhzfmyo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
-&#10;#bwaolnqarf .gt_indent_1 {
+&#10;#uvulhzfmyo .gt_indent_1 {
   text-indent: 5px;
 }
-&#10;#bwaolnqarf .gt_indent_2 {
+&#10;#uvulhzfmyo .gt_indent_2 {
   text-indent: 10px;
 }
-&#10;#bwaolnqarf .gt_indent_3 {
+&#10;#uvulhzfmyo .gt_indent_3 {
   text-indent: 15px;
 }
-&#10;#bwaolnqarf .gt_indent_4 {
+&#10;#uvulhzfmyo .gt_indent_4 {
   text-indent: 20px;
 }
-&#10;#bwaolnqarf .gt_indent_5 {
+&#10;#uvulhzfmyo .gt_indent_5 {
   text-indent: 25px;
 }
-&#10;#bwaolnqarf .katex-display {
+&#10;#uvulhzfmyo .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
-&#10;#bwaolnqarf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+&#10;#uvulhzfmyo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <caption><span class='gt_from_md'>Table 3: Model Refinement using BF and MAE</span></caption>
+  <caption><span class='gt_from_md'>Table 3: Model Refinement using BF, LOOIC, and MAE</span></caption>
   <thead>
     <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="PriorModel">Prior Model</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="RefinedModel">Refined Model</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="CovariateRemoved">Covariate Removed</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="BF">BF</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap;" scope="col" id="RefinedMAE">MAE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="PriorModel">Prior Model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="RefinedModel">Refined Model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="CovariateRemoved">Covariate Removed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="BF">BF</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="LOOIC">LOOIC</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="RefinedMAE">MAE</th>
     </tr>
   </thead>
   <tbody class="gt_table_body">
@@ -1669,26 +883,31 @@ relevant predictors while maintaining strong predictive accuracy.
 <td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 6</td>
 <td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">—</td>
 <td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">—</td>
+<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5714.0</td>
 <td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0758</td></tr>
     <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">Model 6</td>
 <td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 7</td>
 <td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">ClimSST</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">16,134.8</td>
+<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">92.0</td>
+<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5714.2</td>
 <td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0759</td></tr>
     <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">Model 7</td>
 <td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 8</td>
 <td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">Exposure</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">58.4</td>
+<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">89.4</td>
+<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5714.3</td>
 <td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0759</td></tr>
     <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">Model 8</td>
 <td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 9</td>
 <td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">Depth_m</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">16.5</td>
+<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">5439.5</td>
+<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5716.0</td>
 <td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0758</td></tr>
     <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">Model 9</td>
 <td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 10</td>
 <td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">Cyclone_Frequency</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">11.1</td>
+<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">14.1</td>
+<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5714.1</td>
 <td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0760</td></tr>
   </tbody>
   &#10;  
@@ -1696,6 +915,25 @@ relevant predictors while maintaining strong predictive accuracy.
 </div>
 
 ## Final Model
+
+Through iterative model comparison, Model 9 was selected as the
+best-performing model, showing improvements over Model 6 in terms of fit
+and interpretability. This selection process involved removing
+non-significant covariates one at a time while assessing model
+performance metrics. Importantly, the smoothing parameters remained
+unchanged throughout this refinement process, ensuring consistency in
+spatial and temporal trends. The final model captures essential
+environmental and climatic predictors, balancing complexity and
+generalizability.
+
+Model 9 includes key predictors such as Distance to Shore, Turbidity,
+Cyclone Frequency, Windspeed, Sea Surface Temperature Anomalies (SSTA
+and TSA), and Degree Heating Weeks derived from TSA (TSA_DHW). These
+covariates were retained based on their statistical significance and
+their ecological relevance to coral bleaching dynamics. The refined
+model structure provides a robust framework for understanding and
+predicting bleaching patterns, facilitating targeted conservation
+efforts.
 
 # Goodness of Fit
 
@@ -1724,10 +962,10 @@ bleaching percentages.
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/PPC Distribution-1.png" alt="Figure 4: Posterior Predictive Distribution vs Observed Percent Bleaching from 250 posterior draws" width="90%" />
+<img src="README_files/figure-gfm/PPC Distribution-1.png" alt="Figure 4: Posterior Predictive Distribution vs Observed Percent Bleaching from 400 posterior draws" width="90%" />
 <p class="caption">
 Figure 4: Posterior Predictive Distribution vs Observed Percent
-Bleaching from 250 posterior draws
+Bleaching from 400 posterior draws
 </p>
 
 </div>
@@ -1756,13 +994,107 @@ for inference and prediction.
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/PPC Stats-1.png" alt="Figure 5: Posterior Predictive Checks for Distributional Statistics" width="90%" />
+<img src="README_files/figure-gfm/PPC Stats-1.png" alt="Figure 5: Posterior Predictive Checks for Distributional Statistics with Bayesian Predictive p-values from 8000 Simulations" width="90%" />
 <p class="caption">
-Figure 5: Posterior Predictive Checks for Distributional Statistics
+Figure 5: Posterior Predictive Checks for Distributional Statistics with
+Bayesian Predictive p-values from 8000 Simulations
 </p>
 
 </div>
 
 # Model Results
 
+The final model’s results offer insights into the factors influencing
+coral bleaching percentages.
+
 ## Variable Importance
+
+1.  Parameter Estimates  
+    The table below presents the estimated coefficients, standard
+    errors, and 95% credible intervals for each covariate:
+
+<div id="rssxenwcqu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
+  <caption><span class="gt_from_md">Table 4: Parameter Estimates</span></caption>
+  <thead style="border-style: none;">
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="Parameter" bgcolor="#373737" valign="bottom" align="left">Parameter</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: center; color: #FFFFFF; background-color: #373737;" scope="col" id="Estimate" align="center" bgcolor="#373737" valign="bottom">β<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; font-variant-numeric: tabular-nums; white-space: nowrap; text-align: center; color: #FFFFFF; background-color: #373737;" scope="col" id="Est.Error" align="center" bgcolor="#373737" valign="bottom">SD(β)<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>2</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: center; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="Q2.5" bgcolor="#373737" valign="bottom" align="center">95% CI<span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>3</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+    <tr style="border-style: none;"><td headers="Parameter" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Intercept</td>
+<td headers="Estimate" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">-1.5876</td>
+<td headers="Est.Error" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.2392</td>
+<td headers="Q2.5" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; white-space: nowrap;" valign="middle" align="center">(-2.0547, -1.1155)</td></tr>
+    <tr style="border-style: none;"><td headers="Parameter" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Distance_to_Shore</td>
+<td headers="Estimate" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.1005</td>
+<td headers="Est.Error" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0339</td>
+<td headers="Q2.5" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; white-space: nowrap;" valign="middle" align="center">(0.0338, 0.1660)</td></tr>
+    <tr style="border-style: none;"><td headers="Parameter" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Turbidity</td>
+<td headers="Estimate" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">-0.0784</td>
+<td headers="Est.Error" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0247</td>
+<td headers="Q2.5" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; white-space: nowrap;" valign="middle" align="center">(-0.1270, -0.0295)</td></tr>
+    <tr style="border-style: none;"><td headers="Parameter" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Cyclone_Frequency</td>
+<td headers="Estimate" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">-0.0524</td>
+<td headers="Est.Error" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0260</td>
+<td headers="Q2.5" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; white-space: nowrap;" valign="middle" align="center">(-0.1034, -0.0016)</td></tr>
+    <tr style="border-style: none;"><td headers="Parameter" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Windspeed</td>
+<td headers="Estimate" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">-0.0466</td>
+<td headers="Est.Error" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0214</td>
+<td headers="Q2.5" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; white-space: nowrap;" valign="middle" align="center">(-0.0888, -0.0042)</td></tr>
+    <tr style="border-style: none;"><td headers="Parameter" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">SSTA</td>
+<td headers="Estimate" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">-0.0573</td>
+<td headers="Est.Error" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0267</td>
+<td headers="Q2.5" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; white-space: nowrap;" valign="middle" align="center">(-0.1104, -0.0047)</td></tr>
+    <tr style="border-style: none;"><td headers="Parameter" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">TSA</td>
+<td headers="Estimate" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.1313</td>
+<td headers="Est.Error" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0299</td>
+<td headers="Q2.5" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; white-space: nowrap;" valign="middle" align="center">(0.0725, 0.1917)</td></tr>
+    <tr style="border-style: none;"><td headers="Parameter" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">TSA_DHW</td>
+<td headers="Estimate" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0885</td>
+<td headers="Est.Error" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0232</td>
+<td headers="Q2.5" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; white-space: nowrap;" valign="middle" align="center">(0.0425, 0.1340)</td></tr>
+  </tbody>
+  &#10;  <tfoot class="gt_footnotes" style="border-style: none; color: #333333; background-color: #F2F2F2; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3;" bgcolor="#F2F2F2">
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="4" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>1</sup></span> Parameter estimate</td>
+    </tr>
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="4" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>2</sup></span> Standard Deviation of parameter estimate</td>
+    </tr>
+    <tr style="border-style: none;">
+      <td class="gt_footnote" colspan="4" style="border-style: none; margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px;"><span class="gt_footnote_marks" style="font-size: 75%; vertical-align: 0.4em; position: initial; white-space: nowrap; font-style: italic; font-weight: normal; line-height: 0;"><sup>3</sup></span> 95% Credible Interval of parameter estimate</td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+
+Interpretation:
+
+    * Distance to Shore: A positive coefficient suggests that as the distance from shore   increases, the percentage of coral bleaching also increases. 
+    * Turbidity: The negative coefficient indicates that higher turbidity (murkier water) is associated with a decrease in coral bleaching percentages.  
+    * Windspeed: Higher wind speeds are linked to reduced coral bleaching.  
+    * SSTA (Sea Surface Temperature Anomaly): A slight increase in SSTA correlates with a   decrease in bleaching, though the effect size is small. 
+    * TSA (Tropical Sea Surface Temperature Anomaly): Higher TSA values are associated with increased coral bleaching.  
+    * TSA_DHW (Degree Heating Weeks derived from TSA): Elevated TSA_DHW corresponds to higher bleaching percentages.  
+
+2.  Smoothing Spline and Gaussian Process Hyperparameters: The model
+    incorporates spatial and temporal random effects to account for
+    variability across different locations and times:
+
+    - Spatial Effects (t2(Lat, Lon)): The estimated standard deviations
+      for the spatial components suggest variability in bleaching across
+      different latitudes and longitudes.
+    - Temporal Effects (gp(Date_Year) by City_Town_Name): The Gaussian
+      Process terms capture temporal trends within each city or town,
+      indicating that bleaching patterns change over time differently
+      across locations.
+
+3.  Precision Parameter (phi): The estimated precision parameter (phi)
+    is 8.8059, with a standard error of 0.2647. A higher phi value
+    indicates that the data points are closely clustered around the
+    mean, suggesting less variability in bleaching percentages after
+    accounting for the covariates.

@@ -164,8 +164,22 @@ covDF <- data.frame(
 
 covDF |>
   gt() |>
-  opt_vertical_padding(scale = 0.25) |>
-  tab_caption(caption = md("Table 1: Covariate Descriptions"))
+  tab_style(
+    style = list(
+      cell_fill(color = "#373737"),
+      cell_text(color = "#fff")
+    ),
+    locations = list(
+      cells_column_labels()
+    )
+  ) |>
+  tab_options(
+    column_labels.padding = "10px",
+    table.background.color = "#f2f2f2"
+  ) |>
+  #opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 1: Covariate Descriptions")) |>
+  as_raw_html()
 ```
 
 The Percent Bleaching data exhibits a right-skewed distribution (Figure 1), with a substantial number of observations reporting 0% bleaching.
@@ -222,7 +236,7 @@ spatialMap <- ggplot() +
     y = "Latitude") +
   theme_bw() +
   theme(
-    legend.position = "bottom"
+    #legend.position = "bottom"
   )
 spatialMap
 ```
@@ -262,23 +276,23 @@ yearCityPlot
 
 Before fitting the model, we applied several preprocessing steps:
 
-* **Response Variable Transformation**: Since the Beta regression model requires values strictly in the (0,1) range, we replaced:
-
-+ 0\% bleaching values with 0.001
-
-+ 100\% bleaching values with 0.999
-
+* **Response Variable Transformation**: Since the Beta regression model requires values strictly in the (0,1) range, we replaced: 
+  + 0\% bleaching values with 0.001
+  + 100\% bleaching values with 0.999
 * **Covariate Transformations**:
-
-+ **Yeo-Johnson transformation** was applied to all continuous covariates to reduce skewness.
-
-+ **Centering and scaling** were performed to standardize covariates for better model convergence.
+  + **Yeo-Johnson transformation** was applied to all continuous covariates to reduce skewness.
+  + **Centering and scaling** were performed to standardize covariates for better model convergence.
 
 ## Model Specification
 
 ```{r Model Spec}
 # Final Model
 load(file = "_data/finalMod.RData")
+
+iters <- 4000
+burn <- 2000
+chains <- 4
+sims <- (iters-burn)*chains
 
 # Get priors
 finalModPriors <- get_prior(finalMod)
@@ -360,15 +374,15 @@ where:
 ### Prior Specification
 
 * **Fixed Effects**: 
-+ $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
+  + $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
 * **Gaussian Process (Temporal Trends)**:
-+ $\sigma_c \sim \text{half-Cauchy}(0,2)$
-+ $\rho_c \sim \text{InvGamma}(`r lscalePriorAlpha`, `r lscalePriorBeta`)$ (explicitly defined by `brms`)
+  + $\sigma_c \sim \text{half-Cauchy}(0,2)$
+  + $\rho_c \sim \text{InvGamma}(`r lscalePriorAlpha`, `r lscalePriorBeta`)$ (explicitly defined by `brms`)
 * **Tensor-Product Spline**:
-+ $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
-+ $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in smoothing penalty)
+  + $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
+  + $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in smoothing penalty)
 * **Precision Parameter**: 
-+ $\phi \sim \text{Gamma}(0.1, 0.1)$
+  + $\phi \sim \text{Gamma}(0.1, 0.1)$
 
 This model accounts for both spatial and temporal dependencies, allowing for flexible trend estimation.
 
@@ -408,7 +422,9 @@ fitCompDF |>
     # elpd_diff_loo = "LOO ELPD Difference",
     # se_diff_loo = "SE LOO Difference"
   ) |>
-  fmt_number() |>
+  fmt_number(
+    use_seps = FALSE
+  ) |>
   tab_footnote(
     footnote = "Difference in Expected Log pointwise Predictive Density for a new dataset",
     locations = cells_column_labels(columns = elpd_diff_loo)
@@ -429,17 +445,26 @@ fitCompDF |>
     footnote = "Standard Error of looic",
     locations = cells_column_labels(columns = se_looic)
   ) |>
-  tab_options(
-    footnotes.sep = " "  # Removes default footnote separation lines
-    #footnotes.font.size = px(10),  # Adjusts footnote size
-    #footnotes.padding = px(0)  # Removes spacing between footnotes
-  ) |>
   tab_style(
     style = cell_text(whitespace = "nowrap"),
     locations = list(cells_body(), cells_column_labels())
   ) |>
-  opt_vertical_padding(scale = 0.25) |>
-  tab_caption(caption = md("Table 2: Model Comparison using LOO-CV"))
+  tab_style(
+    style = list(
+      cell_fill(color = "#373737"),
+      cell_text(color = "#fff")
+    ),
+    locations = list(
+      cells_column_labels()
+    )
+  ) |>
+  tab_options(
+    column_labels.padding = "10px",
+    table.background.color = "#f2f2f2"
+  ) |>
+  #opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 2: Model Comparison using LOO-CV")) |>
+  as_raw_html()
 ```
 
 ## Selected Model
@@ -458,16 +483,24 @@ Compared to alternative models, Model 6 provided the best trade-off between fit 
 
 To improve model parsimony and predictive performance, an iterative refinement process was conducted to remove covariates that did not contribute significantly to the model. The refinement process followed these steps:
 
-1. Identify Non-Significant Covariates  
-  + Variables whose 95% credible intervals contained zero were considered weak contributors.
-2. Iterative Variable Removal & Refitting
-  + The least significant covariate was removed from the model. 
-  + The model was then refit without that covariate to assess its impact. 
-3. Evaluate Model Fit via Bayes Factor & MAE
-  + **Bayes Factor (BF) Comparison**: The refined model was compared to the previous iteration using bayes_factor(). If BF > 10, the new model was preferred. 
-  + **Mean Absolute Error** (MAE): The predictive performance was evaluated using the PPD from refined model compared to observed Percent Bleaching to check model improvement/degradation. If MAE improved or remained stable, the new model was retained.
-4. Repeat Until No Further Improvement
-  + This process continued until all remaining covariates contributed meaningfully, ensuring the final model was both interpretable and robust.
+1.  Identify Non-Significant Covariates
+
+    * Variables whose 95% credible intervals contained zero were considered weak contributors.
+
+2.  Iterative Variable Removal & Refitting
+
+    * The least significant covariate was removed from the model. 
+    * The model was then refit without that covariate to assess its impact. 
+
+3.  Evaluate Model Fit via Bayes Factor & MAE
+
+    * **Bayes Factor (BF) Comparison**: The refined model was compared to the previous iteration using `bayes_factor()`. If BF > 10, the new model was preferred. 
+    * **LOOIC**: The reliability of how the refined model generalizes to new data was estimated. If LOOIC was lower, the new model was retained. 
+    * **Mean Absolute Error** (MAE): The predictive performance was evaluated using the PPD from refined model compared to observed Percent Bleaching to check model improvement/degradation. If MAE improved or remained stable, the new model was retained.
+
+4.  Repeat Until No Further Improvement
+
+    * This process continued until all remaining covariates contributed meaningfully, ensuring the final model was both interpretable and robust.
 
 Through this process, unnecessary covariates were systematically removed, leading to a final optimized model that retained only the most relevant predictors while maintaining strong predictive accuracy.
 
@@ -480,6 +513,7 @@ refinementDF |>
     RefinedModel,
     CovariateRemoved,
     BF,
+    LOOIC,
     RefinedMAE
   ) |>
   gt() |>
@@ -492,7 +526,13 @@ refinementDF |>
   sub_missing() |>
   fmt_number(
     columns = BF,
-    decimals = 1
+    decimals = 1,
+    use_seps = FALSE
+  ) |>
+  fmt_number(
+    columns = LOOIC,
+    decimals = 1,
+    use_seps = FALSE
   ) |>
   fmt_number(
     columns = RefinedMAE,
@@ -502,15 +542,29 @@ refinementDF |>
     style = cell_text(whitespace = "nowrap"),
     locations = list(cells_body(), cells_column_labels())
   ) |>
-  opt_vertical_padding(scale = 0.25) |>
-  tab_caption(caption = md("Table 3: Model Refinement using BF and MAE"))
+  tab_style(
+    style = list(
+      cell_fill(color = "#373737"),
+      cell_text(color = "#fff")
+    ),
+    locations = list(
+      cells_column_labels()
+    )
+  ) |>
+  tab_options(
+    column_labels.padding = "10px",
+    table.background.color = "#f2f2f2"
+  ) |>
+  #opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 3: Model Refinement using BF, LOOIC, and MAE")) |>
+  as_raw_html()
 ```
 
 ## Final Model
 
-Through iterative model comparison, Model 10 was selected as the best-performing model, showing improvements over Model 6 in terms of fit and interpretability. This selection process involved removing non-significant covariates one at a time while assessing model performance metrics. Importantly, the smoothing parameters remained unchanged throughout this refinement process, ensuring consistency in spatial and temporal trends. The final model captures essential environmental and climatic predictors, balancing complexity and generalizability.
+Through iterative model comparison, Model 9 was selected as the best-performing model, showing improvements over Model 6 in terms of fit and interpretability. This selection process involved removing non-significant covariates one at a time while assessing model performance metrics. Importantly, the smoothing parameters remained unchanged throughout this refinement process, ensuring consistency in spatial and temporal trends. The final model captures essential environmental and climatic predictors, balancing complexity and generalizability.
 
-Model 10 includes key predictors such as Distance to Shore, Turbidity, Windspeed, Sea Surface Temperature Anomalies (SSTA and TSA), and Degree Heating Weeks derived from TSA (TSA_DHW). These covariates were retained based on their statistical significance and their ecological relevance to coral bleaching dynamics. The refined model structure provides a robust framework for understanding and predicting bleaching patterns, facilitating targeted conservation efforts.
+Model 9 includes key predictors such as Distance to Shore, Turbidity, Cyclone Frequency, Windspeed, Sea Surface Temperature Anomalies (SSTA and TSA), and Degree Heating Weeks derived from TSA (TSA_DHW). These covariates were retained based on their statistical significance and their ecological relevance to coral bleaching dynamics. The refined model structure provides a robust framework for understanding and predicting bleaching patterns, facilitating targeted conservation efforts.
 
 # Goodness of Fit
 
@@ -534,7 +588,7 @@ obsY <- bleachingData$PercentBleachingBounded
 groupCity <- bleachingData$City_Town_Name
 
 # Random draws
-numDraws <- 250
+numDraws <- 400
 set.seed(52) # for reproducibility
 drawsInd <- sample(x = 1:sims, size = numDraws)
 
@@ -551,7 +605,7 @@ fill2PPC <- "#011f4b"
 
 Figure 4 presents an overlay of the posterior predictive distribution (PPD) against the observed bleaching percentages. The solid black line represents the observed data ($y$), while the blue-shaded posterior simulations ($y_{rep}$) provide an indication of model uncertainty. The strong alignment between the observed and predicted densities suggests that the model successfully captures the overall distribution of coral bleaching percentages.
 
-```{r PPC Distribution, fig.align='center', out.width="90%", fig.cap="Figure 4: Posterior Predictive Distribution vs Observed Percent Bleaching from 250 posterior draws"}
+```{r PPC Distribution, fig.align='center', out.width="90%", fig.cap="Figure 4: Posterior Predictive Distribution vs Observed Percent Bleaching from 400 posterior draws"}
 #### Density ----
 set.seed(52) # for reproducibility
 ppcDensPlot <- ppc_dens_overlay(
@@ -570,7 +624,7 @@ ppcDensPlot <- ppc_dens_overlay(
   ) +
   labs(
     #title = "Posterior Predictive Distribution vs Observed Percent Bleaching",
-    subtitle = paste(sims, "Simulations")
+    #subtitle = paste(sims, "Simulations")
   )
 ppcDensPlot
 ```
@@ -589,7 +643,7 @@ Each histogram represents the distribution of these statistics across 8000 poste
 
 Overall, these diagnostics confirm that the final model provides a reasonable approximation of the observed data, supporting its validity for inference and prediction.
 
-```{r PPC Stats, fig.align='center', out.width = "90%", fig.cap = "Figure 5: Posterior Predictive Checks for Distributional Statistics"}
+```{r PPC Stats, fig.align='center', out.width = "90%", fig.cap = "Figure 5: Posterior Predictive Checks for Distributional Statistics with Bayesian Predictive p-values from 8000 Simulations"}
 #### Stats ----
 # Make stat functions
 meanFunc <- function(y){mean(y)}
@@ -647,7 +701,9 @@ ppcMeanPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 
 ##### SD ----
@@ -699,7 +755,9 @@ ppcSDPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 
 ##### Median ----
@@ -751,7 +809,9 @@ ppcMedianPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 
 ##### LCB ----
@@ -803,7 +863,9 @@ ppcLCBPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 
 ##### UCB ----
@@ -855,7 +917,9 @@ ppcUCBPlotGG <- ggplot() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
-    legend.key.spacing.y = unit(5, "points")
+    legend.key.spacing.y = unit(5, "points"),
+    legend.position = "bottom",
+    legend.direction = "horizontal"
   )
 
 #### Combined plot ----
@@ -868,9 +932,10 @@ ppcCombPlot <-
   ) +
   plot_annotation(
     #title = "Posterior Predictive Checks for Distributional Statistics",
-    subtitle = paste("Bayesian predictive p-values for", sims, "Simulations"),
+    #subtitle = paste("Bayesian predictive p-values for", sims, "Simulations"),
     theme = theme(
-      legend.position = "bottom"
+      legend.position = "bottom",
+      legend.direction = "horizontal"
     )
   )
 ppcCombPlot
@@ -882,25 +947,112 @@ The final model's results offer insights into the factors influencing coral blea
 
 ## Variable Importance
 
-1. Parameter Estimates  
+1.  Parameter Estimates  
 The table below presents the estimated coefficients, standard errors, and 95% credible intervals for each covariate:
 
-Interpretation: 
+```{r Model Results Table}
+fixedEff <- fixef(finalMod) |>
+  data.frame() |>
+  mutate(
+    p_val = dnorm(Estimate/Est.Error)
+  ) |>
+  mutate(
+    across(everything(), function(x){round(x, 4)})
+  ) |>
+  mutate(
+    Sig = ifelse(p_val < 0.01, "***",
+                 ifelse(p_val < 0.05, "**",
+                        ifelse(p_val < 0.1, "*", "")))
+  )
 
-* Distance to Shore: A positive coefficient suggests that as the distance from shore increases, the percentage of coral bleaching also increases. 
-* Turbidity: The negative coefficient indicates that higher turbidity (murkier water) is associated with a decrease in coral bleaching percentages.  
-* Windspeed: Higher wind speeds are linked to reduced coral bleaching.  
-* SSTA (Sea Surface Temperature Anomaly): A slight increase in SSTA correlates with a decrease in bleaching, though the effect size is small. 
-* TSA (Tropical Sea Surface Temperature Anomaly): Higher TSA values are associated with increased coral bleaching.  
-* TSA_DHW (Degree Heating Weeks derived from TSA): Elevated TSA_DHW corresponds to higher bleaching percentages.  
+# Render Table
+fixedEff |>
+  rownames_to_column(var = "Parameter") |>
+  select(
+    Parameter,
+    Estimate,
+    Est.Error,
+    Q2.5,
+    Q97.5
+  ) |>
+  filter(str_detect(Parameter, "t2", negate = TRUE)) |>
+  gt() |>
+  cols_label(
+    Estimate = "{{:beta:}}",
+    Est.Error = "SD({{:beta:}})"
+  ) |>
+  cols_merge(
+    columns = c(Q2.5, Q97.5), pattern = "({1}, {2})"
+  ) |>
+  cols_label(
+    Q2.5 = "95% CI"
+  ) |>
+  cols_align(
+    columns = Q2.5,
+    align = "center"
+  ) |>
+  tab_footnote(
+    footnote = "Parameter estimate",
+    locations = cells_column_labels(columns = Estimate)
+  ) |>
+  tab_footnote(
+    footnote = "Standard Deviation of parameter estimate",
+    locations = cells_column_labels(columns = Est.Error)
+  ) |>
+  tab_footnote(
+    footnote = "95% Credible Interval of parameter estimate",
+    locations = cells_column_labels(columns = Q2.5)
+  ) |>
+  tab_style(
+    style = cell_text(whitespace = "nowrap"),
+    locations = list(cells_body(), cells_column_labels())
+  ) |>
+  tab_style(
+    style = list(
+      cell_text(
+        align = "center"
+      )
+    ),
+    locations = list(
+      cells_column_labels(
+        columns = c(Estimate, Est.Error)
+      )
+    )
+  ) |>
+  tab_style(
+    style = list(
+      cell_fill(color = "#373737"),
+      cell_text(color = "#fff")
+    ),
+    locations = list(
+      cells_column_labels()
+    )
+  ) |>
+  tab_options(
+    column_labels.padding = "10px",
+    table.background.color = "#f2f2f2"
+  ) |>
+  #opt_vertical_padding(scale = 0.25) |>
+  tab_caption(caption = md("Table 4: Parameter Estimates")) |> 
+  as_raw_html() |> I()
+```
 
-2. Smoothing Spline and Gaussian Process Hyperparameters: 
+  \noindent Interpretation: 
+
+    * Distance to Shore: A positive coefficient suggests that as the distance from shore   increases, the percentage of coral bleaching also increases. 
+    * Turbidity: The negative coefficient indicates that higher turbidity (murkier water) is associated with a decrease in coral bleaching percentages.  
+    * Windspeed: Higher wind speeds are linked to reduced coral bleaching.  
+    * SSTA (Sea Surface Temperature Anomaly): A slight increase in SSTA correlates with a   decrease in bleaching, though the effect size is small. 
+    * TSA (Tropical Sea Surface Temperature Anomaly): Higher TSA values are associated with increased coral bleaching.  
+    * TSA_DHW (Degree Heating Weeks derived from TSA): Elevated TSA_DHW corresponds to higher bleaching percentages.  
+
+2.  Smoothing Spline and Gaussian Process Hyperparameters: 
 The model incorporates spatial and temporal random effects to account for variability across different locations and times:  
 
-* Spatial Effects (t2(Lat, Lon)): The estimated standard deviations for the spatial components suggest variability in bleaching across different latitudes and longitudes.
-* Temporal Effects (gp(Date_Year) by City_Town_Name): The Gaussian Process terms capture temporal trends within each city or town, indicating that bleaching patterns change over time differently across locations.  
+    * Spatial Effects (t2(Lat, Lon)): The estimated standard deviations for the spatial components suggest variability in bleaching across different latitudes and longitudes.
+    * Temporal Effects (gp(Date_Year) by City_Town_Name): The Gaussian Process terms capture temporal trends within each city or town, indicating that bleaching patterns change over time differently across locations.  
 
-3. Precision Parameter (phi):
+3.  Precision Parameter (phi):
 The estimated precision parameter (phi) is 8.8059, with a standard error of 0.2647. A higher phi value indicates that the data points are closely clustered around the mean, suggesting less variability in bleaching percentages after accounting for the covariates.
 
 
