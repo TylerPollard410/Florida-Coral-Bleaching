@@ -2149,6 +2149,7 @@ check_convergence(finalMod)
 
 ### PPC ----
 # Makes draws for plots
+finalMod <- fitMod6B
 set.seed(52) # for reproducibility
 posteriorFinalMod <- posterior_predict(finalMod)
 
@@ -2160,7 +2161,7 @@ obsY <- bleachingData$PercentBleachingBounded
 groupCity <- bleachingData$City_Town_Name
 
 # Random draws
-numDraws <- 1000
+numDraws <- 400
 set.seed(52) # for reproducibility
 drawsInd <- sample(x = 1:sims, size = numDraws)
 

@@ -68,6 +68,9 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
     - [Aggregated Trends](#aggregated-trends)
   - [Spatial Effects](#spatial-effects)
     - [Key Findings:](#key-findings-1)
+- [Discussion](#discussion)
+  - [Limitations](#limitations)
+  - [Future Directions](#future-directions)
 
 # Motivation
 
@@ -714,8 +717,7 @@ of key predictors is as follows:
 ## Temporal Effects
 
 To evaluate how bleaching trends evolve over time, we analyze posterior
-estimates of the temporal effect from the Gaussian Process (GP)
-component.
+estimates of the temporal effect from the GP component.
 
 ### County-Specific Trends
 
@@ -809,3 +811,68 @@ Figure 8: Spatial Effects
 - The spatial gradient suggests that conservation efforts should
   prioritize areas with high predicted bleaching risk, particularly in
   the southeastern coastal zone.
+
+# Discussion
+
+This study applied a spatiotemporal modeling approach to assess coral
+bleaching trends across Florida’s reef systems, capturing both
+geographic variation and temporal changes. The results demonstrate that
+prolonged temperature anomalies (**TSA** and **TSA_DHW**) are the
+strongest predictors of bleaching, with additional associations observed
+for turbidity, cyclone frequency, and wind speed. While thermal stress
+is well-documented as a primary driver of bleaching, this analysis
+suggests that local environmental conditions, such as water quality and
+storm activity, may influence bleaching severity in complex ways.
+
+By incorporating both spatial and temporal variation, the model
+identifies region-specific and time-dependent patterns of bleaching
+risk, reinforcing the importance of localized conservation strategies.
+These findings emphasize the need for continued monitoring and adaptive
+management that considers both large-scale climate stressors and
+site-specific environmental factors.
+
+## Limitations
+
+While this study provides valuable insights, several limitations should
+be considered:
+
+- **Data Constraints**: The dataset spans from 2006 to 2016, preventing
+  assessment of more recent bleaching trends.
+
+- **Model Assumptions**: The Bayesian Beta regression model imposes
+  distributional constraints that may not fully capture extreme
+  bleaching events.
+
+- **Unmeasured Factors**: Variables such as nutrient levels, local
+  anthropogenic impacts, and additional reef health indicators were not
+  included but may play a role in bleaching dynamics.
+
+## Future Directions
+
+While this study leveraged the most recent available FRRP data
+(2006–2016), future research could benefit from new data collection to
+assess whether the observed trends persist under current climate
+conditions. Additionally, further exploration of existing datasets could
+provide deeper insights into bleaching patterns by incorporating
+complementary environmental variables or alternative modeling
+approaches.
+
+Potential areas for methodological refinement include:
+
+- **Investigating Local Influences**: Further analysis could assess
+  whether turbidity consistently mitigates bleaching severity and how
+  storm-induced ocean mixing interacts with thermal stress.
+
+- **Enhancing Modeling Approaches**: Exploring alternative statistical
+  frameworks, such as hierarchical or machine learning-based models, may
+  improve predictive accuracy and better capture nonlinear
+  relationships.
+
+- **Integrating Additional Environmental Variables**: If future datasets
+  allow, incorporating nutrient levels, pollution metrics, or additional
+  reef health indicators could refine understanding of bleaching
+  dynamics.
+
+By focusing on these methodological improvements, future research can
+build upon this study’s findings to further improve bleaching risk
+assessments and conservation planning.

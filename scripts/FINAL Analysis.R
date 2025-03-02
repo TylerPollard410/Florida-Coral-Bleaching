@@ -1016,6 +1016,7 @@ loo3 <- loo(fitMod3)
 loo4 <- loo(fitMod4)
 loo5 <- loo(fitMod5)
 loo6 <- loo(fitMod6)
+loo6B <- loo(fitMod6B)
 
 looList <- list(
   "Model 1" = loo1,
@@ -1024,6 +1025,7 @@ looList <- list(
   "Model 4" = loo4,
   "Model 5" = loo5,
   "Model 6" = loo6
+  #"Model 6B" = loo6B
 )
 
 ## WAIC ----
