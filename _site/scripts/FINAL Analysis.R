@@ -853,6 +853,153 @@ system.time(
 save(fitMod6, file = "_data/models/fitMod6.RData")
 get_prior(fitMod6)
 
+### Model 6B -------
+formulaMod6B <- 
+  bf(PercentBleaching ~ 
+       gp(Date_Year, by = City_Town_Name) +
+       t2(Lat, Lon) +
+       Distance_to_Shore +
+       Exposure +
+       Turbidity +
+       Cyclone_Frequency +
+       Depth_m +
+       Windspeed +
+       ClimSST +
+       SSTA +
+       #SSTA_DHW +
+       TSA +
+       TSA_DHW
+  ) + brmsfamily(family = "zero_one_inflated_beta", link = "logit")
+
+default_prior(formulaMod6B, data = procData2)
+
+priorsMod6B <- c(
+  prior(normal(0,5), class = "b"),  # Fixed effects
+  prior(cauchy(0,2), class = "sdgp"),  # GP output variance
+  #prior(inv_gamma(4,1), class = "lscale"),  # GP length scale
+  prior(cauchy(0,2), class = "sds"),  # Tensor spline smoothness
+  prior(gamma(0.1, 0.1), class = "phi")  # Beta regression precision
+)
+
+system.time(
+  fitMod6B <- brm(
+    formulaMod6B,
+    data = procData2,
+    prior = priorsMod6B,
+    save_pars = save_pars(all = TRUE), 
+    chains = chains,
+    iter = iters,
+    cores = parallel::detectCores(),
+    seed = 52,
+    warmup = burn,
+    init = 0,
+    normalize = TRUE,
+    control = list(adapt_delta = 0.95)
+    #backend = "cmdstanr"
+  )
+)
+
+save(fitMod6B, file = "_data/models/fitMod6B.RData")
+get_prior(fitMod6B)
+
+### Model 7 -------
+formulaMod7 <- 
+  bf(PercentBleachingBounded ~ 
+       gp(Date_Year) +
+       t2(Lat, Lon, by = Date_Year) +
+       Distance_to_Shore +
+       Exposure +
+       Turbidity +
+       Cyclone_Frequency +
+       Depth_m +
+       Windspeed +
+       ClimSST +
+       SSTA +
+       #SSTA_DHW +
+       TSA +
+       TSA_DHW
+  ) + brmsfamily(family = "Beta", link = "logit")
+
+default_prior(formulaMod7, data = procData2)
+
+priorsMod7 <- c(
+  prior(normal(0,5), class = "b"),  # Fixed effects
+  prior(cauchy(0,2), class = "sdgp"),  # GP output variance
+  #prior(inv_gamma(4,1), class = "lscale"),  # GP length scale
+  prior(cauchy(0,2), class = "sds"),  # Tensor spline smoothness
+  prior(gamma(0.1, 0.1), class = "phi")  # Beta regression precision
+)
+
+system.time(
+  fitMod7 <- brm(
+    formulaMod7,
+    data = procData2,
+    prior = priorsMod7,
+    save_pars = save_pars(all = TRUE), 
+    chains = chains,
+    iter = iters,
+    cores = parallel::detectCores(),
+    seed = 52,
+    warmup = burn,
+    init = 0,
+    normalize = TRUE,
+    control = list(adapt_delta = 0.95)
+    #backend = "cmdstanr"
+  )
+)
+
+save(fitMod7, file = "_data/models/fitMod7.RData")
+get_prior(fitMod7)
+
+### Model 8 -------
+formulaMod8 <- 
+  bf(PercentBleachingBounded ~ 
+       gp(Date_Year, by = City_Town_Name) +
+       t2(Lat, Lon, by = Date_Year) +
+       Distance_to_Shore +
+       Exposure +
+       Turbidity +
+       Cyclone_Frequency +
+       Depth_m +
+       Windspeed +
+       ClimSST +
+       SSTA +
+       #SSTA_DHW +
+       TSA +
+       TSA_DHW
+  ) + brmsfamily(family = "Beta", link = "logit")
+
+default_prior(formulaMod8, data = procData2)
+
+priorsMod8 <- c(
+  prior(normal(0,5), class = "b"),  # Fixed effects
+  prior(cauchy(0,2), class = "sdgp"),  # GP output variance
+  #prior(inv_gamma(4,1), class = "lscale"),  # GP length scale
+  prior(cauchy(0,2), class = "sds"),  # Tensor spline smoothness
+  prior(gamma(0.1, 0.1), class = "phi")  # Beta regression precision
+)
+
+system.time(
+  fitMod8 <- brm(
+    formulaMod8,
+    data = procData2,
+    prior = priorsMod8,
+    save_pars = save_pars(all = TRUE), 
+    chains = chains,
+    iter = iters,
+    cores = parallel::detectCores(),
+    seed = 52,
+    warmup = burn,
+    init = 0,
+    normalize = TRUE,
+    control = list(adapt_delta = 0.95)
+    #backend = "cmdstanr"
+  )
+)
+
+save(fitMod8, file = "_data/models/fitMod8.RData")
+get_prior(fitMod8)
+
 # 3. Compare Models ----
 ## Load Models ----
 # load(file = "_data/models/Model1.RData")
@@ -1464,7 +1611,8 @@ finalModPriors <- get_prior(finalMod)
 gpPrior <- finalModPriors |>
   filter(class == "lscale", source == "default") |>
   pull(prior) |>
-  unique()
+  unique() |>
+  str_subset(pattern = "inv_gamma")
 lscalePriorAlpha <- as.numeric(str_extract(gpPrior, "(?<=inv_gamma\\()[^,]+"))
 lscalePriorBeta <- as.numeric(str_extract(gpPrior, "(?<=, )[^)]+"))
 
@@ -1993,78 +2141,139 @@ fixedEff |>
 
 
 ## Conditional Effects ----
-fixef(finalMod)
+### All ----
 condEffData <- conditional_effects(
   finalMod, 
-  effects = c(
-    "Date_Year",
-    "City_Town_Name",
-    "Date_Year:City_Town_Name"
-  ),
   re_formula = NULL,
   method = "posterior_predict",
   robust = FALSE
 )
 condEffPlot <- plot(
-  condEffData$`Date_Year:City_Town_Name`,
+  condEffData,
   ask = FALSE,
   points = TRUE,
-  plot = FALSE,
-  facet_args = "City_Town_Name"
+  plot = FALSE
+  #line_args = list(se = FALSE)
 )
-condEffPlot
+condEffPlot$`Date_Year:City_Town_Name`
 
+### Date_Year ----
+condEffCondsTemporal <- make_conditions(
+  x = data.frame(
+    City_Town_Name = unique(bleachingData$City_Town_Name)
+  ), 
+  vars = "City_Town_Name", 
+  incl_vars = FALSE
+)
 
-condEffData2 <- conditional_effects(
-  finalMod, 
-  effects = c(
-    "Date_Year:City_Town_Name"
-  ),
-  re_formula = NULL,
-  method = "predict",
-  robust = FALSE
-)
-condEffPlot2 <- plot(
-  condEffData2,
-  ask = FALSE,
-  points = TRUE,
-  plot = FALSE,
-  facet_args = list(vars(City_Town_Name))
-)
-condEffPlot2
-
-condEffConds3 <- data.frame(
-  City_Town_Name = unique(bleachingData$City_Town_Name)
-)
-condEffConds3 <- make_conditions(condEffConds3, 
-                                 vars = "City_Town_Name", 
-                                 incl_vars = FALSE)
-condEffData3 <- conditional_effects(
+set.seed(52)
+condEffDataTemporal <- conditional_effects(
   finalMod, 
   effects = c(
     "Date_Year"
   ),
-  conditions = condEffConds3,
+  conditions = condEffCondsTemporal,
   re_formula = NULL,
-  method = "predict",
+  method = "posterior_predict",
   robust = FALSE
 )
 
-condEffPlot3 <- plot(
-  condEffData3,
+save(condEffDataTemporal, file = "_data/condEffDataTemporal.RData")
+
+condEffPlotTemporal <- plot(
+  condEffDataTemporal,
   ask = FALSE,
   points = TRUE,
-  plot = FALSE
+  plot = FALSE, 
+  line_args = list(se = FALSE)
 )
-condEffPlot3
+condEffPlotTemporal
+
+#### ggplot ----
+condEffDataTemporal <- condEffDataTemporal$Date_Year
+
+##### Overlay ----
+condEffDataTemporalGGoverlay <-
+  ggplot() +
+  # geom_point(
+  #   data = bleachingData,
+  #   aes(x = Date_Year, y = PercentBleachingBounded, 
+  #       color = City_Town_Name)
+  # ) +
+  geom_line(
+    data = condEffDataTemporal2,
+    aes(x = Date_Year, y = estimate__, 
+        color = City_Town_Name),
+    linewidth = 1
+  ) +
+  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1), 
+                     labels = scales::label_percent()) +
+  scale_x_continuous(breaks = unique(bleachingData$Date_Year)) +
+  labs(
+    x = "Date Year",
+    y = "Percent Bleaching"
+  ) +
+  theme_bw() +
+  theme(
+    panel.grid.minor.x = element_blank()
+  )
+
+condEffDataTemporalGGoverlay
+
+##### Facet ----
+condEffDataTemporalGGfacet <-
+  ggplot() +
+  geom_point(
+    data = bleachingData,
+    aes(x = Date_Year, y = PercentBleachingBounded),
+    #color = City_Town_Name)
+    alpha = 0.2
+  ) +
+  geom_ribbon(
+    data = condEffDataTemporal2,
+    aes(x = Date_Year, ymin = lower__, ymax = upper__,
+        fill = City_Town_Name), 
+    alpha = 0.3
+  ) +
+  geom_line(
+    data = condEffDataTemporal2,
+    aes(x = Date_Year, y = estimate__, 
+        color = City_Town_Name),
+    linewidth = 1.5
+  ) +
+  facet_wrap(vars(City_Town_Name)) +
+  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1), 
+                     labels = scales::label_percent()) +
+  scale_x_continuous(limits = range(bleachingData$Date_Year),
+                     breaks = seq(min(bleachingData$Date_Year),
+                                  max(bleachingData$Date_Year),
+                                  2)
+  ) +
+  labs(
+    x = "Date Year",
+    y = "Percent Bleaching"
+  ) +
+  theme_bw() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    legend.position = "inside",
+    legend.position.inside = c(0.8, 0.2),
+    legend.justification = c(0.25, 0.5)
+  )
+
+condEffDataTemporalGGfacet
 
 ## Conditional Smooths ----
+### Spatial ----
+set.seed(52)
 condSmoothData <- conditional_smooths(
   finalMod, 
   re_formula = NULL,
   method = "posterior_predict",
   robust = FALSE
 )
+save(condSmoothData, file = "_data/condSmoothData.RData")
+
 condSmoothPlot <- plot(
   condSmoothData,
   ask = FALSE,
@@ -2074,6 +2283,36 @@ condSmoothPlot <- plot(
 )
 condSmoothPlot
 
+#### ggplot ----
+condSmoothData2 <- condSmoothData$`mu: t2(Lon,Lat`
+condLonRange <- range(condSmoothData2$Lon)
+condLatRange <- range(condSmoothData2$Lat)
+
+county_coordinates <- map_data("county") 
+condSmoothPlotSpatialGG <- ggplot() +
+  geom_raster(
+    data = condSmoothData2,
+    aes(x = Lon, y = Lat, fill = estimate__)
+  ) +
+  # geom_point(
+  #   data = bleachingData,
+  #   aes(x = Lon, y = Lat,
+  #       color = PercentBleaching),
+  #   size = 0.25, alpha = 0.1
+  # ) +
+  geom_map(
+    data = county_coordinates, map = county_coordinates,
+    aes(x = long, y = lat, map_id = region)
+  ) +
+  scale_fill_gradientn(name = "Spatial Estimate",
+                       colors = viridis::viridis(6)) +
+  # scale_color_gradientn(name = "Spatial Estimate",
+  #                       colors = viridis::viridis(6)) +
+  #scale_color_continuous(low = "green", high = "red") +
+  xlim(condLonRange) +
+  ylim(condLatRange) +
+  theme_bw()
+condSmoothPlotSpatialGG  
 
 
 

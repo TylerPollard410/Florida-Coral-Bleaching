@@ -2080,6 +2080,7 @@ sims <- (iters-burn)*chains
 formulaModfinal <- 
   bf(PercentBleachingBounded ~ 
        gp(Date_Year, by = City_Town_Name) +
+       #t2(Lat, Lon) +
        t2(Lat, Lon) +
        Distance_to_Shore +
        #Exposure +

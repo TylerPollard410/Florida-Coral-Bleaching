@@ -137,6 +137,8 @@ Selection</a></li>
   <li><a href="#model-results">Model Results</a>
     <ul>
       <li><a href="#variable-importance">Variable Importance</a></li>
+      <li><a href="#temporal-effects">Temporal Effects</a></li>
+      <li><a href="#spatial-effects">Spatial Effects</a></li>
     </ul>
   </li>
 </ul>
@@ -172,7 +174,7 @@ the proportion of coral affected in each transect. Below is a list of
 key environmental and geographic covariates that may contribute to
 bleaching events:</p>
 
-<div id="mwdxrmjvny" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="rhhwnwxumd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
   <caption><span class="gt_from_md">Table 1: Covariate Descriptions</span></caption>
   <thead style="border-style: none;">
@@ -289,7 +291,7 @@ for better model convergence.</li>
 
 <h2 id="model-specification">Model Specification</h2>
 
-<p>To model the proportion of coral bleaching $Y_i$ for $i = 1, …, 2835$,
+<p>To model the proportion of coral bleaching $Y_i$ for $i = 1, …, 2394$,
 we use a <strong>Bayesian Beta regression</strong> with a <strong>logit link function</strong>:</p>
 
 \[Y_i \sim \text{Beta}(\mu_i \phi, (1-\mu_i) \phi)\]
@@ -303,11 +305,11 @@ and defined as:</p>
 $$
 \begin{aligned}
 \textbf{Model 1}: \text{logit}(\mu_i) &amp;= \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 2}: \text{logit}(\mu_i) &amp;= \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 3}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 4}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 5}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 6}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 2}: \text{logit}(\mu_i) &amp;= \text{Date_Year}_i\beta_1 + g(\text{Lat}, \text{Lon}) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 3}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 4}: \text{logit}(\mu_i) &amp;= f(\text{Date_Year}) + g(\text{Lat}, \text{Lon}) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 5}: \text{logit}(\mu_i) &amp;= f_{\text{City_Town_Name}}(\text{Date_Year}) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 6}: \text{logit}(\mu_i) &amp;= f_{\text{City_Town_Name}}(\text{Date_Year}) + g(\text{Lat}, \text{Lon}) + \sum_{p} X_{ip}\beta_p \\
 \end{aligned}
 $$
 
@@ -320,7 +322,7 @@ $$
 <div style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;width:auto;">
 
 $$
-f(\text{Date_Year}_i, \text{City_Town_Name}_i) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\ 
+f_{\text{City_Town_Name}}(\text{Date_Year}) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\ 
 $$
 
 </div>
@@ -333,7 +335,7 @@ $$
 
 <ul>
   <li>$t_i, t_j$ as observed <code class="language-plaintext highlighter-rouge">Date_Year</code> values.</li>
-  <li>$c_i$ representing the city (<code class="language-plaintext highlighter-rouge">City_Town_Name</code>), where each city has a
+  <li>$c$ representing the city (<code class="language-plaintext highlighter-rouge">City_Town_Name</code>), where each city has a
 separate GP.</li>
   <li>$k_c(t_i, t_j)$ as the covariance function, using an
 exponentiated-quadratic (squared exponential) kernel.</li>
@@ -344,7 +346,7 @@ city $c$.</li>
 
 <h3 id="tensor-product-spline-for-spatial-variation">Tensor-Product Spline for Spatial Variation</h3>
 
-\[g(\text{Lat}_i, \text{Lon}_i) = \sum_{k_1} \sum_{k_2} \beta_{k_1 k_2} B_{k_1}(\text{Lat}) B_{k_2}(\text{Lon})\]
+\[g(\text{Lat}, \text{Lon}) = \sum_{k_1} \sum_{k_2} \beta_{k_1 k_2} B_{k_1}(\text{Lat}) B_{k_2}(\text{Lon})\]
 
 <p>where:</p>
 
@@ -378,8 +380,8 @@ which regularizes the estimated coefficients.</li>
   <li><strong>Gaussian Process (Temporal Trends)</strong>:
     <ul>
       <li>$\sigma_c \sim \text{half-Cauchy}(0,2)$</li>
-      <li>$\rho_c \sim \text{InvGamma}(NA, 4.308447, NA, 0.957567)$
-(explicitly defined by <code class="language-plaintext highlighter-rouge">brms</code>)</li>
+      <li>$\rho_c \sim \text{InvGamma}(4.308447, 0.957567)$ (explicitly
+defined by <code class="language-plaintext highlighter-rouge">brms</code>)</li>
     </ul>
   </li>
   <li><strong>Tensor-Product Spline</strong>:
@@ -416,7 +418,7 @@ effects or a smooth spatial term.</li>
 <strong>Leave-One-Out Cross-Validation (LOO-CV)</strong>, ensuring it provided the
 best balance between fit and complexity.</p>
 
-<div id="gsavkceuoy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="bwaolnqarf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
   <caption><span class="gt_from_md">Table 2: Model Comparison using LOO-CV</span></caption>
   <thead style="border-style: none;">
@@ -587,445 +589,50 @@ robust.</li>
 removed, leading to a final optimized model that retained only the most
 relevant predictors while maintaining strong predictive accuracy.</p>
 
-<div id="uvulhzfmyo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#uvulhzfmyo table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-&#10;#uvulhzfmyo thead, #uvulhzfmyo tbody, #uvulhzfmyo tfoot, #uvulhzfmyo tr, #uvulhzfmyo td, #uvulhzfmyo th {
-  border-style: none;
-}
-&#10;#uvulhzfmyo p {
-  margin: 0;
-  padding: 0;
-}
-&#10;#uvulhzfmyo .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #F2F2F2;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-&#10;#uvulhzfmyo .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #F2F2F2;
-  border-bottom-width: 0;
-}
-&#10;#uvulhzfmyo .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #F2F2F2;
-  border-top-width: 0;
-}
-&#10;#uvulhzfmyo .gt_heading {
-  background-color: #F2F2F2;
-  text-align: center;
-  border-bottom-color: #F2F2F2;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_col_heading {
-  color: #333333;
-  background-color: #F2F2F2;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 10px;
-  padding-bottom: 11px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-&#10;#uvulhzfmyo .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #F2F2F2;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-&#10;#uvulhzfmyo .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-&#10;#uvulhzfmyo .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-&#10;#uvulhzfmyo .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-&#10;#uvulhzfmyo .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-&#10;#uvulhzfmyo .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #F2F2F2;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-&#10;#uvulhzfmyo .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #F2F2F2;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-&#10;#uvulhzfmyo .gt_from_md > :first-child {
-  margin-top: 0;
-}
-&#10;#uvulhzfmyo .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-&#10;#uvulhzfmyo .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-&#10;#uvulhzfmyo .gt_stub {
-  color: #333333;
-  background-color: #F2F2F2;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#uvulhzfmyo .gt_stub_row_group {
-  color: #333333;
-  background-color: #F2F2F2;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-&#10;#uvulhzfmyo .gt_row_group_first td {
-  border-top-width: 2px;
-}
-&#10;#uvulhzfmyo .gt_row_group_first th {
-  border-top-width: 2px;
-}
-&#10;#uvulhzfmyo .gt_summary_row {
-  color: #333333;
-  background-color: #F2F2F2;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#uvulhzfmyo .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-&#10;#uvulhzfmyo .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_grand_summary_row {
-  color: #333333;
-  background-color: #F2F2F2;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#uvulhzfmyo .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-&#10;#uvulhzfmyo .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_footnotes {
-  color: #333333;
-  background-color: #F2F2F2;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#uvulhzfmyo .gt_sourcenotes {
-  color: #333333;
-  background-color: #F2F2F2;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-&#10;#uvulhzfmyo .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-&#10;#uvulhzfmyo .gt_left {
-  text-align: left;
-}
-&#10;#uvulhzfmyo .gt_center {
-  text-align: center;
-}
-&#10;#uvulhzfmyo .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-&#10;#uvulhzfmyo .gt_font_normal {
-  font-weight: normal;
-}
-&#10;#uvulhzfmyo .gt_font_bold {
-  font-weight: bold;
-}
-&#10;#uvulhzfmyo .gt_font_italic {
-  font-style: italic;
-}
-&#10;#uvulhzfmyo .gt_super {
-  font-size: 65%;
-}
-&#10;#uvulhzfmyo .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-&#10;#uvulhzfmyo .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-&#10;#uvulhzfmyo .gt_indent_1 {
-  text-indent: 5px;
-}
-&#10;#uvulhzfmyo .gt_indent_2 {
-  text-indent: 10px;
-}
-&#10;#uvulhzfmyo .gt_indent_3 {
-  text-indent: 15px;
-}
-&#10;#uvulhzfmyo .gt_indent_4 {
-  text-indent: 20px;
-}
-&#10;#uvulhzfmyo .gt_indent_5 {
-  text-indent: 25px;
-}
-&#10;#uvulhzfmyo .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-&#10;#uvulhzfmyo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<div id="tsdvwbgkhc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+  &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
   <caption><span class="gt_from_md">Table 3: Model Refinement using BF, LOOIC, and MAE</span></caption>
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="PriorModel">Prior Model</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="RefinedModel">Refined Model</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="CovariateRemoved">Covariate Removed</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="BF">BF</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="LOOIC">LOOIC</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="RefinedMAE">MAE</th>
+  <thead style="border-style: none;">
+    <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="PriorModel" bgcolor="#373737" valign="bottom" align="left">Prior Model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="RefinedModel" bgcolor="#373737" valign="bottom" align="left">Refined Model</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="CovariateRemoved" bgcolor="#373737" valign="bottom" align="left">Covariate Removed</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="BF" bgcolor="#373737" valign="bottom" align="right">BF</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="LOOIC" bgcolor="#373737" valign="bottom" align="right">LOOIC</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="RefinedMAE" bgcolor="#373737" valign="bottom" align="right">MAE</th>
     </tr>
   </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">—</td>
-<td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 6</td>
-<td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">—</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">—</td>
-<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5714.0</td>
-<td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0758</td></tr>
-    <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">Model 6</td>
-<td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 7</td>
-<td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">ClimSST</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">92.0</td>
-<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5714.2</td>
-<td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0759</td></tr>
-    <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">Model 7</td>
-<td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 8</td>
-<td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">Exposure</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">89.4</td>
-<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5714.3</td>
-<td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0759</td></tr>
-    <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">Model 8</td>
-<td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 9</td>
-<td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">Depth_m</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">5439.5</td>
-<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5716.0</td>
-<td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0758</td></tr>
-    <tr><td headers="PriorModel" class="gt_row gt_left" style="white-space: nowrap;">Model 9</td>
-<td headers="RefinedModel" class="gt_row gt_left" style="white-space: nowrap;">Model 10</td>
-<td headers="CovariateRemoved" class="gt_row gt_left" style="white-space: nowrap;">Cyclone_Frequency</td>
-<td headers="BF" class="gt_row gt_right" style="white-space: nowrap;">14.1</td>
-<td headers="LOOIC" class="gt_row gt_right" style="white-space: nowrap;">−5714.1</td>
-<td headers="RefinedMAE" class="gt_row gt_right" style="white-space: nowrap;">0.0760</td></tr>
+  <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
+    <tr style="border-style: none;"><td headers="PriorModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">—</td>
+<td headers="RefinedModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 6</td>
+<td headers="CovariateRemoved" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">—</td>
+<td headers="BF" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">—</td>
+<td headers="LOOIC" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5714.0</td>
+<td headers="RefinedMAE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0758</td></tr>
+    <tr style="border-style: none;"><td headers="PriorModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 6</td>
+<td headers="RefinedModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 7</td>
+<td headers="CovariateRemoved" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">ClimSST</td>
+<td headers="BF" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">92.0</td>
+<td headers="LOOIC" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5714.2</td>
+<td headers="RefinedMAE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0759</td></tr>
+    <tr style="border-style: none;"><td headers="PriorModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 7</td>
+<td headers="RefinedModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 8</td>
+<td headers="CovariateRemoved" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Exposure</td>
+<td headers="BF" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">89.4</td>
+<td headers="LOOIC" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5714.3</td>
+<td headers="RefinedMAE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0759</td></tr>
+    <tr style="border-style: none;"><td headers="PriorModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 8</td>
+<td headers="RefinedModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 9</td>
+<td headers="CovariateRemoved" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Depth_m</td>
+<td headers="BF" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">5439.5</td>
+<td headers="LOOIC" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5716.0</td>
+<td headers="RefinedMAE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0758</td></tr>
+    <tr style="border-style: none;"><td headers="PriorModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 9</td>
+<td headers="RefinedModel" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Model 10</td>
+<td headers="CovariateRemoved" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; white-space: nowrap;" valign="middle" align="left">Cyclone_Frequency</td>
+<td headers="BF" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">14.1</td>
+<td headers="LOOIC" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">−5714.1</td>
+<td headers="RefinedMAE" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap;" valign="middle" align="right">0.0760</td></tr>
   </tbody>
   &#10;  
 </table>
@@ -1123,16 +730,7 @@ Bayesian Predictive p-values from 8000 Simulations
 
 <h1 id="model-results">Model Results</h1>
 
-<p>The final model’s results offer insights into the factors influencing
-coral bleaching percentages.</p>
-
 <h2 id="variable-importance">Variable Importance</h2>
-
-<ol>
-  <li>Parameter Estimates<br />
-The table below presents the estimated coefficients, standard
-errors, and 95% credible intervals for each covariate:</li>
-</ol>
 
 <div id="rssxenwcqu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
@@ -1193,40 +791,27 @@ errors, and 95% credible intervals for each covariate:</li>
 </table>
 </div>
 
-<p>Interpretation:</p>
+<h2 id="temporal-effects">Temporal Effects</h2>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>* Distance to Shore: A positive coefficient suggests that as the distance from shore   increases, the percentage of coral bleaching also increases. 
-* Turbidity: The negative coefficient indicates that higher turbidity (murkier water) is associated with a decrease in coral bleaching percentages.  
-* Windspeed: Higher wind speeds are linked to reduced coral bleaching.  
-* SSTA (Sea Surface Temperature Anomaly): A slight increase in SSTA correlates with a   decrease in bleaching, though the effect size is small. 
-* TSA (Tropical Sea Surface Temperature Anomaly): Higher TSA values are associated with increased coral bleaching.  
-* TSA_DHW (Degree Heating Weeks derived from TSA): Elevated TSA_DHW corresponds to higher bleaching percentages.  
-</code></pre></div></div>
+<div class="figure" style="text-align: center">
 
-<ol>
-  <li>
-    <p>Smoothing Spline and Gaussian Process Hyperparameters: The model
-incorporates spatial and temporal random effects to account for
-variability across different locations and times:</p>
+<img src="README_files/figure-gfm/Temporal Effects-1.png" alt="Figure 6: Temporal Effects" width="90%" />
+<p class="caption">
+Figure 6: Temporal Effects
+</p>
 
-    <ul>
-      <li>Spatial Effects (t2(Lat, Lon)): The estimated standard deviations
-for the spatial components suggest variability in bleaching across
-different latitudes and longitudes.</li>
-      <li>Temporal Effects (gp(Date_Year) by City_Town_Name): The Gaussian
-Process terms capture temporal trends within each city or town,
-indicating that bleaching patterns change over time differently
-across locations.</li>
-    </ul>
-  </li>
-  <li>
-    <p>Precision Parameter (phi): The estimated precision parameter (phi)
-is 8.8059, with a standard error of 0.2647. A higher phi value
-indicates that the data points are closely clustered around the
-mean, suggesting less variability in bleaching percentages after
-accounting for the covariates.</p>
-  </li>
-</ol>
+</div>
+
+<h2 id="spatial-effects">Spatial Effects</h2>
+
+<div class="figure" style="text-align: center">
+
+<img src="README_files/figure-gfm/Spatial Effects-1.png" alt="Figure 7: Spatial Effects" width="90%" />
+<p class="caption">
+Figure 7: Spatial Effects
+</p>
+
+</div>
 
       </section>
     </div>

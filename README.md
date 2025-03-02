@@ -62,6 +62,8 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
     - [Distributional Statistics](#distributional-statistics)
 - [Model Results](#model-results)
   - [Variable Importance](#variable-importance)
+  - [Temporal Effects](#temporal-effects)
+  - [Spatial Effects](#spatial-effects)
 
 # Motivation
 
@@ -203,7 +205,7 @@ Before fitting the model, we applied several preprocessing steps:
 
 ## Model Specification
 
-To model the proportion of coral bleaching $Y_i$ for $i = 1, ..., 2835$,
+To model the proportion of coral bleaching $Y_i$ for $i = 1, ..., 2394$,
 we use a **Bayesian Beta regression** with a **logit link function**:
 
 $$
@@ -219,11 +221,11 @@ and defined as:
 $$
 \begin{aligned}
 \textbf{Model 1}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 2}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 3}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 4}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 5}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
-\textbf{Model 6}: \text{logit}(\mu_i) &= f(\text{Date_Year}_i, \text{City_Town_Name}_i) + g(\text{Lat}_i, \text{Lon}_i) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 2}: \text{logit}(\mu_i) &= \text{Date_Year}_i\beta_1 + g(\text{Lat}, \text{Lon}) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 3}: \text{logit}(\mu_i) &= f(\text{Date_Year}) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 4}: \text{logit}(\mu_i) &= f(\text{Date_Year}) + g(\text{Lat}, \text{Lon}) + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 5}: \text{logit}(\mu_i) &= f_{\text{City_Town_Name}}(\text{Date_Year}) + \text{Lat}_i\beta_2 + \text{Lon}_i\beta_3 + \sum_{p} X_{ip}\beta_p \\
+\textbf{Model 6}: \text{logit}(\mu_i) &= f_{\text{City_Town_Name}}(\text{Date_Year}) + g(\text{Lat}, \text{Lon}) + \sum_{p} X_{ip}\beta_p \\
 \end{aligned}
 $$
 
@@ -236,7 +238,7 @@ where:
 <div style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;width:auto;">
 
 $$
-f(\text{Date_Year}_i, \text{City_Town_Name}_i) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\ 
+f_{\text{City_Town_Name}}(\text{Date_Year}) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\ 
 $$
 
 </div>
@@ -250,7 +252,7 @@ $$
 with:
 
 - $t_i, t_j$ as observed `Date_Year` values.
-- $c_i$ representing the city (`City_Town_Name`), where each city has a
+- $c$ representing the city (`City_Town_Name`), where each city has a
   separate GP.
 - $k_c(t_i, t_j)$ as the covariance function, using an
   exponentiated-quadratic (squared exponential) kernel.
@@ -261,7 +263,7 @@ with:
 ### Tensor-Product Spline for Spatial Variation
 
 $$
-g(\text{Lat}_i, \text{Lon}_i) = \sum_{k_1} \sum_{k_2} \beta_{k_1 k_2} B_{k_1}(\text{Lat}) B_{k_2}(\text{Lon})
+g(\text{Lat}, \text{Lon}) = \sum_{k_1} \sum_{k_2} \beta_{k_1 k_2} B_{k_1}(\text{Lat}) B_{k_2}(\text{Lon})
 $$
 
 where:
@@ -289,8 +291,8 @@ where:
   - $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
 - **Gaussian Process (Temporal Trends)**:
   - $\sigma_c \sim \text{half-Cauchy}(0,2)$
-  - $\rho_c \sim \text{InvGamma}(NA, 4.308447, NA, 0.957567)$
-    (explicitly defined by `brms`)
+  - $\rho_c \sim \text{InvGamma}(4.308447, 0.957567)$ (explicitly
+    defined by `brms`)
 - **Tensor-Product Spline**:
   - $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
   - $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in
@@ -609,14 +611,7 @@ Bayesian Predictive p-values from 8000 Simulations
 
 # Model Results
 
-The final model’s results offer insights into the factors influencing
-coral bleaching percentages.
-
 ## Variable Importance
-
-1.  Parameter Estimates  
-    The table below presents the estimated coefficients, standard
-    errors, and 95% credible intervals for each covariate:
 
 <div id="rssxenwcqu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
@@ -677,29 +672,24 @@ coral bleaching percentages.
 </table>
 </div>
 
-Interpretation:
+## Temporal Effects
 
-    * Distance to Shore: A positive coefficient suggests that as the distance from shore   increases, the percentage of coral bleaching also increases. 
-    * Turbidity: The negative coefficient indicates that higher turbidity (murkier water) is associated with a decrease in coral bleaching percentages.  
-    * Windspeed: Higher wind speeds are linked to reduced coral bleaching.  
-    * SSTA (Sea Surface Temperature Anomaly): A slight increase in SSTA correlates with a   decrease in bleaching, though the effect size is small. 
-    * TSA (Tropical Sea Surface Temperature Anomaly): Higher TSA values are associated with increased coral bleaching.  
-    * TSA_DHW (Degree Heating Weeks derived from TSA): Elevated TSA_DHW corresponds to higher bleaching percentages.  
+<div class="figure" style="text-align: center">
 
-2.  Smoothing Spline and Gaussian Process Hyperparameters: The model
-    incorporates spatial and temporal random effects to account for
-    variability across different locations and times:
+<img src="README_files/figure-gfm/Temporal Effects-1.png" alt="Figure 6: Temporal Effects" width="90%" />
+<p class="caption">
+Figure 6: Temporal Effects
+</p>
 
-    - Spatial Effects (t2(Lat, Lon)): The estimated standard deviations
-      for the spatial components suggest variability in bleaching across
-      different latitudes and longitudes.
-    - Temporal Effects (gp(Date_Year) by City_Town_Name): The Gaussian
-      Process terms capture temporal trends within each city or town,
-      indicating that bleaching patterns change over time differently
-      across locations.
+</div>
 
-3.  Precision Parameter (phi): The estimated precision parameter (phi)
-    is 8.8059, with a standard error of 0.2647. A higher phi value
-    indicates that the data points are closely clustered around the
-    mean, suggesting less variability in bleaching percentages after
-    accounting for the covariates.
+## Spatial Effects
+
+<div class="figure" style="text-align: center">
+
+<img src="README_files/figure-gfm/Spatial Effects-1.png" alt="Figure 7: Spatial Effects" width="90%" />
+<p class="caption">
+Figure 7: Spatial Effects
+</p>
+
+</div>

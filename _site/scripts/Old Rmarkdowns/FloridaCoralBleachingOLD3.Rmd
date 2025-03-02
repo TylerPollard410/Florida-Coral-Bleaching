@@ -1,17 +1,3 @@
----
-author: "Tyler Pollard, Rachel Hardy, and Hanan Ali"
-date: "2024-05-06"
-header-includes:
-  - \usepackage{mathtools}
-output:  
-  github_document:
-    html_preview: false
-    includes: 
-      in_header: _includes/head.html
-    toc: true
-    toc_depth: 3
----
-
 ```{r setup, echo = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 ```
@@ -305,7 +291,7 @@ lscalePriorAlpha <- as.numeric(str_extract(gpPrior, "(?<=inv_gamma\\()[^,]+"))
 lscalePriorBeta <- as.numeric(str_extract(gpPrior, "(?<=, )[^)]+"))
 ```
 
-To model the proportion of coral bleaching $Y_i$ for $i = 1, ..., 2394$, we use a **Bayesian Beta regression** with a **logit link function**:
+To model the proportion of coral bleaching $Y_i$ for $i = 1, ..., 2835$, we use a **Bayesian Beta regression** with a **logit link function**:
 
 $$
 Y_i \sim \text{Beta}(\mu_i \phi, (1-\mu_i) \phi)
@@ -944,8 +930,12 @@ ppcCombPlot
 
 # Model Results
 
+The final model's results offer insights into the factors influencing coral bleaching percentages.
 
 ## Variable Importance
+
+1.  Parameter Estimates  
+The table below presents the estimated coefficients, standard errors, and 95% credible intervals for each covariate:
 
 ```{r Model Results Table}
 fixedEff <- fixef(finalMod) |>
@@ -975,8 +965,8 @@ fixedEff |>
   filter(str_detect(Parameter, "t2", negate = TRUE)) |>
   gt() |>
   cols_label(
-    Estimate = "{{:beta:}}",
-    Est.Error = "SD({{:beta:}})"
+    Estimate = "",
+    Est.Error = "SD()"
   ) |>
   cols_merge(
     columns = c(Q2.5, Q97.5), pattern = "({1}, {2})"
@@ -1031,124 +1021,27 @@ fixedEff |>
   ) |>
   #opt_vertical_padding(scale = 0.25) |>
   tab_caption(caption = md("Table 4: Parameter Estimates")) |> 
-  as_raw_html()
+  as_raw_html() |> I()
 ```
 
-## Temporal Effects
+  \noindent Interpretation: 
 
-```{r Temporal Effects, fig.align='center', out.width="90%", fig.cap="Figure 6: Temporal Effects"}
+    * Distance to Shore: A positive coefficient suggests that as the distance from shore   increases, the percentage of coral bleaching also increases. 
+    * Turbidity: The negative coefficient indicates that higher turbidity (murkier water) is associated with a decrease in coral bleaching percentages.  
+    * Windspeed: Higher wind speeds are linked to reduced coral bleaching.  
+    * SSTA (Sea Surface Temperature Anomaly): A slight increase in SSTA correlates with a   decrease in bleaching, though the effect size is small. 
+    * TSA (Tropical Sea Surface Temperature Anomaly): Higher TSA values are associated with increased coral bleaching.  
+    * TSA_DHW (Degree Heating Weeks derived from TSA): Elevated TSA_DHW corresponds to higher bleaching percentages.  
 
-load(file = "_data/condEffDataTemporal.RData")
-condEffDataTemporal <- condEffDataTemporal$Date_Year
+2.  Smoothing Spline and Gaussian Process Hyperparameters: 
+The model incorporates spatial and temporal random effects to account for variability across different locations and times:  
 
-##### Overlay ----
-condEffDataTemporalGGoverlay <-
-  ggplot() +
-  # geom_point(
-  #   data = bleachingData,
-  #   aes(x = Date_Year, y = PercentBleachingBounded, 
-  #       color = City_Town_Name)
-  # ) +
-  geom_line(
-    data = condEffDataTemporal2,
-    aes(x = Date_Year, y = estimate__, 
-        color = City_Town_Name),
-    linewidth = 1
-  ) +
-  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1), 
-                     labels = scales::label_percent()) +
-  scale_x_continuous(breaks = unique(bleachingData$Date_Year)) +
-  labs(
-    x = "Date Year",
-    y = "Percent Bleaching"
-  ) +
-  theme_bw() +
-  theme(
-    panel.grid.minor.x = element_blank()
-  )
+    * Spatial Effects (t2(Lat, Lon)): The estimated standard deviations for the spatial components suggest variability in bleaching across different latitudes and longitudes.
+    * Temporal Effects (gp(Date_Year) by City_Town_Name): The Gaussian Process terms capture temporal trends within each city or town, indicating that bleaching patterns change over time differently across locations.  
 
-#condEffDataTemporalGGoverlay
+3.  Precision Parameter (phi):
+The estimated precision parameter (phi) is 8.8059, with a standard error of 0.2647. A higher phi value indicates that the data points are closely clustered around the mean, suggesting less variability in bleaching percentages after accounting for the covariates.
 
-##### Facet ----
-condEffDataTemporalGGfacet <-
-  ggplot() +
-  geom_point(
-    data = bleachingData,
-    aes(x = Date_Year, y = PercentBleachingBounded),
-    #color = City_Town_Name)
-    alpha = 0.2
-  ) +
-  geom_ribbon(
-    data = condEffDataTemporal2,
-    aes(x = Date_Year, ymin = lower__, ymax = upper__,
-        fill = City_Town_Name), 
-    alpha = 0.3
-  ) +
-  geom_line(
-    data = condEffDataTemporal2,
-    aes(x = Date_Year, y = estimate__, 
-        color = City_Town_Name),
-    linewidth = 1.5
-  ) +
-  facet_wrap(vars(City_Town_Name)) +
-  scale_y_continuous(limits = c(0,1), breaks = seq(0,1,0.1), 
-                     labels = scales::label_percent()) +
-  scale_x_continuous(limits = range(bleachingData$Date_Year),
-                     breaks = seq(min(bleachingData$Date_Year),
-                                  max(bleachingData$Date_Year),
-                                  2)
-  ) +
-  labs(
-    x = "Date Year",
-    y = "Percent Bleaching"
-  ) +
-  theme_bw() +
-  theme(
-    panel.grid.minor.x = element_blank(),
-    legend.position = "inside",
-    legend.position.inside = c(0.8, 0.2),
-    legend.justification = c(0.25, 0.5)
-  )
-
-condEffDataTemporalGGfacet
-```
-
-
-## Spatial Effects
-
-```{r Spatial Effects, fig.align='center', out.width="90%", fig.cap="Figure 7: Spatial Effects"}
-
-load(file = "_data/condSmoothData.RData")
-condSmoothData <- condSmoothData$`mu: t2(Lon,Lat`
-condLonRange <- range(condSmoothData2$Lon)
-condLatRange <- range(condSmoothData2$Lat)
-
-county_coordinates <- map_data("county") 
-condSmoothPlotSpatialGG <- ggplot() +
-  geom_raster(
-    data = condSmoothData2,
-    aes(x = Lon, y = Lat, fill = estimate__)
-  ) +
-  # geom_point(
-  #   data = bleachingData,
-  #   aes(x = Lon, y = Lat,
-  #       color = PercentBleaching),
-  #   size = 0.25, alpha = 0.1
-  # ) +
-  geom_map(
-    data = county_coordinates, map = county_coordinates,
-    aes(x = long, y = lat, map_id = region)
-  ) +
-  scale_fill_gradientn(name = "Spatial Estimate",
-                       colors = viridis::viridis(6)) +
-  # scale_color_gradientn(name = "Spatial Estimate",
-  #                       colors = viridis::viridis(6)) +
-  #scale_color_continuous(low = "green", high = "red") +
-  xlim(condLonRange) +
-  ylim(condLatRange) +
-  theme_bw()
-condSmoothPlotSpatialGG 
-```
 
 
 
