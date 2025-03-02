@@ -62,8 +62,12 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
     - [Distributional Statistics](#distributional-statistics)
 - [Model Results](#model-results)
   - [Variable Importance](#variable-importance)
+    - [Key Observations:](#key-observations)
   - [Temporal Effects](#temporal-effects)
+    - [County-Specific Trends](#county-specific-trends)
+    - [Aggregated Trends](#aggregated-trends)
   - [Spatial Effects](#spatial-effects)
+    - [Key Findings:](#key-findings-1)
 
 # Motivation
 
@@ -611,7 +615,18 @@ Bayesian Predictive p-values from 8000 Simulations
 
 # Model Results
 
+After validating the model’s performance through posterior predictive
+checks, we now examine the key results. This section explores the
+significance of model predictors, the temporal trends in bleaching
+events, and the spatial distribution of bleaching risk across Florida’s
+coral reefs.
+
 ## Variable Importance
+
+The table below presents the estimated fixed effects from the final
+Bayesian Beta regression model. Each coefficient represents the effect
+of a predictor on the proportion of coral bleaching. The interpretation
+of key predictors is as follows:
 
 <div id="rssxenwcqu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
@@ -672,24 +687,125 @@ Bayesian Predictive p-values from 8000 Simulations
 </table>
 </div>
 
+### Key Observations:
+
+- Distance to Shore (β = 0.1005, 95% CI: \[0.0338, 0.1660\]) –
+  Positively associated with bleaching, indicating that reefs farther
+  from shore experience slightly higher bleaching, potentially due to
+  differences in water quality and exposure to open ocean stressors.
+
+- Turbidity (β = -0.0784, 95% CI: \[-0.1270, -0.0295\]) – Negatively
+  associated with bleaching, suggesting that murkier waters may provide
+  some shielding from temperature-induced stress.
+
+- Cyclone Frequency & Wind Speed (β = -0.0524, -0.0466) – Moderate
+  negative effects, likely due to increased mixing of ocean layers,
+  reducing localized heat stress on corals.
+
+- Sea Surface Temperature Anomaly (SSTA) (β = -0.0573, 95% CI:
+  \[-0.1104, -0.0047\]) – Contrary to expectations, this predictor has a
+  small negative effect, possibly reflecting interactions with other
+  environmental conditions or non-linear temperature effects.
+
+- Thermal Stress Accumulation (TSA) & Degree Heating Weeks (TSA_DHW) (β
+  = 0.1313, 0.0885) – Significant positive effects, confirming that
+  prolonged heat stress increases bleaching probability.
+
 ## Temporal Effects
+
+To evaluate how bleaching trends evolve over time, we analyze posterior
+estimates of the temporal effect from the Gaussian Process (GP)
+component.
+
+### County-Specific Trends
+
+The plot below illustrates the estimated temporal variation in bleaching
+probability across five Florida counties from 2006 to 2016:
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/Temporal Effects-1.png" alt="Figure 6: Temporal Effects" width="90%" />
+<img src="README_files/figure-gfm/Temporal Effects Facet-1.png" alt="Figure 6: County-Specific Trends" width="90%" />
 <p class="caption">
-Figure 6: Temporal Effects
+Figure 6: County-Specific Trends
 </p>
 
 </div>
+
+#### Key Findings:
+
+- Each county shows unique bleaching patterns, with different peak
+  years.
+
+- Monroe and Miami-Dade counties have higher bleaching probabilities and
+  greater interannual variability than the others.
+
+- Martin County shows a steady increase after 2010, suggesting it may be
+  particularly vulnerable to long-term climate stress.
+
+This faceted plot illustrates the modeled county-specific temporal
+variation in bleaching probability, capturing how bleaching risk
+fluctuates over time in different locations.
+
+### Aggregated Trends
+
+To provide a broader comparison of modeled bleaching trends across
+counties, the following plot presents an overlay of the estimated
+temporal effects without faceting:
+
+<div class="figure" style="text-align: center">
+
+<img src="README_files/figure-gfm/Temporal Effects Overlay-1.png" alt="Figure 7: Aggregated Trends" width="90%" />
+<p class="caption">
+Figure 7: Aggregated Trends
+</p>
+
+</div>
+
+#### Key Observations:
+
+- The overlay allows for direct comparison between counties,
+  highlighting relative differences in bleaching probabilities.
+
+- Monroe County stands out with the most extreme bleaching peak in
+  2014-2015.
+
+- Palm Beach County maintains relatively low bleaching levels compared
+  to other regions.
+
+- The synchronized bleaching peaks across counties suggest that
+  widespread regional environmental drivers, such as temperature
+  anomalies, are at play.
+
+While this plot removes individual county facets, it retains the key
+modeled trends and provides a clearer comparative perspective on
+bleaching severity across regions.
 
 ## Spatial Effects
 
+The spatial effects plot provides insights into regional differences in
+bleaching susceptibility. The spatial random effect was modeled using a
+tensor-product spline, capturing localized variations beyond the fixed
+effects.
+
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/Spatial Effects-1.png" alt="Figure 7: Spatial Effects" width="90%" />
+<img src="README_files/figure-gfm/Spatial Effects-1.png" alt="Figure 8: Spatial Effects" width="90%" />
 <p class="caption">
-Figure 7: Spatial Effects
+Figure 8: Spatial Effects
 </p>
 
 </div>
+
+### Key Findings:
+
+- Higher bleaching probabilities are concentrated in nearshore reefs
+  along the Florida Keys and southeastern coastline, reinforcing the
+  importance of local environmental stressors.
+
+- Some offshore reef systems exhibit lower bleaching risk, potentially
+  due to deeper waters or localized upwelling that buffers temperature
+  stress.
+
+- The spatial gradient suggests that conservation efforts should
+  prioritize areas with high predicted bleaching risk, particularly in
+  the southeastern coastal zone.

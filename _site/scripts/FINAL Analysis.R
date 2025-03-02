@@ -1504,6 +1504,7 @@ save(fitModSelect3, file = "_data/models/refineFit3.RData")
 save(fitModSelect4, file = "_data/models/refineFit4.RData")
 save(fitModSelect5, file = "_data/models/refineFit5.RData")
 save(refinementDF, file = "_data/refinementDF.RData")
+write_csv(refinementDF, file = "_data/CSVs/refinementDF.csv")
 
 ### gt ----
 load(file = "_data/refinementDF.RData")
@@ -2069,6 +2070,8 @@ fixedEff <- fixef(finalMod) |>
   )
 print(fixedEff, digits = 4)
 
+write_csv(fixedEff, file = "_data/CSVs/fixedEff.csv")
+
 ### gt ----
 fixedEff |>
   rownames_to_column(var = "Parameter") |>
@@ -2179,6 +2182,7 @@ condEffDataTemporal <- conditional_effects(
 )
 
 save(condEffDataTemporal, file = "_data/condEffDataTemporal.RData")
+write_csv(condEffDataTemporal, file = "_data/CSVs/condEffDataTemporal.csv")
 
 condEffPlotTemporal <- plot(
   condEffDataTemporal,
@@ -2247,7 +2251,7 @@ condEffDataTemporalGGfacet <-
   scale_x_continuous(limits = range(bleachingData$Date_Year),
                      breaks = seq(min(bleachingData$Date_Year),
                                   max(bleachingData$Date_Year),
-                                  2)
+                                  1)
   ) +
   labs(
     x = "Date Year",
@@ -2256,6 +2260,7 @@ condEffDataTemporalGGfacet <-
   theme_bw() +
   theme(
     panel.grid.minor.x = element_blank(),
+    axis.text.x = element_text(angle = 90, vjust = 0.5),
     legend.position = "inside",
     legend.position.inside = c(0.8, 0.2),
     legend.justification = c(0.25, 0.5)
@@ -2273,6 +2278,7 @@ condSmoothData <- conditional_smooths(
   robust = FALSE
 )
 save(condSmoothData, file = "_data/condSmoothData.RData")
+write_csv(condSmoothData, file = "_data/CSVs/condSmoothData.csv")
 
 condSmoothPlot <- plot(
   condSmoothData,
