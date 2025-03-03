@@ -259,17 +259,17 @@ where:
 ### Prior Specification
 
 - **Fixed Effects**:
-- $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
+  - $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
 - **Gaussian Process (Temporal Trends)**:
-- $\sigma_c \sim \text{half-Cauchy}(0,2)$
-- $\rho_c \sim \text{InvGamma}(4.308447, 0.957567)$ (explicitly defined
-  by `brms`)
+  - $\sigma_c \sim \text{half-Cauchy}(0,2)$
+  - $\rho_c \sim \text{InvGamma}(4.308447, 0.957567)$ (explicitly
+    defined by `brms`)
 - **Tensor-Product Spline**:
-- $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
-- $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in
-  smoothing penalty)
+  - $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
+  - $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in
+    smoothing penalty)
 - **Precision Parameter**:
-- $\phi \sim \text{Gamma}(0.1, 0.1)$
+  - $\phi \sim \text{Gamma}(0.1, 0.1)$
 
 This model accounts for both spatial and temporal dependencies, allowing
 for flexible trend estimation.
@@ -280,13 +280,13 @@ Before fitting the model, we applied several preprocessing steps:
 
 - **Response Variable Transformation**: Since the Beta regression model
   requires values strictly in the (0,1) range, we replaced:
-- 0% bleaching values with 0.001
-- 100% bleaching values with 0.999
+  - 0% bleaching values with 0.001
+  - 100% bleaching values with 0.999
 - **Covariate Transformations**:
-- **Yeo-Johnson transformation** was applied to all continuous
-  covariates to reduce skewness.
-- **Centering and scaling** were performed to standardize covariates for
-  better model convergence.
+  - **Yeo-Johnson transformation** was applied to all continuous
+    covariates to reduce skewness.
+  - **Centering and scaling** were performed to standardize covariates
+    for better model convergence.
 
 # Model Comparison
 
@@ -425,31 +425,33 @@ these steps:
 
 1.  Identify Non-Significant Covariates
 
-- Variables whose 95% credible intervals contained zero were considered
-  weak contributors.
+    - Variables whose 95% credible intervals contained zero were
+      considered weak contributors.
 
 2.  Iterative Variable Removal & Refitting
 
-- The least significant covariate was removed from the model.
-- The model was then refit without that covariate to assess its impact.
+    - The least significant covariate was removed from the model.
+    - The model was then refit without that covariate to assess its
+      impact.
 
 3.  Evaluate Model Fit via Bayes Factor & MAE
 
-- **Bayes Factor (BF) Comparison**: The refined model was compared to
-  the previous iteration using `bayes_factor()`. If BF \> 10, the new
-  model was preferred.
-- **LOOIC**: The reliability of how the refined model generalizes to new
-  data was estimated. If LOOIC was lower, the new model was retained.
-- **Mean Absolute Error** (MAE): The predictive performance was
-  evaluated using the PPD from refined model compared to observed
-  Percent Bleaching to check model improvement/degradation. If MAE
-  improved or remained stable, the new model was retained.
+    - **Bayes Factor (BF) Comparison**: The refined model was compared
+      to the previous iteration using `bayes_factor()`. If BF \> 10, the
+      new model was preferred.
+    - **LOOIC**: The reliability of how the refined model generalizes to
+      new data was estimated. If LOOIC was lower, the new model was
+      retained.
+    - **Mean Absolute Error** (MAE): The predictive performance was
+      evaluated using the PPD from refined model compared to observed
+      Percent Bleaching to check model improvement/degradation. If MAE
+      improved or remained stable, the new model was retained.
 
 4.  Repeat Until No Further Improvement
 
-- This process continued until all remaining covariates contributed
-  meaningfully, ensuring the final model was both interpretable and
-  robust.
+    - This process continued until all remaining covariates contributed
+      meaningfully, ensuring the final model was both interpretable and
+      robust.
 
 Through this process, unnecessary covariates were systematically
 removed, leading to a final optimized model that retained only the most
@@ -696,7 +698,7 @@ estimates of the temporal effect from the GP component.
 ### County-Specific Trends
 
 The plot below illustrates the estimated temporal variation in bleaching
-probability across five Florida counties from 2006 to 2016:
+probability across five Florida counties from 2005 to 2016:
 
 <div class="figure" style="text-align: center">
 
