@@ -5,6 +5,7 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
 
 - [Motivation](#motivation)
 - [Data](#data)
+  - [Percent Bleaching Distribution](#percent-bleaching-distribution)
   - [Spatial Structure](#spatial-structure)
   - [Temporal Structure](#temporal-structure)
 - [Model Description](#model-description)
@@ -128,6 +129,8 @@ bleaching events:
   &#10;  
 </table>
 </div>
+
+## Percent Bleaching Distribution
 
 The Percent Bleaching data exhibits a right-skewed distribution (Figure
 1), with a substantial number of observations reporting 0% bleaching.

@@ -4,5 +4,3 @@ title: Unveiling the Mysteries of Coral Bleaching
 description: A Bayesian Approach to Understanding Causality
 
 markdown: kramdown
-kramdown:
-  toc_levels: 1..3

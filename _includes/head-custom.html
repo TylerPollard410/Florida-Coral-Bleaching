@@ -20,16 +20,4 @@
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-<!-- Move TOC to Sidebar on Desktop Only -->
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var toc = document.querySelector("#TOC");
-    if (toc && window.innerWidth > 768) { // Only move TOC on desktop
-        var sidebar = document.getElementById("toc-sidebar");
-        sidebar.innerHTML = "<h3>Table of Contents</h3>" + toc.innerHTML;
-        toc.remove();
-    }
-});
-</script>
-
 <!-- end custom head snippets -->
