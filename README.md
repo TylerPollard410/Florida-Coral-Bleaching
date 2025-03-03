@@ -207,13 +207,9 @@ where:
 
 ### Gaussian Process (GP) for Temporal Trends
 
-<div style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;width:auto;">
-
 $$
-f_{\text{City_Town_Name}}(\text{Date_Year}) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\ 
+f_\text{City_Town_Name}(\text{Date_Year}) \sim \mathcal{GP} (0, (k_c(t_i, t_j))_{i,j = 1}^n) \\ 
 $$
-
-</div>
 
 where the covariance function for each city $c$ is:
 

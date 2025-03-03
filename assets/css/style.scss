@@ -3,6 +3,45 @@
 
 @import "{{ site.theme }}";
 
+/* Sidebar TOC styling (Only for GitHub Pages) */
+#toc-sidebar {
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  width: 250px;
+  background-color: #f8f9fa;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#toc-sidebar h3 {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+#toc-sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+#toc-sidebar nav ul li {
+  margin-bottom: 5px;
+}
+
+#toc-sidebar a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+#toc-sidebar a:hover {
+  text-decoration: underline;
+}
+
+
 /* OLD img
 img {
   position: relative;
