@@ -6,8 +6,8 @@ header-includes:
 output:  
   github_document:
     html_preview: false
-    includes: 
-      in_header: _includes/head-custom.html
+    #includes: 
+    #  in_header: _includes/head-custom.html
     toc: true
     toc_depth: 3
 ---
