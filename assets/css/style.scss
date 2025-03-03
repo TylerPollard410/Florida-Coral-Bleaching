@@ -3,67 +3,78 @@
 
 @import "{{ site.theme }}";
 
-/* Sidebar TOC styling (Only for GitHub Pages) */
+/* Sidebar TOC (Desktop) */
 #toc-sidebar {
-  position: fixed;
-  top: 80px;
-  left: 20px;
-  width: 250px;
-  background-color: #f8f9fa;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
-  max-height: 80vh;
-  overflow-y: auto;
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    max-height: 80vh;
+    overflow-y: auto;
+    transition: transform 0.3s ease-in-out;
 }
 
-#toc-sidebar h3 {
-  font-size: 16px;
-  margin-top: 0;
+/* TOC Toggle Button (Mobile) */
+#toc-toggle {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
 }
 
+/* Mobile: Hide TOC by default, slide in when opened */
+@media screen and (max-width: 768px) {
+    #toc-sidebar {
+        position: fixed;
+        top: 0;
+        left: -270px; /* Hide off-screen */
+        width: 250px;
+        height: 100vh;
+        background: white;
+        border-right: 1px solid #ddd;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        padding: 15px;
+        transition: left 0.3s ease-in-out;
+    }
+
+    #toc-sidebar.open {
+        left: 0; /* Slide in */
+    }
+
+    #toc-toggle {
+        display: block; /* Show button */
+    }
+}
+
+/* TOC Link Styling */
 #toc-sidebar nav ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 #toc-sidebar nav ul li {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 #toc-sidebar a {
-  text-decoration: none;
-  color: #007bff;
+    text-decoration: none;
+    color: #007bff;
+    font-size: 14px;
 }
 
 #toc-sidebar a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
-
-
-/* OLD img
-img {
-  position: relative;
-  margin: 0 auto;
-  max-width: 739px;
-  padding: 5px;
-  margin: 10px 0 10px 0;
-  border: 1px solid #ebebeb;
-
-  box-shadow: 0 0 5px #ebebeb;
-  -webkit-box-shadow: 0 0 5px #ebebeb;
-  -moz-box-shadow: 0 0 5px #ebebeb;
-  -o-box-shadow: 0 0 5px #ebebeb;
-  -ms-box-shadow: 0 0 5px #ebebeb;
-}
-
-
-.figure img {
-  width: 90% !important;
-  max-width: 700px;   Adjust based on your preference 
-  height: auto;
-  display: block;
-  margin: auto;
-}
-*/

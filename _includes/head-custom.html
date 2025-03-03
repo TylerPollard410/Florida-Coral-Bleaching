@@ -1,48 +1,39 @@
-<!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+<!-- start custom head snippets -->
 
-<!-- Setup Google Analytics -->
-<!-- {% include head-custom-google-analytics.html %} -->
-
-<!-- You can set your favicon here -->
-<!-- link rel="shortcut icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}" -->
-
-<!-- Change content width onfull screen -->
-<!-- <link rel="stylesheet" href="/Hurricane-Analysis/assets/css/custom.css"> -->
-
-
-<!-- MathJax -->
-<!-- inline config -->
+<!-- MathJax for Equations -->
 <script>
   MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
       macros: {
-      	RR: "{\\bf R}",
-      	bold: ["{\\bf #1}", 1],
+        RR: "{\\bf R}",
+        bold: ["{\\bf #1}", 1],
         indep: "{\\perp \\!\\!\\! \\perp}",
-    	}
+      }
     },
     svg: {
-    fontCache: 'global'
-  	},
+      fontCache: 'global'
+    },
   };
 </script>
-
-<!-- load MathJax -->
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
-<!-- Move TOC to Sidebar -->
+<!-- Move TOC to Sidebar with Hamburger Menu on Mobile -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     var toc = document.querySelector("#TOC");
     if (toc) {
-        var sidebar = document.createElement("div");
-        sidebar.id = "toc-sidebar";
+        var sidebar = document.getElementById("toc-sidebar");
         sidebar.innerHTML = "<h3>Table of Contents</h3>" + toc.innerHTML;
-        document.body.insertBefore(sidebar, document.body.firstChild);
         toc.remove();
+
+        // Add toggle functionality for mobile
+        var toggleButton = document.getElementById("toc-toggle");
+        toggleButton.addEventListener("click", function() {
+            sidebar.classList.toggle("open");
+        });
     }
 });
 </script>

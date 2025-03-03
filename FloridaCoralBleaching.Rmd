@@ -10,6 +10,9 @@ output:
     #  in_header: _includes/head-custom.html
     toc: true
     toc_depth: 3
+    # toc_float:
+    #   collapsed: false
+    #   smooth_scroll: true
 ---
 
 ```{r setup, echo = FALSE}
