@@ -19,43 +19,10 @@
     transition: transform 0.3s ease-in-out;
 }
 
-/* TOC Toggle Button (Mobile) */
-#toc-toggle {
-    display: none; /* Hidden on desktop */
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    background: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    font-size: 20px;
-    cursor: pointer;
-    border-radius: 5px;
-    z-index: 1000;
-}
-
-/* Mobile: Hide TOC by default, slide in when opened */
+/* Hide sidebar on mobile */
 @media screen and (max-width: 768px) {
     #toc-sidebar {
-        position: fixed;
-        top: 0;
-        left: -270px; /* Hide off-screen */
-        width: 250px;
-        height: 100vh;
-        background: white;
-        border-right: 1px solid #ddd;
-        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        padding: 15px;
-        transition: left 0.3s ease-in-out;
-    }
-
-    #toc-sidebar.open {
-        left: 0; /* Slide in */
-    }
-
-    #toc-toggle {
-        display: block; /* Show button */
+        display: none;
     }
 }
 

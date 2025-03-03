@@ -8,7 +8,6 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
   - [Spatial Structure](#spatial-structure)
   - [Temporal Structure](#temporal-structure)
 - [Model Description](#model-description)
-  - [Data Preprocessing](#data-preprocessing)
   - [Model Specification](#model-specification)
     - [Gaussian Process (GP) for Temporal
       Trends](#gaussian-process-gp-for-temporal-trends)
@@ -16,6 +15,7 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
       Variation](#tensor-product-spline-for-spatial-variation)
     - [Fixed Effects](#fixed-effects)
     - [Prior Specification](#prior-specification)
+  - [Data Preprocessing](#data-preprocessing)
 - [Model Comparison](#model-comparison)
   - [Selected Model](#selected-model)
   - [Model Refinement and Variable
@@ -30,7 +30,7 @@ Tyler Pollard, Rachel Hardy, and Hanan Ali
     - [Key Observations:](#key-observations)
   - [Temporal Effects](#temporal-effects)
     - [County-Specific Trends](#county-specific-trends)
-    - [Aggregated Trends](#aggregated-trends)
+    - [Overlaid Trends](#overlaid-trends)
   - [Spatial Effects](#spatial-effects)
     - [Key Findings:](#key-findings-1)
 - [Discussion](#discussion)
@@ -60,7 +60,7 @@ regression framework**.
 # Data
 
 This study utilizes a dataset with 2,394 observations collected between
-2006 and 2016 sourced from the [Florida Reef Resilience
+2005 and 2016 sourced from the [Florida Reef Resilience
 Program](https://www.bco-dmo.org/dataset/773466). The data includes
 various environmental and spatial covariates hypothesized to influence
 coral bleaching. The response variable, **Percent Bleaching**, measures
@@ -70,44 +70,60 @@ bleaching events:
 
 <div id="rhhwnwxumd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
-  <caption><span class="gt_from_md">Table 1: Covariate Descriptions</span></caption>
+  <caption><span class="gt_from_md">Table 1: Environmental and Geographic Covariates</span></caption>
   <thead style="border-style: none;">
     <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; background-color: #373737; color: #FFFFFF;" scope="col" id="Covariate" bgcolor="#373737" valign="bottom" align="left">Covariate</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; background-color: #373737; color: #FFFFFF;" scope="col" id="Description" bgcolor="#373737" valign="bottom" align="left">Description</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; background-color: #373737; color: #FFFFFF;" scope="col" id="Units" bgcolor="#373737" valign="bottom" align="left">Units</th>
     </tr>
   </thead>
   <tbody class="gt_table_body" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3;">
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Date_Year</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Year of observation</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Year of observation</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"></td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">City_Town_Name</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Categorical variable representing the specific city or town</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Categorical variable representing the specific city or town</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"></td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Lat</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Latitude of the coral reef transect</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Latitude of the coral reef transect</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">degrees</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Lon</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Longitude of the coral reef transect</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Longitude of the coral reef transect</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">degrees</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Distance_to_Shore</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Distance from the reef to the shoreline (km)</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Distance from the reef to the shoreline (km)</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">km</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Exposure</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Level of wave exposure (e.g., sheltered, exposed)</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Level of wave exposure (e.g., sheltered, exposed)</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"></td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Turbidity</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Water clarity, with higher values indicating more suspended particles</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Water clarity, with higher values indicating more suspended particles</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">NTU</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Cyclone_Frequency</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Number of cyclones affecting the area per year</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Number of cyclones affecting the area per year</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">r</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Depth_m</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Depth of the coral reef (meters)</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Depth of the coral reef (meters)</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">meters</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Windspeed</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Average wind speed (m/s)</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Average wind speed (m/s)</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">m/s</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">ClimSST</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Climatological sea surface temperature (°C)</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Climatological sea surface temperature (°C)</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">°C</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">SSTA</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Sea surface temperature anomaly (°C)</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Sea surface temperature anomaly (°C)</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">°C</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">SSTA_DHW</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Degree heating weeks derived from SSTA</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Degree heating weeks derived from SSTA</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"></td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">TSA</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Tropical sea surface temperature anomaly (°C)</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Tropical sea surface temperature anomaly (°C)</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">°C</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">TSA_DHW</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Degree heating weeks derived from TSA</td></tr>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Degree heating weeks derived from TSA</td>
+<td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"></td></tr>
   </tbody>
   &#10;  
 </table>
@@ -118,10 +134,9 @@ The Percent Bleaching data exhibits a right-skewed distribution (Figure
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/PercentBleaching Density-1.png" alt="Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef Samples" width="90%" />
+<img src="README_files/figure-gfm/PercentBleaching Density-1.png" alt="Figure 1: Percent Bleaching Density" width="90%" />
 <p class="caption">
-Figure 1: Density Plot of Percent Bleaching from 2,394 Coral Reef
-Samples
+Figure 1: Percent Bleaching Density
 </p>
 
 </div>
@@ -135,45 +150,30 @@ bleaching than others.
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/Spatial Structure-1.png" alt="Figure 2: Map of Percent Bleaching from 2,394 Coral Reef Samples around Florida" width="90%" />
+<img src="README_files/figure-gfm/Spatial Structure-1.png" alt="Figure 2: Spatial Distribution of Coral Bleaching" width="90%" />
 <p class="caption">
-Figure 2: Map of Percent Bleaching from 2,394 Coral Reef Samples around
-Florida
+Figure 2: Spatial Distribution of Coral Bleaching
 </p>
 
 </div>
 
 ## Temporal Structure
 
-The dataset spans **2006 to 2016**, providing an opportunity to analyze
+The dataset spans **2005 to 2016**, providing an opportunity to analyze
 **bleaching trends over time** (Figure 3). Boxplots of Percent Bleaching
 over the years, categorized by City_Town_Name, reveal distinct temporal
 patterns across locations.
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/Temporal Structure-1.png" alt="Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name" width="90%" />
+<img src="README_files/figure-gfm/Temporal Structure-1.png" alt="Figure 3: Temporal Trends in Coral Bleaching (Boxplots)" width="90%" />
 <p class="caption">
-Figure 3: Boxplots of Percent Bleaching vs Year by City Town Name
+Figure 3: Temporal Trends in Coral Bleaching (Boxplots)
 </p>
 
 </div>
 
 # Model Description
-
-## Data Preprocessing
-
-Before fitting the model, we applied several preprocessing steps:
-
-- **Response Variable Transformation**: Since the Beta regression model
-  requires values strictly in the (0,1) range, we replaced:
-  - 0% bleaching values with 0.001
-  - 100% bleaching values with 0.999
-- **Covariate Transformations**:
-  - **Yeo-Johnson transformation** was applied to all continuous
-    covariates to reduce skewness.
-  - **Centering and scaling** were performed to standardize covariates
-    for better model convergence.
 
 ## Model Specification
 
@@ -256,20 +256,34 @@ where:
 ### Prior Specification
 
 - **Fixed Effects**:
-  - $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
+- $\beta_p \sim \mathcal{N}(0,5)$ for all covariates $p$.
 - **Gaussian Process (Temporal Trends)**:
-  - $\sigma_c \sim \text{half-Cauchy}(0,2)$
-  - $\rho_c \sim \text{InvGamma}(4.308447, 0.957567)$ (explicitly
-    defined by `brms`)
+- $\sigma_c \sim \text{half-Cauchy}(0,2)$
+- $\rho_c \sim \text{InvGamma}(4.308447, 0.957567)$ (explicitly defined
+  by `brms`)
 - **Tensor-Product Spline**:
-  - $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
-  - $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in
-    smoothing penalty)
+- $\beta_{k_1 k_2} \sim \mathcal{N}(0,5)$
+- $\lambda \sim \text{half-Cauchy}(0,2)$ (if explicitly included in
+  smoothing penalty)
 - **Precision Parameter**:
-  - $\phi \sim \text{Gamma}(0.1, 0.1)$
+- $\phi \sim \text{Gamma}(0.1, 0.1)$
 
 This model accounts for both spatial and temporal dependencies, allowing
 for flexible trend estimation.
+
+## Data Preprocessing
+
+Before fitting the model, we applied several preprocessing steps:
+
+- **Response Variable Transformation**: Since the Beta regression model
+  requires values strictly in the (0,1) range, we replaced:
+- 0% bleaching values with 0.001
+- 100% bleaching values with 0.999
+- **Covariate Transformations**:
+- **Yeo-Johnson transformation** was applied to all continuous
+  covariates to reduce skewness.
+- **Centering and scaling** were performed to standardize covariates for
+  better model convergence.
 
 # Model Comparison
 
@@ -288,7 +302,7 @@ best balance between fit and complexity.
 
 <div id="bwaolnqarf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
-  <caption><span class="gt_from_md">Table 2: Model Comparison using LOO-CV</span></caption>
+  <caption><span class="gt_from_md">Table 2: Model Comparison  (LOO-CV)</span></caption>
   <thead style="border-style: none;">
     <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="Model" bgcolor="#373737" valign="bottom" align="left">Model</th>
@@ -408,33 +422,31 @@ these steps:
 
 1.  Identify Non-Significant Covariates
 
-    - Variables whose 95% credible intervals contained zero were
-      considered weak contributors.
+- Variables whose 95% credible intervals contained zero were considered
+  weak contributors.
 
 2.  Iterative Variable Removal & Refitting
 
-    - The least significant covariate was removed from the model.
-    - The model was then refit without that covariate to assess its
-      impact.
+- The least significant covariate was removed from the model.
+- The model was then refit without that covariate to assess its impact.
 
 3.  Evaluate Model Fit via Bayes Factor & MAE
 
-    - **Bayes Factor (BF) Comparison**: The refined model was compared
-      to the previous iteration using `bayes_factor()`. If BF \> 10, the
-      new model was preferred.
-    - **LOOIC**: The reliability of how the refined model generalizes to
-      new data was estimated. If LOOIC was lower, the new model was
-      retained.
-    - **Mean Absolute Error** (MAE): The predictive performance was
-      evaluated using the PPD from refined model compared to observed
-      Percent Bleaching to check model improvement/degradation. If MAE
-      improved or remained stable, the new model was retained.
+- **Bayes Factor (BF) Comparison**: The refined model was compared to
+  the previous iteration using `bayes_factor()`. If BF \> 10, the new
+  model was preferred.
+- **LOOIC**: The reliability of how the refined model generalizes to new
+  data was estimated. If LOOIC was lower, the new model was retained.
+- **Mean Absolute Error** (MAE): The predictive performance was
+  evaluated using the PPD from refined model compared to observed
+  Percent Bleaching to check model improvement/degradation. If MAE
+  improved or remained stable, the new model was retained.
 
 4.  Repeat Until No Further Improvement
 
-    - This process continued until all remaining covariates contributed
-      meaningfully, ensuring the final model was both interpretable and
-      robust.
+- This process continued until all remaining covariates contributed
+  meaningfully, ensuring the final model was both interpretable and
+  robust.
 
 Through this process, unnecessary covariates were systematically
 removed, leading to a final optimized model that retained only the most
@@ -442,7 +454,7 @@ relevant predictors while maintaining strong predictive accuracy.
 
 <div id="tsdvwbgkhc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
-  <caption><span class="gt_from_md">Table 3: Model Refinement using BF, LOOIC, and MAE</span></caption>
+  <caption><span class="gt_from_md">Table 3: Model Refinement Results (BF, LOOIC, and MAE)</span></caption>
   <thead style="border-style: none;">
     <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="PriorModel" bgcolor="#373737" valign="bottom" align="left">Prior Model</th>
@@ -537,10 +549,9 @@ bleaching percentages.
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/PPC Distribution-1.png" alt="Figure 4: Posterior Predictive Distribution vs Observed Percent Bleaching from 400 posterior draws" width="90%" />
+<img src="README_files/figure-gfm/PPC Distribution-1.png" alt="Figure 4: Posterior Predictive Distribution vs Observed Data" width="90%" />
 <p class="caption">
-Figure 4: Posterior Predictive Distribution vs Observed Percent
-Bleaching from 400 posterior draws
+Figure 4: Posterior Predictive Distribution vs Observed Data
 </p>
 
 </div>
@@ -569,10 +580,9 @@ for inference and prediction.
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/PPC Stats-1.png" alt="Figure 5: Posterior Predictive Checks for Distributional Statistics with Bayesian Predictive p-values from 8000 Simulations" width="90%" />
+<img src="README_files/figure-gfm/PPC Stats-1.png" alt="Figure 5: Posterior Predictive Checks for Summary Statistics" width="90%" />
 <p class="caption">
-Figure 5: Posterior Predictive Checks for Distributional Statistics with
-Bayesian Predictive p-values from 8000 Simulations
+Figure 5: Posterior Predictive Checks for Summary Statistics
 </p>
 
 </div>
@@ -594,7 +604,7 @@ of key predictors is as follows:
 
 <div id="rssxenwcqu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
   &#10;  <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: #F2F2F2; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" bgcolor="#F2F2F2">
-  <caption><span class="gt_from_md">Table 4: Parameter Estimates</span></caption>
+  <caption><span class="gt_from_md">Table 4: Estimated Fixed Effects from Bayesian Beta Regression</span></caption>
   <thead style="border-style: none;">
     <tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; font-size: 100%; font-weight: normal; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 10px; padding-bottom: 11px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; white-space: nowrap; color: #FFFFFF; background-color: #373737;" scope="col" id="Parameter" bgcolor="#373737" valign="bottom" align="left">Parameter</th>
@@ -687,9 +697,9 @@ probability across five Florida counties from 2006 to 2016:
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/Temporal Effects Facet-1.png" alt="Figure 6: County-Specific Trends" width="90%" />
+<img src="README_files/figure-gfm/Temporal Effects Facet-1.png" alt="Figure 6: Temporal Effects by County (Smoothed Trends)" width="90%" />
 <p class="caption">
-Figure 6: County-Specific Trends
+Figure 6: Temporal Effects by County (Smoothed Trends)
 </p>
 
 </div>
@@ -709,7 +719,7 @@ This faceted plot illustrates the modeled county-specific temporal
 variation in bleaching probability, capturing how bleaching risk
 fluctuates over time in different locations.
 
-### Aggregated Trends
+### Overlaid Trends
 
 To provide a broader comparison of modeled bleaching trends across
 counties, the following plot presents an overlay of the estimated
@@ -717,9 +727,9 @@ temporal effects without faceting:
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/Temporal Effects Overlay-1.png" alt="Figure 7: Aggregated Trends" width="90%" />
+<img src="README_files/figure-gfm/Temporal Effects Overlay-1.png" alt="Figure 7: Overlaid Temporal Trends in Percent Bleaching" width="90%" />
 <p class="caption">
-Figure 7: Aggregated Trends
+Figure 7: Overlaid Temporal Trends in Percent Bleaching
 </p>
 
 </div>
@@ -752,9 +762,9 @@ effects.
 
 <div class="figure" style="text-align: center">
 
-<img src="README_files/figure-gfm/Spatial Effects-1.png" alt="Figure 8: Spatial Effects" width="90%" />
+<img src="README_files/figure-gfm/Spatial Effects-1.png" alt="Figure 8: Spatial Effects of Coral Bleaching (Modeled Estimates)" width="90%" />
 <p class="caption">
-Figure 8: Spatial Effects
+Figure 8: Spatial Effects of Coral Bleaching (Modeled Estimates)
 </p>
 
 </div>
@@ -811,7 +821,7 @@ be considered:
 ## Future Directions
 
 While this study leveraged the most recent available FRRP data
-(2006–2016), future research could benefit from new data collection to
+(2005–2016), future research could benefit from new data collection to
 assess whether the observed trends persist under current climate
 conditions. Additionally, further exploration of existing datasets could
 provide deeper insights into bleaching patterns by incorporating

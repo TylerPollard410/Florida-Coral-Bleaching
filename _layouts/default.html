@@ -14,12 +14,6 @@
 
 <body>
 
-    <!-- TOC Sidebar Toggle Button (Mobile) -->
-    <button id="toc-toggle">☰ Table of Contents</button>
-
-    <!-- TOC Sidebar (JavaScript will insert content here) -->
-    <aside id="toc-sidebar"></aside>
-
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
@@ -42,6 +36,10 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
         <section id="main_content" class="inner">
+            <!-- 🔹 Sidebar TOC (Desktop Only) -->
+            <aside id="toc-sidebar"></aside>
+
+            <!-- Main Content -->
             <main class="content">
                 {{ content }}
             </main>
