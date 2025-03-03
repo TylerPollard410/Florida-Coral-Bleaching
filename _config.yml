@@ -7,5 +7,5 @@ markdown: kramdown
 
 exclude:
   - _layouts
-  - _includes
+  #- _includes
   - app

@@ -33,4 +33,18 @@
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
 </script>
 
+<!-- Move TOC to Sidebar -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var toc = document.querySelector("#TOC");
+    if (toc) {
+        var sidebar = document.createElement("div");
+        sidebar.id = "toc-sidebar";
+        sidebar.innerHTML = "<h3>Table of Contents</h3>" + toc.innerHTML;
+        document.body.insertBefore(sidebar, document.body.firstChild);
+        toc.remove();
+    }
+});
+</script>
+
 <!-- end custom head snippets -->
