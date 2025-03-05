@@ -190,7 +190,8 @@ covDF |>
       cell_text(color = "#fff")
     ),
     locations = list(
-      cells_column_labels()
+      cells_column_labels(),
+      cells_column_spanners()
     )
   ) |>
   tab_options(
