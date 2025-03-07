@@ -120,7 +120,7 @@ bleaching events:
 <td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Degree heating weeks derived from SSTA</td>
 <td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left"></td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">TSA</td>
-<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Tropical sea surface temperature anomaly (°C)</td>
+<td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Thermal stress anomaly (°C)</td>
 <td headers="Units" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">°C</td></tr>
     <tr style="border-style: none;"><td headers="Covariate" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">TSA_DHW</td>
 <td headers="Description" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left;" valign="middle" align="left">Degree heating weeks derived from TSA</td>
@@ -519,13 +519,13 @@ environmental and climatic predictors, balancing complexity and
 generalizability.
 
 Model 9 includes key predictors such as Distance to Shore, Turbidity,
-Cyclone Frequency, Windspeed, Sea Surface Temperature Anomalies (SSTA
-and TSA), and Degree Heating Weeks derived from TSA (TSA_DHW). These
-covariates were retained based on their statistical significance and
-their ecological relevance to coral bleaching dynamics. The refined
-model structure provides a robust framework for understanding and
-predicting bleaching patterns, facilitating targeted conservation
-efforts.
+Cyclone Frequency, Windspeed, Sea Surface Temperature Anomalies (SSTA),
+Thermal Stress Anomaly (TSA), and Degree Heating Weeks derived from TSA
+(TSA_DHW). These covariates were retained based on their statistical
+significance and their ecological relevance to coral bleaching dynamics.
+The refined model structure provides a robust framework for
+understanding and predicting bleaching patterns, facilitating targeted
+conservation efforts.
 
 # Goodness of Fit
 
@@ -681,14 +681,13 @@ of key predictors is as follows:
   negative effects, likely due to increased mixing of ocean layers,
   reducing localized heat stress on corals.
 
-- Sea Surface Temperature Anomaly (SSTA) (β = -0.0573, 95% CI:
-  \[-0.1104, -0.0047\]) – Contrary to expectations, this predictor has a
-  small negative effect, possibly reflecting interactions with other
-  environmental conditions or non-linear temperature effects.
+- SSTA (β = -0.0573, 95% CI: \[-0.1104, -0.0047\]) – Contrary to
+  expectations, this predictor has a small negative effect, possibly
+  reflecting interactions with other environmental conditions or
+  non-linear temperature effects.
 
-- Thermal Stress Anomaly (TSA) & Degree Heating Weeks (TSA_DHW) (β =
-  0.1313, 0.0885) – Significant positive effects, confirming that
-  prolonged heat stress increases bleaching probability.
+- TSA & TSA_DHW (β = 0.1313, 0.0885) – Significant positive effects,
+  confirming that prolonged heat stress increases bleaching probability.
 
 ## Temporal Effects
 
@@ -790,13 +789,13 @@ Figure 8: Spatial Effects of Coral Bleaching (Modeled Estimates)
 This study applied a spatiotemporal modeling approach to assess coral
 bleaching trends across Florida’s reef systems, capturing both
 geographic variation and temporal changes. The results demonstrate that
-prolonged thermal stress anomalies (**TSA** and **TSA_DHW**) and
-**Distance to Shore** are the strongest predictors of bleaching, with
-additional associations observed for sea surface temperature anomalies,
-turbidity, cyclone frequency, and wind speed. While thermal stress is
-well-documented as a primary driver of bleaching, this analysis suggests
-that local environmental conditions, such as water quality and storm
-activity, may influence bleaching severity in complex ways.
+prolonged **TSA** and **TSA_DHW** as well as **Distance to Shore** are
+the strongest predictors of bleaching, with additional associations
+observed for SSTA, turbidity, cyclone frequency, and wind speed. While
+thermal stress is well-documented as a primary driver of bleaching, this
+analysis suggests that local environmental conditions, such as water
+quality and storm activity, may influence bleaching severity in complex
+ways.
 
 By incorporating both spatial and temporal variation, the model
 identifies region-specific and time-dependent patterns of bleaching
