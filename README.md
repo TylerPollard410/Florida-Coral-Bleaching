@@ -686,8 +686,8 @@ of key predictors is as follows:
   small negative effect, possibly reflecting interactions with other
   environmental conditions or non-linear temperature effects.
 
-- Thermal Stress Accumulation (TSA) & Degree Heating Weeks (TSA_DHW) (β
-  = 0.1313, 0.0885) – Significant positive effects, confirming that
+- Thermal Stress Anomaly (TSA) & Degree Heating Weeks (TSA_DHW) (β =
+  0.1313, 0.0885) – Significant positive effects, confirming that
   prolonged heat stress increases bleaching probability.
 
 ## Temporal Effects
@@ -717,8 +717,8 @@ Figure 6: Temporal Effects by County (Smoothed Trends)
 - Monroe and Miami-Dade counties have higher bleaching probabilities and
   greater interannual variability than the others.
 
-- Martin County shows a steady increase after 2010, suggesting it may be
-  particularly vulnerable to long-term climate stress.
+- Palm Beach County maintains relatively low bleaching levels compared
+  to other regions.
 
 This faceted plot illustrates the modeled county-specific temporal
 variation in bleaching probability, capturing how bleaching risk
@@ -744,14 +744,11 @@ Figure 7: Overlaid Temporal Trends in Percent Bleaching
 - The overlay allows for direct comparison between counties,
   highlighting relative differences in bleaching probabilities.
 
-- Monroe County stands out with the most extreme bleaching peak in
-  2014-2015.
+- Monroe and Miami-Dade Counties stand out with the most extreme
+  bleaching peak in 2014-2015.
 
-- Palm Beach County maintains relatively low bleaching levels compared
-  to other regions.
-
-- The synchronized bleaching peaks across counties suggest that
-  widespread regional environmental drivers, such as temperature
+- The relatively synchronized bleaching peaks across counties suggest
+  that widespread regional environmental drivers, such as temperature
   anomalies, are at play.
 
 While this plot removes individual county facets, it retains the key
@@ -793,12 +790,13 @@ Figure 8: Spatial Effects of Coral Bleaching (Modeled Estimates)
 This study applied a spatiotemporal modeling approach to assess coral
 bleaching trends across Florida’s reef systems, capturing both
 geographic variation and temporal changes. The results demonstrate that
-prolonged temperature anomalies (**TSA** and **TSA_DHW**) are the
-strongest predictors of bleaching, with additional associations observed
-for turbidity, cyclone frequency, and wind speed. While thermal stress
-is well-documented as a primary driver of bleaching, this analysis
-suggests that local environmental conditions, such as water quality and
-storm activity, may influence bleaching severity in complex ways.
+prolonged thermal stress anomalies (**TSA** and **TSA_DHW**) and
+**Distance to Shore** are the strongest predictors of bleaching, with
+additional associations observed for sea surface temperature anomalies,
+turbidity, cyclone frequency, and wind speed. While thermal stress is
+well-documented as a primary driver of bleaching, this analysis suggests
+that local environmental conditions, such as water quality and storm
+activity, may influence bleaching severity in complex ways.
 
 By incorporating both spatial and temporal variation, the model
 identifies region-specific and time-dependent patterns of bleaching
@@ -812,7 +810,7 @@ site-specific environmental factors.
 While this study provides valuable insights, several limitations should
 be considered:
 
-- **Data Constraints**: The dataset spans from 2006 to 2016, preventing
+- **Data Constraints**: The dataset spans from 2005 to 2016, preventing
   assessment of more recent bleaching trends.
 
 - **Model Assumptions**: The Bayesian Beta regression model imposes
